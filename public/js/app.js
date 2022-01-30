@@ -7,13 +7,7 @@
   \******************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var __importDefault = this && this.__importDefault || function (mod) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
   };
@@ -29,14 +23,45 @@ var __importDefault = this && this.__importDefault || function (mod) {
   react_dom_1 = __importDefault(react_dom_1); // import 'react-tabs/style/react-tabs.css';
 
   var App = function App() {
-    var style = {
-      listStyleType: 'none'
+    var tabsTop = {
+      margin: '0 200px'
     };
-    var className = 'tabs-list';
-    return react_1["default"].createElement(react_tabs_1.Tabs, null, react_1["default"].createElement(react_tabs_1.TabList, _objectSpread({}, {
-      style: style,
-      className: className
-    }), react_1["default"].createElement(react_tabs_1.Tab, null, "TOP"), react_1["default"].createElement(react_tabs_1.Tab, null, "INFO"), react_1["default"].createElement(react_tabs_1.Tab, null, "MENU"), react_1["default"].createElement(react_tabs_1.Tab, null, "CALENDAR"), react_1["default"].createElement(react_tabs_1.Tab, null, "\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement(react_tabs_1.Tab, null, "PROFILE"), react_1["default"].createElement(react_tabs_1.Tab, null, "RESERVE"), react_1["default"].createElement(react_tabs_1.Tab, null, "DIARY")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30A4\u30F3\u30D5\u30A9\u30E1\u30FC\u30B7\u30E7\u30F3\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30E1\u30CB\u30E5\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u554F\u3044\u5408\u308F\u305B\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u4E88\u7D04\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")));
+    var tabList = {
+      listStyleType: 'none',
+      display: 'inline-block',
+      margin: '40px 20px'
+    };
+    var tabItem = {
+      display: 'block',
+      "float": 'left',
+      margin: '0 20px'
+    };
+    var tabBottom = {
+      clear: 'both'
+    };
+    return react_1["default"].createElement(react_tabs_1.Tabs, null, react_1["default"].createElement("div", {
+      style: tabsTop
+    }, react_1["default"].createElement(react_tabs_1.TabList, {
+      style: tabList
+    }, react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "TOP"), react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "INFO"), react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "MENU"), react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "CALENDAR"), react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "PROFILE"), react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "RESERVE"), react_1["default"].createElement(react_tabs_1.Tab, {
+      style: tabItem
+    }, "DIARY"))), react_1["default"].createElement("div", {
+      style: tabBottom
+    }), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30A4\u30F3\u30D5\u30A9\u30E1\u30FC\u30B7\u30E7\u30F3\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30E1\u30CB\u30E5\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u554F\u3044\u5408\u308F\u305B\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u4E88\u7D04\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")));
   };
 
   react_dom_1["default"].render(react_1["default"].createElement(App, null), document.getElementById("root"));

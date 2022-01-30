@@ -4,22 +4,42 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 // import 'react-tabs/style/react-tabs.css';
 
 const App = () => {
-  const style = {listStyleType: 'none'}
-  const className = 'tabs-list'
+  const tabsTop: {
+    margin: string;
+  } = {margin: '0 200px'}
+
+  const tabList: {
+    listStyleType: string;
+    display: string;
+    margin: string;
+  } = {listStyleType: 'none', display: 'inline-block', margin: '40px 20px'}
+  
+  const tabItem: {
+    display: string;
+    float: 'left';
+    margin: string;
+  } = {display: 'block', float: 'left', margin: '0 20px'}
+
+  const tabBottom: {
+    clear: 'both';
+  } = {clear: 'both'}
 
   return (
     <Tabs>
-      <TabList {... {style, className}}>
-        <Tab>TOP</Tab>
-        <Tab>INFO</Tab>
-        <Tab>MENU</Tab>
-        <Tab>CALENDAR</Tab>
-        <Tab>問い合わせ</Tab>
-        <Tab>PROFILE</Tab>
-        <Tab>RESERVE</Tab>
-        <Tab>DIARY</Tab>
+      <div style={tabsTop}>
+      <TabList style={tabList}>
+        <Tab style={tabItem}>TOP</Tab>
+        <Tab style={tabItem}>INFO</Tab>
+        <Tab style={tabItem}>MENU</Tab>
+        <Tab style={tabItem}>CALENDAR</Tab>
+        <Tab style={tabItem}>問い合わせ</Tab>
+        <Tab style={tabItem}>PROFILE</Tab>
+        <Tab style={tabItem}>RESERVE</Tab>
+        <Tab style={tabItem}>DIARY</Tab>
       </TabList>
+      </div>
 
+      <div style={tabBottom}></div>
       <TabPanel>
         <h2>トップページです</h2>
       </TabPanel>
