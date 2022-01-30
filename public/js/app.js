@@ -29,7 +29,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
     var tabList = {
       listStyleType: 'none',
       display: 'inline-block',
-      margin: '40px 20px'
+      margin: '40px 20px',
+      cursor: 'pointer'
     };
     var tabItem = {
       display: 'block',

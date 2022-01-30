@@ -12,7 +12,8 @@ const App = () => {
     listStyleType: string;
     display: string;
     margin: string;
-  } = {listStyleType: 'none', display: 'inline-block', margin: '40px 20px'}
+    cursor: string;
+  } = {listStyleType: 'none', display: 'inline-block', margin: '40px 20px', cursor: 'pointer'}
   
   const tabItem: {
     display: string;
