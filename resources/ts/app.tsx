@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+// import 'react-tabs/style/react-tabs.css';
 
 const App = () => {
-  return (
+  const style = {listStyleType: 'none'}
+  const className = 'tabs-list'
 
+  return (
     <Tabs>
-      <TabList>
+      <TabList {... {style, className}}>
         <Tab>TOP</Tab>
         <Tab>INFO</Tab>
         <Tab>MENU</Tab>
@@ -43,7 +45,6 @@ const App = () => {
         <h2>日記です</h2>
       </TabPanel>
     </Tabs>
-
   )
 }
 

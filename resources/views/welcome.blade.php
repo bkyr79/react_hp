@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ asset('/css/welcome.css') }}" rel="stylesheet" type="text/css">
 
         <title>Laravel</title>
 
@@ -21,7 +22,9 @@
         </style>
     </head>
     <body class="antialiased">
-        <div id="root">
+        <div class="main">
+            <div id="root">
+            </div>
         </div>
     </body>
         <script src="{{ mix('js/app.js') }}"></script>
