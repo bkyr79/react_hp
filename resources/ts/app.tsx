@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 // import 'react-tabs/style/react-tabs.css';
 
-const App = () => {
+import Contact from "./contact";
+
+const App = (): JSX.Element => {
   const tabsTop: {
     margin: string;
   } = {margin: '0 200px'}
@@ -54,7 +56,7 @@ const App = () => {
         <h2>カレンダーです</h2>
       </TabPanel>
       <TabPanel>
-        <h2>問い合わせページです</h2>
+        <Contact/>
       </TabPanel>
       <TabPanel>
         <h2>プロフィールです</h2>

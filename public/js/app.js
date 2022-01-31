@@ -13,14 +13,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_tabs_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-tabs */ "./node_modules/react-tabs/esm/index.js"), __webpack_require__(/*! ./contact */ "./resources/ts/contact.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_tabs_1, contact_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
   react_1 = __importDefault(react_1);
-  react_dom_1 = __importDefault(react_dom_1); // import 'react-tabs/style/react-tabs.css';
+  react_dom_1 = __importDefault(react_dom_1);
+  contact_1 = __importDefault(contact_1);
 
   var App = function App() {
     var tabsTop = {
@@ -62,10 +63,98 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       style: tabItem
     }, "DIARY"))), react_1["default"].createElement("div", {
       style: tabBottom
-    }), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30A4\u30F3\u30D5\u30A9\u30E1\u30FC\u30B7\u30E7\u30F3\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30E1\u30CB\u30E5\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u554F\u3044\u5408\u308F\u305B\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u4E88\u7D04\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")));
+    }), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30A4\u30F3\u30D5\u30A9\u30E1\u30FC\u30B7\u30E7\u30F3\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30E1\u30CB\u30E5\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement(contact_1["default"], null)), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u4E88\u7D04\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")));
   };
 
   react_dom_1["default"].render(react_1["default"].createElement(App, null), document.getElementById("root"));
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ "./resources/ts/contact.tsx":
+/*!**********************************!*\
+  !*** ./resources/ts/contact.tsx ***!
+  \**********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", ({
+    value: true
+  }));
+  react_1 = __importDefault(react_1);
+
+  var contact = function contact() {
+    var mainContent = {
+      margin: '0 200px'
+    };
+    var pageTitle = {};
+    var contentsBox = {};
+    var formInput = {
+      outline: 'solid 1px black'
+    };
+    var btns = {
+      color: 'pink'
+    };
+    return react_1["default"].createElement("div", {
+      style: mainContent
+    }, react_1["default"].createElement("h2", {
+      style: pageTitle
+    }, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
+      style: contentsBox
+    }, react_1["default"].createElement("form", null, react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
+      htmlFor: "nameForm"
+    }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("div", null, react_1["default"].createElement("input", {
+      type: "text",
+      id: "nameForm",
+      style: formInput
+    })), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
+      htmlFor: "postalForm"
+    }, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("input", {
+      type: "text",
+      id: "postalForm",
+      style: formInput
+    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
+      htmlFor: "addressForm"
+    }, "\u4F4F\u6240\uFF1A")), react_1["default"].createElement("input", {
+      type: "text",
+      id: "addressForm",
+      style: formInput
+    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
+      htmlFor: "companyNameForm"
+    }, "\u4F1A\u793E\u540D\uFF1A")), react_1["default"].createElement("input", {
+      type: "text",
+      id: "companyNameForm",
+      style: formInput,
+      required: true
+    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
+      htmlFor: "mailForm"
+    }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A")), react_1["default"].createElement("input", {
+      type: "email",
+      id: "mailForm",
+      style: formInput
+    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
+      htmlFor: "mailTitleForm"
+    }, "\u4EF6\u540D\uFF1A")), react_1["default"].createElement("input", {
+      type: "text",
+      id: "mailTitleForm",
+      style: formInput
+    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
+      htmlFor: "mailContentForm"
+    }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("div", {
+      style: btns
+    }, react_1["default"].createElement("strong", null, "\u30AD\u30E3\u30F3\u30BB\u30EB")))));
+  };
+
+  exports["default"] = contact;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
