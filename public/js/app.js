@@ -96,62 +96,145 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
     var mainContent = {
       margin: '0 200px'
     };
+    var description = {
+      marginBottom: '30px'
+    };
     var pageTitle = {};
-    var contentsBox = {};
+    var contentsBox = {
+      width: '40%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      display: 'table',
+      borderCollapse: 'separate',
+      boxSizing: 'border-box',
+      textIndent: 'initial',
+      borderSpacing: '2px',
+      borderColor: 'grey'
+    };
+    var tableHeader = {
+      textAlign: 'left'
+    };
     var formInput = {
-      outline: 'solid 1px black'
+      outline: 'none',
+      fontFamily: 'system-ui',
+      display: 'block',
+      marginBottom: '10px',
+      border: '3px solid #f6f5f4',
+      borderRadius: '4px',
+      height: '40px',
+      fontSize: '18px',
+      color: '#777',
+      boxSizing: 'border-box',
+      width: '100%'
     };
-    var btns = {
-      color: 'pink'
+    var formTextarea = {
+      outline: 'none',
+      fontFamily: 'system-ui',
+      display: 'block',
+      marginBottom: '10px',
+      border: '3px solid #f6f5f4',
+      borderRadius: '4px',
+      height: '200px',
+      fontSize: '18px',
+      color: '#777',
+      boxSizing: 'border-box',
+      width: '100%'
     };
-    return react_1["default"].createElement("div", {
-      style: mainContent
-    }, react_1["default"].createElement("h2", {
-      style: pageTitle
-    }, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
-      style: contentsBox
-    }, react_1["default"].createElement("form", null, react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "nameForm"
-    }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("div", null, react_1["default"].createElement("input", {
-      type: "text",
-      id: "nameForm",
-      style: formInput
-    })), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "postalForm"
-    }, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("input", {
-      type: "text",
-      id: "postalForm",
-      style: formInput
-    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "addressForm"
-    }, "\u4F4F\u6240\uFF1A")), react_1["default"].createElement("input", {
-      type: "text",
-      id: "addressForm",
-      style: formInput
-    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "companyNameForm"
-    }, "\u4F1A\u793E\u540D\uFF1A")), react_1["default"].createElement("input", {
-      type: "text",
-      id: "companyNameForm",
-      style: formInput,
-      required: true
-    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "mailForm"
-    }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A")), react_1["default"].createElement("input", {
-      type: "email",
-      id: "mailForm",
-      style: formInput
-    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "mailTitleForm"
-    }, "\u4EF6\u540D\uFF1A")), react_1["default"].createElement("input", {
-      type: "text",
-      id: "mailTitleForm",
-      style: formInput
-    }), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "mailContentForm"
-    }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("div", {
-      style: btns
-    }, react_1["default"].createElement("strong", null, "\u30AD\u30E3\u30F3\u30BB\u30EB")))));
+    var confirm = {
+      border: 'none',
+      cursor: 'pointer',
+      borderRadius: '5px',
+      boxSizing: 'border-box',
+      transition: '.3s',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+      loat: 'right',
+      color: '#fff',
+      background: '#90979f',
+      padding: '15px 30px',
+      fontSize: '18px'
+    };
+    return (// <div style={mainContent}>
+      //   <h2 style={pageTitle}>お問い合わせ</h2>
+      //   <div style={contentsBox}>
+      //   <form>
+      //     <div>
+      //       <label htmlFor="nameForm">ご氏名：</label>
+      //     </div>
+      //     <div >
+      //       <input type="text" id="nameForm" style={formInput}/>
+      //     </div>
+      //     <div>
+      //       <label htmlFor="postalForm">郵便番号：</label>
+      //     </div>
+      //     <input type="text" id="postalForm" style={formInput} />
+      //     <div>
+      //       <label htmlFor="addressForm">住所：</label>
+      //     </div>
+      //     <input type="text" id="addressForm" style={formInput} />
+      //     <div>
+      //       <label htmlFor="companyNameForm">会社名：</label>
+      //     </div>
+      //     <input type="text" id="companyNameForm" style={formInput}
+      //       required />
+      //     <div>
+      //       <label htmlFor="mailForm">メールアドレス：</label>
+      //     </div>
+      //     <input type="email" id="mailForm" style={formInput} />
+      //     <div>
+      //       <label htmlFor="mailTitleForm">件名：</label>
+      //     </div>
+      //     <input type="text" id="mailTitleForm" style={formInput} />
+      //     <div>
+      //       <label htmlFor="mailContentForm">お問い合わせ内容：</label>
+      //     </div>
+      //     <div style={btns}>
+      //           <strong>キャンセル</strong>
+      //     </div>
+      //   </form>
+      //   </div>
+      // </div>
+      react_1["default"].createElement("section", null, react_1["default"].createElement("h2", null, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B")), react_1["default"].createElement("div", {
+        style: description
+      }, react_1["default"].createElement("span", null, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", null, react_1["default"].createElement("table", {
+        style: contentsBox
+      }, react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+        style: tableHeader
+      }, react_1["default"].createElement("span", null, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+        type: "text",
+        style: formInput
+      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+        style: tableHeader
+      }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+        type: "text",
+        style: formInput
+      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+        style: tableHeader
+      }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+        type: "text",
+        style: formInput
+      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+        style: tableHeader
+      }, react_1["default"].createElement("span", null, "\u4F1A\u793E\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+        type: "text",
+        style: formInput
+      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+        style: tableHeader
+      }, react_1["default"].createElement("span", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+        type: "text",
+        style: formInput
+      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+        style: tableHeader
+      }, react_1["default"].createElement("span", null, "\u4EF6\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+        type: "text",
+        style: formInput
+      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+        style: tableHeader
+      }, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
+        style: formTextarea
+      })))), react_1["default"].createElement("button", {
+        style: confirm
+      }, "\u78BA\u8A8D")))
+    );
   };
 
   exports["default"] = contact;
