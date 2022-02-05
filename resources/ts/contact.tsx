@@ -1,7 +1,7 @@
 import React from "react";
 
 const contact = (): JSX.Element => {
-  const mainContent: {
+  const content: {
     margin: string;
   } = {
     margin: '0 200px'
@@ -13,7 +13,11 @@ const contact = (): JSX.Element => {
     marginBottom: '30px'
   }
 
-  const pageTitle = {}
+  const descriptionMsg: {
+    fontSize: string;
+  } = {
+    fontSize: '15px'
+  }
 
   const contentsBox: {
     width: string;
@@ -37,17 +41,40 @@ const contact = (): JSX.Element => {
     borderColor: 'grey',
   }
 
+  const tableRow: {
+    height: string;
+    marginBottom: string;
+  } = {
+    height: '40px',
+    marginBottom: '10px'
+  }
+
+  const tableRowTextArea: {
+    height: '40px',
+
+    marginTop: string;
+  } = {
+    height: '40px',
+
+    marginTop: '100px'
+  }
+
   const tableHeader: {
     textAlign: 'left';
   } = {
     textAlign: 'left'
   }
 
+  const tableHeaderTittle: {
+    fontSize: string;
+  } = {
+    fontSize: '16px'
+  }
+
   const formInput: {
     outline: string;
     fontFamily: string;
     display: string;
-    marginBottom: string;
     border: string;
     borderRadius: string;
     height: string;
@@ -55,18 +82,19 @@ const contact = (): JSX.Element => {
     color: string;
     boxSizing: 'border-box';
     width: string;
+    paddingLeft: string;
   } = {
     outline: 'none',
     fontFamily: 'system-ui',
     display: 'block',
-    marginBottom: '10px',
     border: '3px solid #f6f5f4',
     borderRadius: '4px',
-    height: '40px',
-    fontSize: '18px',
+    height: '34px',
+    fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '100%'
+    width: '130%',
+    paddingLeft: '5px'
   }
 
   const formTextarea: {
@@ -81,6 +109,7 @@ const contact = (): JSX.Element => {
     color: string;
     boxSizing: 'border-box';
     width: string;
+    paddingLeft: string;
   } = {
     outline: 'none',
     fontFamily: 'system-ui',
@@ -89,13 +118,15 @@ const contact = (): JSX.Element => {
     border: '3px solid #f6f5f4',
     borderRadius: '4px',
     height: '200px',
-    fontSize: '18px',
+    fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '100%'
+    width: '130%',
+    paddingLeft: '5px'
   }
 
-  const confirm: {
+  const confirmBtn: {
+    display: string,
     border: string;
     cursor: string;
     borderRadius: string;
@@ -104,10 +135,13 @@ const contact = (): JSX.Element => {
     boxShadow: string;
     loat: string;
     color: string;
-    background: string;
     padding: string;
     fontSize: string;
+    width: string;
+    background: string;
+    margin: string;
   } = {
+    display: 'inline-block',
     border: 'none',
     cursor: 'pointer',
     borderRadius: '5px',
@@ -116,9 +150,11 @@ const contact = (): JSX.Element => {
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
     loat: 'right',
     color: '#fff',
-    background: '#90979f',
     padding: '15px 30px',
-    fontSize: '18px'
+    fontSize: '18px',
+    width: '65%',
+    background: 'linear-gradient(to right, #E3E3E3, #90979f)',
+    margin: '25px 0 60px 0'
   }
 
   return (
@@ -163,48 +199,49 @@ const contact = (): JSX.Element => {
     //   </div>
     // </div>
 
-    <section>
-      <h2><span>お問い合わせ</span></h2>
-      <div style={description}><span>ご入力の上、「確認」ボタンを押してください。</span></div>
+    <section style={content}>
+      <h2>お問い合わせ</h2>
+      <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
+
       <form>
         <table style={contentsBox}>
-          <tr>
-            <th style={tableHeader}><span>ご氏名：</span></th>
+          <tr style={tableRow}>
+            <th style={tableHeader}><span style={tableHeaderTittle}>ご氏名：</span></th>
             <td>
               <input type="text" style={formInput}/>
             </td>
           </tr>          
-          <tr>
+          <tr style={tableRow}>
             <th style={tableHeader}><span>郵便番号：</span></th>
             <td>
               <input type="text" style={formInput}/>
             </td>
           </tr>          
-          <tr>
+          <tr style={tableRow}>
             <th style={tableHeader}><span>住所：</span></th>
             <td>
               <input type="text" style={formInput}/>
             </td>
           </tr>          
-          <tr>
+          <tr style={tableRow}>
             <th style={tableHeader}><span>会社名：</span></th>
             <td>
               <input type="text" style={formInput}/>
             </td>
           </tr>          
-          <tr>
+          <tr style={tableRow}>
             <th style={tableHeader}><span>メールアドレス：</span></th>
             <td>
               <input type="text" style={formInput}/>
             </td>
           </tr>          
-          <tr>
+          <tr style={tableRow}>
             <th style={tableHeader}><span>件名：</span></th>
             <td>
               <input type="text" style={formInput}/>
             </td>
           </tr>          
-          <tr>
+          <tr style={tableRowTextArea}>
             <th style={tableHeader}><span>お問い合わせ内容：</span></th>
             <td>
               <textarea style={formTextarea}/>
@@ -212,7 +249,7 @@ const contact = (): JSX.Element => {
           </tr>          
         </table>
 
-        <button style={confirm}>確認</button>
+        <input type="submit" value="確認" style={confirmBtn}/>
       </form>
     </section>
   );

@@ -26,6 +26,7 @@
             <div id="root">
             </div>
         </div>
+        <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
     </body>
         <script src="{{ mix('js/app.js') }}"></script>
 </html>

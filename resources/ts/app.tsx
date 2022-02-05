@@ -16,6 +16,12 @@ const App = (): JSX.Element => {
     margin: string;
     cursor: string;
   } = {listStyleType: 'none', display: 'inline-block', margin: '40px 20px', cursor: 'pointer'}
+
+  const tabItemTittle: {
+    fontSize: string;
+  } = {
+    fontSize: '16px'
+  }
   
   const tabItem: {
     display: string;
@@ -31,14 +37,14 @@ const App = (): JSX.Element => {
     <Tabs>
       <div style={tabsTop}>
       <TabList style={tabList}>
-        <Tab style={tabItem}>TOP</Tab>
-        <Tab style={tabItem}>INFO</Tab>
-        <Tab style={tabItem}>MENU</Tab>
-        <Tab style={tabItem}>CALENDAR</Tab>
-        <Tab style={tabItem}>問い合わせ</Tab>
-        <Tab style={tabItem}>PROFILE</Tab>
-        <Tab style={tabItem}>RESERVE</Tab>
-        <Tab style={tabItem}>DIARY</Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>TOP</span></Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>INFO</span></Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>MENU</span></Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>CALENDAR</span></Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>問い合わせ</span></Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>PROFILE</span></Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>RESERVE</span></Tab>
+        <Tab style={tabItem}><span style={tabItemTittle}>DIARY</span></Tab>
       </TabList>
       </div>
 

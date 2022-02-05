@@ -33,6 +33,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       margin: '40px 20px',
       cursor: 'pointer'
     };
+    var tabItemTittle = {
+      fontSize: '16px'
+    };
     var tabItem = {
       display: 'block',
       "float": 'left',
@@ -47,21 +50,37 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       style: tabList
     }, react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "TOP"), react_1["default"].createElement(react_tabs_1.Tab, {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "TOP")), react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "INFO"), react_1["default"].createElement(react_tabs_1.Tab, {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "INFO")), react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "MENU"), react_1["default"].createElement(react_tabs_1.Tab, {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "MENU")), react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "CALENDAR"), react_1["default"].createElement(react_tabs_1.Tab, {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "CALENDAR")), react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement(react_tabs_1.Tab, {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "\u554F\u3044\u5408\u308F\u305B")), react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "PROFILE"), react_1["default"].createElement(react_tabs_1.Tab, {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "PROFILE")), react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "RESERVE"), react_1["default"].createElement(react_tabs_1.Tab, {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "RESERVE")), react_1["default"].createElement(react_tabs_1.Tab, {
       style: tabItem
-    }, "DIARY"))), react_1["default"].createElement("div", {
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "DIARY")))), react_1["default"].createElement("div", {
       style: tabBottom
     }), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30A4\u30F3\u30D5\u30A9\u30E1\u30FC\u30B7\u30E7\u30F3\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30E1\u30CB\u30E5\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement(contact_1["default"], null)), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u4E88\u7D04\u30DA\u30FC\u30B8\u3067\u3059")), react_1["default"].createElement(react_tabs_1.TabPanel, null, react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")));
   };
@@ -93,13 +112,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   react_1 = __importDefault(react_1);
 
   var contact = function contact() {
-    var mainContent = {
+    var content = {
       margin: '0 200px'
     };
     var description = {
       marginBottom: '30px'
     };
-    var pageTitle = {};
+    var descriptionMsg = {
+      fontSize: '15px'
+    };
     var contentsBox = {
       width: '40%',
       marginLeft: 'auto',
@@ -111,21 +132,32 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       borderSpacing: '2px',
       borderColor: 'grey'
     };
+    var tableRow = {
+      height: '40px',
+      marginBottom: '10px'
+    };
+    var tableRowTextArea = {
+      height: '40px',
+      marginTop: '100px'
+    };
     var tableHeader = {
       textAlign: 'left'
+    };
+    var tableHeaderTittle = {
+      fontSize: '16px'
     };
     var formInput = {
       outline: 'none',
       fontFamily: 'system-ui',
       display: 'block',
-      marginBottom: '10px',
       border: '3px solid #f6f5f4',
       borderRadius: '4px',
-      height: '40px',
-      fontSize: '18px',
+      height: '34px',
+      fontSize: '15px',
       color: '#777',
       boxSizing: 'border-box',
-      width: '100%'
+      width: '130%',
+      paddingLeft: '5px'
     };
     var formTextarea = {
       outline: 'none',
@@ -135,12 +167,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       border: '3px solid #f6f5f4',
       borderRadius: '4px',
       height: '200px',
-      fontSize: '18px',
+      fontSize: '15px',
       color: '#777',
       boxSizing: 'border-box',
-      width: '100%'
+      width: '130%',
+      paddingLeft: '5px'
     };
-    var confirm = {
+    var confirmBtn = {
+      display: 'inline-block',
       border: 'none',
       cursor: 'pointer',
       borderRadius: '5px',
@@ -149,9 +183,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
       loat: 'right',
       color: '#fff',
-      background: '#90979f',
       padding: '15px 30px',
-      fontSize: '18px'
+      fontSize: '18px',
+      width: '65%',
+      background: 'linear-gradient(to right, #E3E3E3, #90979f)',
+      margin: '25px 0 60px 0'
     };
     return (// <div style={mainContent}>
       //   <h2 style={pageTitle}>お問い合わせ</h2>
@@ -193,47 +229,69 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       //   </form>
       //   </div>
       // </div>
-      react_1["default"].createElement("section", null, react_1["default"].createElement("h2", null, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B")), react_1["default"].createElement("div", {
+      react_1["default"].createElement("section", {
+        style: content
+      }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
         style: description
-      }, react_1["default"].createElement("span", null, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", null, react_1["default"].createElement("table", {
+      }, react_1["default"].createElement("span", {
+        style: descriptionMsg
+      }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", null, react_1["default"].createElement("table", {
         style: contentsBox
-      }, react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      }, react_1["default"].createElement("tr", {
+        style: tableRow
+      }, react_1["default"].createElement("th", {
         style: tableHeader
-      }, react_1["default"].createElement("span", null, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      }, react_1["default"].createElement("span", {
+        style: tableHeaderTittle
+      }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
         type: "text",
         style: formInput
-      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      }))), react_1["default"].createElement("tr", {
+        style: tableRow
+      }, react_1["default"].createElement("th", {
         style: tableHeader
       }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
         type: "text",
         style: formInput
-      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      }))), react_1["default"].createElement("tr", {
+        style: tableRow
+      }, react_1["default"].createElement("th", {
         style: tableHeader
       }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
         type: "text",
         style: formInput
-      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      }))), react_1["default"].createElement("tr", {
+        style: tableRow
+      }, react_1["default"].createElement("th", {
         style: tableHeader
       }, react_1["default"].createElement("span", null, "\u4F1A\u793E\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
         type: "text",
         style: formInput
-      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      }))), react_1["default"].createElement("tr", {
+        style: tableRow
+      }, react_1["default"].createElement("th", {
         style: tableHeader
       }, react_1["default"].createElement("span", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
         type: "text",
         style: formInput
-      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      }))), react_1["default"].createElement("tr", {
+        style: tableRow
+      }, react_1["default"].createElement("th", {
         style: tableHeader
       }, react_1["default"].createElement("span", null, "\u4EF6\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
         type: "text",
         style: formInput
-      }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      }))), react_1["default"].createElement("tr", {
+        style: tableRowTextArea
+      }, react_1["default"].createElement("th", {
         style: tableHeader
       }, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
         style: formTextarea
-      })))), react_1["default"].createElement("button", {
-        style: confirm
-      }, "\u78BA\u8A8D")))
+      })))), react_1["default"].createElement("input", {
+        type: "submit",
+        value: "\u78BA\u8A8D",
+        style: confirmBtn
+      })))
     );
   };
 
