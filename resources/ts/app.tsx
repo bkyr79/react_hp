@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 // import 'react-tabs/style/react-tabs.css';
 
-import Contact from "./contact";
+import Contact from "./Contact";
 
 const App = (): JSX.Element => {
   const tabsTop: {

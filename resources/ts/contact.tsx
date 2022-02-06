@@ -1,6 +1,7 @@
 import React from "react";
+import ContactPostalCode from "./ContactPostalCode ";
 
-const contact = (): JSX.Element => {
+const Contact = (): JSX.Element => {
   const content: {
     margin: string;
   } = {
@@ -214,7 +215,7 @@ const contact = (): JSX.Element => {
           <tr style={tableRow}>
             <th style={tableHeader}><span>郵便番号：</span></th>
             <td>
-              <input type="text" style={formInput}/>
+              <ContactPostalCode />
             </td>
           </tr>          
           <tr style={tableRow}>
@@ -255,4 +256,4 @@ const contact = (): JSX.Element => {
   );
 };
 
-export default contact;
+export default Contact;
