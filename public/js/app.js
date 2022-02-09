@@ -100,107 +100,68 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       background: 'linear-gradient(to right, #E3E3E3, #90979f)',
       margin: '25px 0 60px 0'
     };
-    return (// <div style={mainContent}>
-      //   <h2 style={pageTitle}>お問い合わせ</h2>
-      //   <div style={contentsBox}>
-      //   <form>
-      //     <div>
-      //       <label htmlFor="nameForm">ご氏名：</label>
-      //     </div>
-      //     <div >
-      //       <input type="text" id="nameForm" style={formInput}/>
-      //     </div>
-      //     <div>
-      //       <label htmlFor="postalForm">郵便番号：</label>
-      //     </div>
-      //     <input type="text" id="postalForm" style={formInput} />
-      //     <div>
-      //       <label htmlFor="addressForm">住所：</label>
-      //     </div>
-      //     <input type="text" id="addressForm" style={formInput} />
-      //     <div>
-      //       <label htmlFor="companyNameForm">会社名：</label>
-      //     </div>
-      //     <input type="text" id="companyNameForm" style={formInput}
-      //       required />
-      //     <div>
-      //       <label htmlFor="mailForm">メールアドレス：</label>
-      //     </div>
-      //     <input type="email" id="mailForm" style={formInput} />
-      //     <div>
-      //       <label htmlFor="mailTitleForm">件名：</label>
-      //     </div>
-      //     <input type="text" id="mailTitleForm" style={formInput} />
-      //     <div>
-      //       <label htmlFor="mailContentForm">お問い合わせ内容：</label>
-      //     </div>
-      //     <div style={btns}>
-      //           <strong>キャンセル</strong>
-      //     </div>
-      //   </form>
-      //   </div>
-      // </div>
-      react_1["default"].createElement("section", {
-        style: content
-      }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
-        style: description
-      }, react_1["default"].createElement("span", {
-        style: descriptionMsg
-      }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", null, react_1["default"].createElement("table", {
-        style: contentsBox
-      }, react_1["default"].createElement("tr", {
-        style: tableRow
-      }, react_1["default"].createElement("th", {
-        style: tableHeader
-      }, react_1["default"].createElement("span", {
-        style: tableHeaderTittle
-      }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-        type: "text",
-        style: formInput
-      }))), react_1["default"].createElement("tr", {
-        style: tableRow
-      }, react_1["default"].createElement("th", {
-        style: tableHeader
-      }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement(ContactPostalCode_1["default"], null))), react_1["default"].createElement("tr", {
-        style: tableRow
-      }, react_1["default"].createElement("th", {
-        style: tableHeader
-      }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-        type: "text",
-        style: formInput
-      }))), react_1["default"].createElement("tr", {
-        style: tableRow
-      }, react_1["default"].createElement("th", {
-        style: tableHeader
-      }, react_1["default"].createElement("span", null, "\u4F1A\u793E\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-        type: "text",
-        style: formInput
-      }))), react_1["default"].createElement("tr", {
-        style: tableRow
-      }, react_1["default"].createElement("th", {
-        style: tableHeader
-      }, react_1["default"].createElement("span", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-        type: "text",
-        style: formInput
-      }))), react_1["default"].createElement("tr", {
-        style: tableRow
-      }, react_1["default"].createElement("th", {
-        style: tableHeader
-      }, react_1["default"].createElement("span", null, "\u4EF6\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-        type: "text",
-        style: formInput
-      }))), react_1["default"].createElement("tr", {
-        style: tableRowTextArea
-      }, react_1["default"].createElement("th", {
-        style: tableHeader
-      }, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
-        style: formTextarea
-      })))), react_1["default"].createElement("input", {
-        type: "submit",
-        value: "\u78BA\u8A8D",
-        style: confirmBtn
-      })))
-    );
+    return react_1["default"].createElement("section", {
+      style: content
+    }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
+      style: description
+    }, react_1["default"].createElement("span", {
+      style: descriptionMsg
+    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", null, react_1["default"].createElement("table", {
+      style: contentsBox
+    }, react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      type: "text",
+      style: formInput
+    }))), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement(ContactPostalCode_1["default"], {
+      oya: "親が最初に持っているもの"
+    }))), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      type: "text",
+      style: formInput
+    }))), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u4F1A\u793E\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      type: "text",
+      style: formInput
+    }))), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      type: "text",
+      style: formInput
+    }))), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u4EF6\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      type: "text",
+      style: formInput
+    }))), react_1["default"].createElement("tr", {
+      style: tableRowTextArea
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
+      style: formTextarea
+    })))), react_1["default"].createElement("input", {
+      type: "submit",
+      value: "\u78BA\u8A8D",
+      style: confirmBtn
+    })));
   };
 
   exports["default"] = Contact;
@@ -215,10 +176,50 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   \*********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
 };
 
 !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1) {
@@ -227,9 +228,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
-  react_1 = __importDefault(react_1);
+  react_1 = __importStar(react_1);
 
-  var ContactPostalCode = function ContactPostalCode() {
+  var ContactPostalCode = function ContactPostalCode(props) {
+    var _ref = (0, react_1.useState)(props.oya),
+        _ref2 = _slicedToArray(_ref, 2),
+        moji = _ref2[0],
+        setMoji = _ref2[1];
+
     var formInput = {
       outline: 'none',
       fontFamily: 'system-ui',
@@ -243,10 +249,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       width: '130%',
       paddingLeft: '5px'
     };
-    return react_1["default"].createElement("input", {
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("h2", null, "props.oya\u306E\u4E2D\u8EAB: ", moji), react_1["default"].createElement("button", {
+      onClick: function onClick() {
+        return setMoji(moji + 'お尻に文字を足します！');
+      }
+    }, "+"), react_1["default"].createElement("input", {
       type: "text",
       style: formInput
-    });
+    }));
   };
 
   exports["default"] = ContactPostalCode;

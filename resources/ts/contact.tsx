@@ -159,47 +159,6 @@ const Contact = (): JSX.Element => {
   }
 
   return (
-    // <div style={mainContent}>
-    //   <h2 style={pageTitle}>お問い合わせ</h2>
-    //   <div style={contentsBox}>
-    //   <form>
-    //     <div>
-    //       <label htmlFor="nameForm">ご氏名：</label>
-    //     </div>
-    //     <div >
-    //       <input type="text" id="nameForm" style={formInput}/>
-    //     </div>
-    //     <div>
-    //       <label htmlFor="postalForm">郵便番号：</label>
-    //     </div>
-    //     <input type="text" id="postalForm" style={formInput} />
-    //     <div>
-    //       <label htmlFor="addressForm">住所：</label>
-    //     </div>
-    //     <input type="text" id="addressForm" style={formInput} />
-    //     <div>
-    //       <label htmlFor="companyNameForm">会社名：</label>
-    //     </div>
-    //     <input type="text" id="companyNameForm" style={formInput}
-    //       required />
-    //     <div>
-    //       <label htmlFor="mailForm">メールアドレス：</label>
-    //     </div>
-    //     <input type="email" id="mailForm" style={formInput} />
-    //     <div>
-    //       <label htmlFor="mailTitleForm">件名：</label>
-    //     </div>
-    //     <input type="text" id="mailTitleForm" style={formInput} />
-    //     <div>
-    //       <label htmlFor="mailContentForm">お問い合わせ内容：</label>
-    //     </div>
-    //     <div style={btns}>
-    //           <strong>キャンセル</strong>
-    //     </div>
-    //   </form>
-    //   </div>
-    // </div>
-
     <section style={content}>
       <h2>お問い合わせ</h2>
       <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
@@ -215,9 +174,9 @@ const Contact = (): JSX.Element => {
           <tr style={tableRow}>
             <th style={tableHeader}><span>郵便番号：</span></th>
             <td>
-              <ContactPostalCode />
+              <ContactPostalCode oya={"親が最初に持っているもの"}/>
             </td>
-          </tr>          
+          </tr>                    
           <tr style={tableRow}>
             <th style={tableHeader}><span>住所：</span></th>
             <td>

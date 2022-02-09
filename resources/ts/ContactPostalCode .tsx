@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ContactPostalCode = (): JSX.Element => {
+const ContactPostalCode = ( props: {oya: string;} ): JSX.Element => {
+  const [moji, setMoji] = useState(props.oya);
+
   const formInput: {
     outline: string;
     fontFamily: string;
@@ -28,7 +30,11 @@ const ContactPostalCode = (): JSX.Element => {
   }
 
   return (
+  <>
+    <h2>props.oyaの中身: { moji }</h2>
+    <button onClick={() => setMoji(moji + 'お尻に文字を足します！')}>+</button>
     <input type="text" style={formInput}/>
+  </>
   )
 }
 
