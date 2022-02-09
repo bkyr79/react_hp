@@ -249,10 +249,13 @@ var __importStar = this && this.__importStar || function (mod) {
       width: '130%',
       paddingLeft: '5px'
     };
+
+    var addMoji = function addMoji() {
+      return setMoji(moji + 'お尻に文字を足します！');
+    };
+
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("h2", null, "props.oya\u306E\u4E2D\u8EAB: ", moji), react_1["default"].createElement("button", {
-      onClick: function onClick() {
-        return setMoji(moji + 'お尻に文字を足します！');
-      }
+      onClick: addMoji
     }, "+"), react_1["default"].createElement("input", {
       type: "text",
       style: formInput
