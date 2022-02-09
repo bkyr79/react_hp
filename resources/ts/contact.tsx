@@ -1,5 +1,5 @@
 import React from "react";
-import ContactPostalCode from "./ContactPostalCode ";
+import ContactPostalCode from "./ContactPostalCode";
 
 const Contact = (): JSX.Element => {
   const content: {

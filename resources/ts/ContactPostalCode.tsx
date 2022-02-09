@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 const ContactPostalCode = ( props: {
     oya: string;
@@ -30,8 +30,11 @@ const ContactPostalCode = ( props: {
     width: '130%',
     paddingLeft: '5px'
   }
-
-  const addMoji = () => setMoji(moji + 'お尻に文字を足します！');
+  
+  const addMoji = useCallback(() => {
+    setMoji(
+      prev => prev + 'お尻に文字を足します！');
+  },[]);
 
   return (
   <>

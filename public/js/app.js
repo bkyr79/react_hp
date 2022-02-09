@@ -13,7 +13,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactPostalCode  */ "./resources/ts/ContactPostalCode .tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactPostalCode_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactPostalCode */ "./resources/ts/ContactPostalCode.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactPostalCode_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -170,10 +170,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
 /***/ }),
 
-/***/ "./resources/ts/ContactPostalCode .tsx":
-/*!*********************************************!*\
-  !*** ./resources/ts/ContactPostalCode .tsx ***!
-  \*********************************************/
+/***/ "./resources/ts/ContactPostalCode.tsx":
+/*!********************************************!*\
+  !*** ./resources/ts/ContactPostalCode.tsx ***!
+  \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -249,11 +249,11 @@ var __importStar = this && this.__importStar || function (mod) {
       width: '130%',
       paddingLeft: '5px'
     };
-
-    var addMoji = function addMoji() {
-      return setMoji(moji + 'お尻に文字を足します！');
-    };
-
+    var addMoji = (0, react_1.useCallback)(function () {
+      setMoji(function (prev) {
+        return prev + 'お尻に文字を足します！';
+      });
+    }, []);
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("h2", null, "props.oya\u306E\u4E2D\u8EAB: ", moji), react_1["default"].createElement("button", {
       onClick: addMoji
     }, "+"), react_1["default"].createElement("input", {
