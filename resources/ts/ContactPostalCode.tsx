@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from "react";
 
-const ContactPostalCode = ( props: {
-    oya: string;
-  } ): JSX.Element => {
+interface Props {
+  oya: string;
+}
+
+const ContactPostalCode: React.VFC<Props> = (props): JSX.Element => {
   const [moji, setMoji] = useState(props.oya);
 
   const formInput: {
