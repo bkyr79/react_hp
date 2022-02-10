@@ -176,7 +176,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
@@ -249,16 +257,43 @@ var __importStar = this && this.__importStar || function (mod) {
       width: '130%',
       paddingLeft: '5px'
     };
-    var addMoji = (0, react_1.useCallback)(function () {
-      setMoji(function (prev) {
-        return prev + 'お尻に文字を足します！';
-      });
-    }, []);
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("h2", null, "props.oya\u306E\u4E2D\u8EAB: ", moji), react_1["default"].createElement("button", {
-      onClick: addMoji
-    }, "+"), react_1["default"].createElement("input", {
+
+    var _ref3 = (0, react_1.useState)(""),
+        _ref4 = _slicedToArray(_ref3, 2),
+        todoText = _ref4[0],
+        setTodoText = _ref4[1];
+
+    var _ref5 = (0, react_1.useState)(["行動１", "行動２"]),
+        _ref6 = _slicedToArray(_ref5, 2),
+        incompleteTodos = _ref6[0],
+        setIncompleteTodos = _ref6[1];
+
+    var onChangeTodoText = function onChangeTodoText(event) {
+      return setTodoText(event.target.value);
+    };
+
+    var onClickAdd = function onClickAdd() {
+      if (todoText === "") return;
+      var newTodos = [].concat(_toConsumableArray(incompleteTodos), [todoText]);
+      setIncompleteTodos(newTodos);
+      setTodoText("");
+    }; // const addMoji = useCallback(() => {
+    //   setMoji( moji => moji + 'お尻に文字を足します！' );    
+    // },[]);
+
+
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("button", {
+      onClick: onClickAdd
+    }, "\u8FFD\u52A0"), react_1["default"].createElement("input", {
       type: "text",
-      style: formInput
+      style: formInput,
+      placeholder: "TODO\u3092\u5165\u529B",
+      value: todoText,
+      onChange: onChangeTodoText
+    }), incompleteTodos.map(function (todo) {
+      return react_1["default"].createElement("div", {
+        key: todo
+      }, todo);
     }));
   };
 

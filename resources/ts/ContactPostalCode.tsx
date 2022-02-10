@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, VFC } from "react";
 
-interface Props {
+type Props = {
   oya: string;
-}
+};
 
-const ContactPostalCode: React.VFC<Props> = (props): JSX.Element => {
+const ContactPostalCode: VFC<Props> = (props) => {
   const [moji, setMoji] = useState(props.oya);
 
   const formInput: {
@@ -33,16 +33,40 @@ const ContactPostalCode: React.VFC<Props> = (props): JSX.Element => {
     paddingLeft: '5px'
   }
   
-  const addMoji = useCallback(() => {
-    setMoji(
-      prev => prev + 'お尻に文字を足します！');
-  },[]);
+  const [todoText, setTodoText] = useState("");
+  const [incompleteTodos, setIncompleteTodos] = useState(["行動１", "行動２"]); 
+
+  const onChangeTodoText = (event: any) => setTodoText(event.target.value);
+
+  const onClickAdd = () => {
+    if (todoText === "") return;
+    const newTodos = [...incompleteTodos, todoText];
+    setIncompleteTodos(newTodos);
+    setTodoText("");
+  }
+
+  // const addMoji = useCallback(() => {
+  //   setMoji( moji => moji + 'お尻に文字を足します！' );    
+  // },[]);
 
   return (
   <>
-    <h2>props.oyaの中身: { moji }</h2>
-    <button onClick={addMoji}>+</button>
-    <input type="text" style={formInput}/>
+    {/* <h2>props.oyaの中身: { todo }</h2> */}
+    <button onClick={onClickAdd}>追加</button>
+    <input
+      type="text"
+      style={formInput}
+      placeholder="TODOを入力"
+      value={todoText}
+      onChange={onChangeTodoText}
+    />
+    {incompleteTodos.map((todo) => {
+      return (
+        <div key={todo}>
+          {todo}
+        </div>
+      )
+    })}
   </>
   )
 }
