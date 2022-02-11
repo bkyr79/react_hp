@@ -43,7 +43,7 @@ const ContactPostalCode: VFC<Props> = (props) => {
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     setTodoText("");
-  }
+  };
 
   // const addMoji = useCallback(() => {
   //   setMoji( moji => moji + 'お尻に文字を足します！' );    
@@ -65,7 +65,7 @@ const ContactPostalCode: VFC<Props> = (props) => {
         <div key={todo}>
           {todo}
         </div>
-      )
+      );
     })}
   </>
   )

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-// import 'react-tabs/style/react-tabs.css';
+import { BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
 import Contact from "./Contact";
 
@@ -29,52 +28,49 @@ const App = (): JSX.Element => {
     margin: string;
   } = {display: 'block', float: 'left', margin: '0 20px'}
 
-  const tabBottom: {
-    clear: 'both';
-  } = {clear: 'both'}
-
   return (
-    <Tabs>
+    <BrowserRouter>
       <div style={tabsTop}>
-      <TabList style={tabList}>
-        <Tab style={tabItem}><span style={tabItemTittle}>TOP</span></Tab>
-        <Tab style={tabItem}><span style={tabItemTittle}>INFO</span></Tab>
-        <Tab style={tabItem}><span style={tabItemTittle}>MENU</span></Tab>
-        <Tab style={tabItem}><span style={tabItemTittle}>CALENDAR</span></Tab>
-        <Tab style={tabItem}><span style={tabItemTittle}>問い合わせ</span></Tab>
-        <Tab style={tabItem}><span style={tabItemTittle}>PROFILE</span></Tab>
-        <Tab style={tabItem}><span style={tabItemTittle}>RESERVE</span></Tab>
-        <Tab style={tabItem}><span style={tabItemTittle}>DIARY</span></Tab>
-      </TabList>
+        <div style={tabList}>
+          <Link style={tabItem} to="/">
+            <span style={tabItemTittle}>TOP</span>
+          </Link>
+          <Link style={tabItem} to="/info">
+            <span style={tabItemTittle}>INFO</span>
+          </Link>
+          <Link style={tabItem} to="/menu">
+            <span style={tabItemTittle}>MENU</span>
+          </Link>
+          <Link style={tabItem} to="/calendar">
+            <span style={tabItemTittle}>CALENDAR</span>
+          </Link>
+          <Link style={tabItem} to="/contact">
+            <span style={tabItemTittle}>問い合わせ</span>
+          </Link>
+          <Link style={tabItem} to="/profile">
+            <span style={tabItemTittle}>PROFILE</span>
+          </Link>
+          <Link style={tabItem} to="/reserve">
+            <span style={tabItemTittle}>RESERVE</span>
+          </Link>
+          <Link style={tabItem} to="/diary">
+            <span style={tabItemTittle}>DIARY</span>
+          </Link>
+        </div>
       </div>
-
-      <div style={tabBottom}></div>
-      <TabPanel>
-        <h2>トップページです</h2>
-      </TabPanel>
-      <TabPanel>
-        <h2>インフォメーションです</h2>
-      </TabPanel>
-      <TabPanel>
-        <h2>メニューです</h2>
-      </TabPanel>
-      <TabPanel>
-        <h2>カレンダーです</h2>
-      </TabPanel>
-      <TabPanel>
-        <Contact/>
-      </TabPanel>
-      <TabPanel>
-        <h2>プロフィールです</h2>
-      </TabPanel>
-      <TabPanel>
-        <h2>予約ページです</h2>
-      </TabPanel>
-      <TabPanel>
-        <h2>日記です</h2>
-      </TabPanel>
-    </Tabs>
-  )
+      
+      <Routes>
+          <Route path="/" element={<h2>トップページです</h2>} />
+          <Route path="/info" element={<h2>インフォメーションです</h2>} />
+          <Route path="/menu" element={<h2>メニューです</h2>} />
+          <Route path="/calendar" element={<h2>カレンダーです</h2>} />
+          <Route path="/contact/*" element={<Contact />} />
+          <Route path="/profile" element={<h2>プロフィールです</h2>} />
+          <Route path="/reserve" element={<h2>予約ページです</h2>} />
+          <Route path="/diary" element={<h2>日記です</h2>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
