@@ -4,6 +4,9 @@ import { BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
 import Contact from "./Contact";
 
+import ContactPostalCode from "./ContactPostalCode";
+
+
 const App = (): JSX.Element => {
   const tabsTop: {
     margin: string;
@@ -64,7 +67,7 @@ const App = (): JSX.Element => {
           <Route path="/info" element={<h2>インフォメーションです</h2>} />
           <Route path="/menu" element={<h2>メニューです</h2>} />
           <Route path="/calendar" element={<h2>カレンダーです</h2>} />
-          <Route path="/contact/*" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<h2>プロフィールです</h2>} />
           <Route path="/reserve" element={<h2>予約ページです</h2>} />
           <Route path="/diary" element={<h2>日記です</h2>} />

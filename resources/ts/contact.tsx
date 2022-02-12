@@ -163,54 +163,53 @@ const Contact = (): JSX.Element => {
       <h2>お問い合わせ</h2>
       <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
 
-      <form>
-        <table style={contentsBox}>
-          <tr style={tableRow}>
-            <th style={tableHeader}><span style={tableHeaderTittle}>ご氏名：</span></th>
-            <td>
-              <input type="text" style={formInput}/>
-            </td>
-          </tr>          
-          <tr style={tableRow}>
-            <th style={tableHeader}><span>郵便番号：</span></th>
-            <td>
-              <ContactPostalCode oya={"親が最初に持っているもの"}/>
-            </td>
-          </tr>                    
-          <tr style={tableRow}>
-            <th style={tableHeader}><span>住所：</span></th>
-            <td>
-              <input type="text" style={formInput}/>
-            </td>
-          </tr>          
-          <tr style={tableRow}>
-            <th style={tableHeader}><span>会社名：</span></th>
-            <td>
-              <input type="text" style={formInput}/>
-            </td>
-          </tr>          
-          <tr style={tableRow}>
-            <th style={tableHeader}><span>メールアドレス：</span></th>
-            <td>
-              <input type="text" style={formInput}/>
-            </td>
-          </tr>          
-          <tr style={tableRow}>
-            <th style={tableHeader}><span>件名：</span></th>
-            <td>
-              <input type="text" style={formInput}/>
-            </td>
-          </tr>          
-          <tr style={tableRowTextArea}>
-            <th style={tableHeader}><span>お問い合わせ内容：</span></th>
-            <td>
-              <textarea style={formTextarea}/>
-            </td>
-          </tr>          
-        </table>
+      <table style={contentsBox}>
+        <tr style={tableRow}>
+          <th style={tableHeader}><span style={tableHeaderTittle}>ご氏名：</span></th>
+          <td>
+            <input type="text" style={formInput}/>
+          </td>
+        </tr>          
+        <tr style={tableRow}>
+          <th style={tableHeader}><span>郵便番号：</span></th>
+          <td>
+            {/* <ContactPostalCode oya={"親が最初に持っているもの"}/> */}
+            <ContactPostalCode />
+          </td>
+        </tr>                    
+        <tr style={tableRow}>
+          <th style={tableHeader}><span>住所：</span></th>
+          <td>
+            <input type="text" style={formInput}/>
+          </td>
+        </tr>          
+        <tr style={tableRow}>
+          <th style={tableHeader}><span>会社名：</span></th>
+          <td>
+            <input type="text" style={formInput}/>
+          </td>
+        </tr>          
+        <tr style={tableRow}>
+          <th style={tableHeader}><span>メールアドレス：</span></th>
+          <td>
+            <input type="text" style={formInput}/>
+          </td>
+        </tr>          
+        <tr style={tableRow}>
+          <th style={tableHeader}><span>件名：</span></th>
+          <td>
+            <input type="text" style={formInput}/>
+          </td>
+        </tr>          
+        <tr style={tableRowTextArea}>
+          <th style={tableHeader}><span>お問い合わせ内容：</span></th>
+          <td>
+            <textarea style={formTextarea}/>
+          </td>
+        </tr>          
+      </table>
 
-        <input type="submit" value="確認" style={confirmBtn}/>
-      </form>
+      <input type="submit" value="確認" style={confirmBtn}/>
     </section>
   );
 };

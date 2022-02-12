@@ -1,11 +1,17 @@
 import React, { useState, useCallback, VFC } from "react";
 
+// type Props = {
+//   oya: string;
+// };
+
 type Props = {
   oya: string;
 };
 
-const ContactPostalCode: VFC<Props> = (props) => {
-  const [moji, setMoji] = useState(props.oya);
+// const ContactPostalCode: VFC<Props> = (props) => {
+const ContactPostalCode: VFC = () => {
+
+  // const [moji, setMoji] = useState(props.oya);
 
   const formInput: {
     outline: string;
@@ -68,7 +74,7 @@ const ContactPostalCode: VFC<Props> = (props) => {
       );
     })}
   </>
-  )
-}
+  );
+};
 
 export default ContactPostalCode;

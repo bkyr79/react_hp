@@ -106,7 +106,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       style: description
     }, react_1["default"].createElement("span", {
       style: descriptionMsg
-    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", null, react_1["default"].createElement("table", {
+    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("table", {
       style: contentsBox
     }, react_1["default"].createElement("tr", {
       style: tableRow
@@ -121,9 +121,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement(ContactPostalCode_1["default"], {
-      oya: "親が最初に持っているもの"
-    }))), react_1["default"].createElement("tr", {
+    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement(ContactPostalCode_1["default"], null))), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -161,7 +159,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       type: "submit",
       value: "\u78BA\u8A8D",
       style: confirmBtn
-    })));
+    }));
   };
 
   exports["default"] = Contact;
@@ -236,14 +234,10 @@ var __importStar = this && this.__importStar || function (mod) {
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
-  react_1 = __importStar(react_1);
+  react_1 = __importStar(react_1); // const ContactPostalCode: VFC<Props> = (props) => {
 
-  var ContactPostalCode = function ContactPostalCode(props) {
-    var _ref = (0, react_1.useState)(props.oya),
-        _ref2 = _slicedToArray(_ref, 2),
-        moji = _ref2[0],
-        setMoji = _ref2[1];
-
+  var ContactPostalCode = function ContactPostalCode() {
+    // const [moji, setMoji] = useState(props.oya);
     var formInput = {
       outline: 'none',
       fontFamily: 'system-ui',
@@ -258,15 +252,15 @@ var __importStar = this && this.__importStar || function (mod) {
       paddingLeft: '5px'
     };
 
-    var _ref3 = (0, react_1.useState)(""),
-        _ref4 = _slicedToArray(_ref3, 2),
-        todoText = _ref4[0],
-        setTodoText = _ref4[1];
+    var _ref = (0, react_1.useState)(""),
+        _ref2 = _slicedToArray(_ref, 2),
+        todoText = _ref2[0],
+        setTodoText = _ref2[1];
 
-    var _ref5 = (0, react_1.useState)(["行動１", "行動２"]),
-        _ref6 = _slicedToArray(_ref5, 2),
-        incompleteTodos = _ref6[0],
-        setIncompleteTodos = _ref6[1];
+    var _ref3 = (0, react_1.useState)(["行動１", "行動２"]),
+        _ref4 = _slicedToArray(_ref3, 2),
+        incompleteTodos = _ref4[0],
+        setIncompleteTodos = _ref4[1];
 
     var onChangeTodoText = function onChangeTodoText(event) {
       return setTodoText(event.target.value);
@@ -400,7 +394,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       path: "/calendar",
       element: react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")
     }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/contact/*",
+      path: "/contact",
       element: react_1["default"].createElement(Contact_1["default"], null)
     }), react_1["default"].createElement(react_router_dom_1.Route, {
       path: "/profile",
