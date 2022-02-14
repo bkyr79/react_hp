@@ -1,7 +1,157 @@
 import React, { useState, useCallback, VFC } from "react";
 
 
-const ContactPostalCodeFunctionVer = () => {
+const postCodeContainer: {
+  overflow: string;
+} = {
+  overflow: 'hidden',
+}
+
+const postCodeH: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+  float: 'left';
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '30%',
+  paddingLeft: '5px',
+  float: 'left'
+}
+
+const postCodeF: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+  float: 'left';
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '40%',
+  paddingLeft: '5px',
+  float: 'left'
+}
+
+const postCodeHyphen: {
+  float: 'left';
+  height: string;
+  verticalAlign: string;
+} = {
+  float: 'left',
+  height: '34px',
+  verticalAlign: 'middle'
+}
+
+const address1: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '130%',
+  paddingLeft: '5px'
+}
+
+const address2: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '130%',
+  paddingLeft: '5px'
+}
+
+const address3: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '130%',
+  paddingLeft: '5px'
+}
+
+const ContactPostalCodeFunctionVer: VFC = () => {
   type StateType = {
     user: {
       e: {
@@ -78,7 +228,6 @@ const ContactPostalCodeFunctionVer = () => {
     );
   };
 
-
   const element1 = document.getElementById('address1')! as HTMLInputElement;
   const element2 = document.getElementById('address2')! as HTMLInputElement;
   const element3 = document.getElementById('address3')! as HTMLInputElement;
@@ -102,12 +251,17 @@ const ContactPostalCodeFunctionVer = () => {
 
   return(
     <>
+    <div style={postCodeContainer}>
       <input
         name="postCodeH"
         size={3}
         maxLength={3}
         onChange={e => handleChange(e)}
+        style={postCodeH}
       />
+      <div style={postCodeHyphen}>
+      -
+      </div>
       <input
         name="postCodeF"
         size={4}
@@ -115,21 +269,26 @@ const ContactPostalCodeFunctionVer = () => {
         onChange={e => handleChange(e)}
         onKeyUp={complementAddress}
         onBlur={onBlurZipcode}
+        style={postCodeF}
       />
+    </div>
       <input
         name="address1"
         id="address1"
         onChange={e => handleChange(e)}
+        style={address1}
       />
       <input
         name="address2"
         id="address2"
         onChange={e => handleChange(e)}
+        style={address2}
       />
       <input
         name="address3"
         id="address3"
         onChange={e => handleChange(e)}
+        style={address3}
       />
     </>
   );  

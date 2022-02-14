@@ -233,6 +233,81 @@ var __importStar = this && this.__importStar || function (mod) {
     value: true
   }));
   react_1 = __importStar(react_1);
+  var postCodeContainer = {
+    overflow: 'hidden'
+  };
+  var postCodeH = {
+    outline: 'none',
+    fontFamily: 'system-ui',
+    display: 'block',
+    border: '3px solid #f6f5f4',
+    borderRadius: '4px',
+    height: '34px',
+    fontSize: '15px',
+    color: '#777',
+    boxSizing: 'border-box',
+    width: '30%',
+    paddingLeft: '5px',
+    "float": 'left'
+  };
+  var postCodeF = {
+    outline: 'none',
+    fontFamily: 'system-ui',
+    display: 'block',
+    border: '3px solid #f6f5f4',
+    borderRadius: '4px',
+    height: '34px',
+    fontSize: '15px',
+    color: '#777',
+    boxSizing: 'border-box',
+    width: '40%',
+    paddingLeft: '5px',
+    "float": 'left'
+  };
+  var postCodeHyphen = {
+    "float": 'left',
+    height: '34px',
+    verticalAlign: 'middle'
+  };
+  var address1 = {
+    outline: 'none',
+    fontFamily: 'system-ui',
+    display: 'block',
+    border: '3px solid #f6f5f4',
+    borderRadius: '4px',
+    height: '34px',
+    fontSize: '15px',
+    color: '#777',
+    boxSizing: 'border-box',
+    width: '130%',
+    paddingLeft: '5px'
+  };
+  var address2 = {
+    outline: 'none',
+    fontFamily: 'system-ui',
+    display: 'block',
+    border: '3px solid #f6f5f4',
+    borderRadius: '4px',
+    height: '34px',
+    fontSize: '15px',
+    color: '#777',
+    boxSizing: 'border-box',
+    width: '130%',
+    paddingLeft: '5px'
+  };
+  var address3 = {
+    outline: 'none',
+    fontFamily: 'system-ui',
+    display: 'block',
+    border: '3px solid #f6f5f4',
+    borderRadius: '4px',
+    height: '34px',
+    fontSize: '15px',
+    color: '#777',
+    boxSizing: 'border-box',
+    width: '130%',
+    paddingLeft: '5px'
+  };
 
   var ContactPostalCodeFunctionVer = function ContactPostalCodeFunctionVer() {
     var _ref = (0, react_1.useState)({
@@ -293,14 +368,19 @@ var __importStar = this && this.__importStar || function (mod) {
     // };
 
 
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("input", {
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
+      style: postCodeContainer
+    }, react_1["default"].createElement("input", {
       name: "postCodeH",
       size: 3,
       maxLength: 3,
       onChange: function onChange(e) {
         return handleChange(e);
-      }
-    }), react_1["default"].createElement("input", {
+      },
+      style: postCodeH
+    }), react_1["default"].createElement("div", {
+      style: postCodeHyphen
+    }, "-"), react_1["default"].createElement("input", {
       name: "postCodeF",
       size: 4,
       maxLength: 4,
@@ -308,25 +388,29 @@ var __importStar = this && this.__importStar || function (mod) {
         return handleChange(e);
       },
       onKeyUp: complementAddress,
-      onBlur: onBlurZipcode
-    }), react_1["default"].createElement("input", {
+      onBlur: onBlurZipcode,
+      style: postCodeF
+    })), react_1["default"].createElement("input", {
       name: "address1",
       id: "address1",
       onChange: function onChange(e) {
         return handleChange(e);
-      }
+      },
+      style: address1
     }), react_1["default"].createElement("input", {
       name: "address2",
       id: "address2",
       onChange: function onChange(e) {
         return handleChange(e);
-      }
+      },
+      style: address2
     }), react_1["default"].createElement("input", {
       name: "address3",
       id: "address3",
       onChange: function onChange(e) {
         return handleChange(e);
-      }
+      },
+      style: address3
     }));
   };
 
