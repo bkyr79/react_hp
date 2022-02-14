@@ -54,7 +54,7 @@ const ContactPostalCodeFunctionVer = () => {
   }
 
   const complementAddress = () => {
-    const { AjaxZip3 } = window;
+    const { AjaxZip3 } = window as any;
     AjaxZip3.zip2addr(
       'postCodeH',
       'postCodeF',
