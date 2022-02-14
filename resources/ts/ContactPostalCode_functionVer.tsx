@@ -9,7 +9,10 @@ const ContactPostalCodeFunctionVer = () => {
           name: string;
           value: string;
         }
-      }
+      },
+      address1?: string | null;
+      address2?: string | null;
+      address3?: string | null; 
     }    
   }
 
@@ -19,17 +22,26 @@ const ContactPostalCodeFunctionVer = () => {
         name: string;
         value: string;
       }
-    }
+    },
+    address1?: string | null;
+    address2?: string | null;
+    address3?: string | null; 
   }
 
-  const [state, setState] = useState<StateType>({ user: {
-    e: {
-      target: {
-        name: '',
-        value: ''
-      }
-    }    
-  } });
+  const [state, setState] = useState<StateType>({
+    user: {
+      e: {
+        target: {
+          name: '',
+          value: '',
+        }
+      },
+      address1: null,
+      address2: '',
+      address3: ''  
+  
+    }
+  });
 
   // 引数eの型any対策は、以下のinstanceofで型ガードする
   const handleChange = (e :any) => {
@@ -38,8 +50,12 @@ const ContactPostalCodeFunctionVer = () => {
         target: {
             name: string;
             value: string;
-        };
-      };
+        }
+      },
+      address1?: string | null;
+      address2?: string | null;
+      address3?: string | null; 
+
     } = state.user;
     
     const key: keyof EventType = e.target.name;
@@ -64,13 +80,17 @@ const ContactPostalCodeFunctionVer = () => {
     );
   };
 
+
+  const element1 = document.getElementById('address1')! as HTMLInputElement;
+  const element2 = document.getElementById('address2')! as HTMLInputElement;
+  const element3 = document.getElementById('address3')! as HTMLInputElement;
   const onBlurZipcode = () => {
     setState({
       user: {
         ...state.user,
-        address1: document.getElementById('address1').value,
-        address2: document.getElementById('address2').value,
-        address3: document.getElementById('address3').value  
+        address1: element1.value,
+        address2: element2.value,
+        address3: element3.value  
       }
     });
   };
