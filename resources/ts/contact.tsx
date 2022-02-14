@@ -1,7 +1,7 @@
 import React from "react";
 import ContactPostalCode from "./ContactPostalCode";
 
-import ContactPostalCodeFunctionVer from "./ContactPostalCode_functionVer.jsx";
+import ContactPostalCodeFunctionVer from "./ContactPostalCode_functionVer";
 
 const Contact = (): JSX.Element => {
   const content: {

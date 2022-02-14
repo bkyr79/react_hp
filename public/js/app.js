@@ -13,14 +13,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactPostalCode */ "./resources/ts/ContactPostalCode.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactPostalCode_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactPostalCode_functionVer */ "./resources/ts/ContactPostalCode_functionVer.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactPostalCode_functionVer_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
   react_1 = __importDefault(react_1);
-  ContactPostalCode_1 = __importDefault(ContactPostalCode_1);
+  ContactPostalCode_functionVer_1 = __importDefault(ContactPostalCode_functionVer_1);
 
   var Contact = function Contact() {
     var content = {
@@ -121,7 +121,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement(ContactPostalCode_1["default"], null))), react_1["default"].createElement("tr", {
+    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement(ContactPostalCode_functionVer_1["default"], null))), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -168,19 +168,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
 /***/ }),
 
-/***/ "./resources/ts/ContactPostalCode.tsx":
-/*!********************************************!*\
-  !*** ./resources/ts/ContactPostalCode.tsx ***!
-  \********************************************/
+/***/ "./resources/ts/ContactPostalCode_functionVer.tsx":
+/*!********************************************************!*\
+  !*** ./resources/ts/ContactPostalCode_functionVer.tsx ***!
+  \********************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -234,64 +232,105 @@ var __importStar = this && this.__importStar || function (mod) {
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
-  react_1 = __importStar(react_1); // const ContactPostalCode: VFC<Props> = (props) => {
+  react_1 = __importStar(react_1);
 
-  var ContactPostalCode = function ContactPostalCode() {
-    // const [moji, setMoji] = useState(props.oya);
-    var formInput = {
-      outline: 'none',
-      fontFamily: 'system-ui',
-      display: 'block',
-      border: '3px solid #f6f5f4',
-      borderRadius: '4px',
-      height: '34px',
-      fontSize: '15px',
-      color: '#777',
-      boxSizing: 'border-box',
-      width: '130%',
-      paddingLeft: '5px'
-    };
-
-    var _ref = (0, react_1.useState)(""),
+  var ContactPostalCodeFunctionVer = function ContactPostalCodeFunctionVer() {
+    var _ref = (0, react_1.useState)({
+      user: {
+        e: {
+          target: {
+            name: '',
+            value: ''
+          }
+        },
+        address1: null,
+        address2: '',
+        address3: ''
+      }
+    }),
         _ref2 = _slicedToArray(_ref, 2),
-        todoText = _ref2[0],
-        setTodoText = _ref2[1];
+        state = _ref2[0],
+        setState = _ref2[1]; // 引数eの型any対策は、以下のinstanceofで型ガードする
 
-    var _ref3 = (0, react_1.useState)(["行動１", "行動２"]),
-        _ref4 = _slicedToArray(_ref3, 2),
-        incompleteTodos = _ref4[0],
-        setIncompleteTodos = _ref4[1];
 
-    var onChangeTodoText = function onChangeTodoText(event) {
-      return setTodoText(event.target.value);
+    var handleChange = function handleChange(e) {
+      var params = state.user;
+      var key = e.target.name; // instanceofで型ガード
+
+      if (!(e.target instanceof HTMLInputElement)) {
+        return;
+      }
+
+      params[key] = e.target.value;
+      setState({
+        user: params
+      });
     };
 
-    var onClickAdd = function onClickAdd() {
-      if (todoText === "") return;
-      var newTodos = [].concat(_toConsumableArray(incompleteTodos), [todoText]);
-      setIncompleteTodos(newTodos);
-      setTodoText("");
-    }; // const addMoji = useCallback(() => {
-    //   setMoji( moji => moji + 'お尻に文字を足します！' );    
-    // },[]);
+    var complementAddress = function complementAddress() {
+      var _window = window,
+          AjaxZip3 = _window.AjaxZip3;
+      AjaxZip3.zip2addr('postCodeH', 'postCodeF', 'address1', 'address2', 'address3');
+    };
+
+    var element1 = document.getElementById('address1');
+    var element2 = document.getElementById('address2');
+    var element3 = document.getElementById('address3');
+
+    var onBlurZipcode = function onBlurZipcode() {
+      setState({
+        user: _objectSpread(_objectSpread({}, state.user), {}, {
+          address1: element1.value,
+          address2: element2.value,
+          address3: element3.value
+        })
+      });
+    }; // const onClickAdd = () => {
+    //   if (todoText === "") return;
+    //   const newTodos = [...incompleteTodos, todoText];
+    //   setIncompleteTodos(newTodos);
+    //   setTodoText("");
+    // };
 
 
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("button", {
-      onClick: onClickAdd
-    }, "\u8FFD\u52A0"), react_1["default"].createElement("input", {
-      type: "text",
-      style: formInput,
-      placeholder: "TODO\u3092\u5165\u529B",
-      value: todoText,
-      onChange: onChangeTodoText
-    }), incompleteTodos.map(function (todo) {
-      return react_1["default"].createElement("div", {
-        key: todo
-      }, todo);
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("input", {
+      name: "postCodeH",
+      size: 3,
+      maxLength: 3,
+      onChange: function onChange(e) {
+        return handleChange(e);
+      }
+    }), react_1["default"].createElement("input", {
+      name: "postCodeF",
+      size: 4,
+      maxLength: 4,
+      onChange: function onChange(e) {
+        return handleChange(e);
+      },
+      onKeyUp: complementAddress,
+      onBlur: onBlurZipcode
+    }), react_1["default"].createElement("input", {
+      name: "address1",
+      id: "address1",
+      onChange: function onChange(e) {
+        return handleChange(e);
+      }
+    }), react_1["default"].createElement("input", {
+      name: "address2",
+      id: "address2",
+      onChange: function onChange(e) {
+        return handleChange(e);
+      }
+    }), react_1["default"].createElement("input", {
+      name: "address3",
+      id: "address3",
+      onChange: function onChange(e) {
+        return handleChange(e);
+      }
     }));
   };
 
-  exports["default"] = ContactPostalCode;
+  exports["default"] = ContactPostalCodeFunctionVer;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
