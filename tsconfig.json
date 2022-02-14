@@ -103,5 +103,5 @@
   },
   "include": [
     "resources/ts/**/*"
-  ]
+, "resources/js/ContactPostalCode_functionVer.jsx"  ]
 }

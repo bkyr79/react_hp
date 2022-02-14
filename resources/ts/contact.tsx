@@ -1,6 +1,8 @@
 import React from "react";
 import ContactPostalCode from "./ContactPostalCode";
 
+import ContactPostalCodeFunctionVer from "./ContactPostalCode_functionVer.jsx";
+
 const Contact = (): JSX.Element => {
   const content: {
     margin: string;
@@ -174,7 +176,8 @@ const Contact = (): JSX.Element => {
           <th style={tableHeader}><span>郵便番号：</span></th>
           <td>
             {/* <ContactPostalCode oya={"親が最初に持っているもの"}/> */}
-            <ContactPostalCode />
+            {/* <ContactPostalCode /> */}
+            <ContactPostalCodeFunctionVer />
           </td>
         </tr>                    
         <tr style={tableRow}>
