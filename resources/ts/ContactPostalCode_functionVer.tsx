@@ -38,8 +38,7 @@ const ContactPostalCodeFunctionVer = () => {
       },
       address1: null,
       address2: '',
-      address3: ''  
-  
+      address3: ''    
     }
   });
 
@@ -55,7 +54,6 @@ const ContactPostalCodeFunctionVer = () => {
       address1?: string | null;
       address2?: string | null;
       address3?: string | null; 
-
     } = state.user;
     
     const key: keyof EventType = e.target.name;
@@ -106,14 +104,14 @@ const ContactPostalCodeFunctionVer = () => {
     <>
       <input
         name="postCodeH"
-        size="3"
-        maxLength="3"
+        size={3}
+        maxLength={3}
         onChange={e => handleChange(e)}
       />
       <input
         name="postCodeF"
-        size="4"
-        maxLength="4"
+        size={4}
+        maxLength={4}
         onChange={e => handleChange(e)}
         onKeyUp={complementAddress}
         onBlur={onBlurZipcode}
