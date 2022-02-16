@@ -74,7 +74,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       outline: 'none',
       fontFamily: 'system-ui',
       display: 'block',
-      marginBottom: '10px',
+      margin: '7px 0',
       border: '3px solid #f6f5f4',
       borderRadius: '4px',
       height: '200px',
@@ -308,6 +308,19 @@ var __importStar = this && this.__importStar || function (mod) {
     width: '130%',
     paddingLeft: '5px'
   };
+  var formInput = {
+    outline: 'none',
+    fontFamily: 'system-ui',
+    display: 'block',
+    border: '3px solid #f6f5f4',
+    borderRadius: '4px',
+    height: '34px',
+    fontSize: '15px',
+    color: '#777',
+    boxSizing: 'border-box',
+    width: '130%',
+    paddingLeft: '5px'
+  };
 
   var ContactPostalCodeFunctionVer = function ContactPostalCodeFunctionVer() {
     var _ref = (0, react_1.useState)({
@@ -370,7 +383,7 @@ var __importStar = this && this.__importStar || function (mod) {
 
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
       style: postCodeContainer
-    }, react_1["default"].createElement("input", {
+    }, react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "postCodeH",
       size: 3,
       maxLength: 3,
@@ -378,9 +391,9 @@ var __importStar = this && this.__importStar || function (mod) {
         return handleChange(e);
       },
       style: postCodeH
-    }), react_1["default"].createElement("div", {
+    })), react_1["default"].createElement("div", {
       style: postCodeHyphen
-    }, "-"), react_1["default"].createElement("input", {
+    }, "-"), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "postCodeF",
       size: 4,
       maxLength: 4,
@@ -390,28 +403,28 @@ var __importStar = this && this.__importStar || function (mod) {
       onKeyUp: complementAddress,
       onBlur: onBlurZipcode,
       style: postCodeF
-    })), react_1["default"].createElement("input", {
+    }))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "address1",
       id: "address1",
       onChange: function onChange(e) {
         return handleChange(e);
       },
-      style: address1
-    }), react_1["default"].createElement("input", {
+      style: formInput
+    })), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "address2",
       id: "address2",
       onChange: function onChange(e) {
         return handleChange(e);
       },
-      style: address2
-    }), react_1["default"].createElement("input", {
+      style: formInput
+    })), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "address3",
       id: "address3",
       onChange: function onChange(e) {
         return handleChange(e);
       },
-      style: address3
-    }));
+      style: formInput
+    })));
   };
 
   exports["default"] = ContactPostalCodeFunctionVer;

@@ -151,6 +151,32 @@ const address3: {
   paddingLeft: '5px'
 }
 
+const formInput: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '130%',
+  paddingLeft: '5px'
+}
+
 const ContactPostalCodeFunctionVer: VFC = () => {
   type StateType = {
     user: {
@@ -252,6 +278,7 @@ const ContactPostalCodeFunctionVer: VFC = () => {
   return(
     <>
     <div style={postCodeContainer}>
+      <td>
       <input
         name="postCodeH"
         size={3}
@@ -259,9 +286,11 @@ const ContactPostalCodeFunctionVer: VFC = () => {
         onChange={e => handleChange(e)}
         style={postCodeH}
       />
+      </td>
       <div style={postCodeHyphen}>
       -
       </div>
+      <td>
       <input
         name="postCodeF"
         size={4}
@@ -271,25 +300,32 @@ const ContactPostalCodeFunctionVer: VFC = () => {
         onBlur={onBlurZipcode}
         style={postCodeF}
       />
+      </td>
     </div>
+    <td>
       <input
         name="address1"
         id="address1"
         onChange={e => handleChange(e)}
-        style={address1}
+        style={formInput}
       />
+      </td>
+      <td>
       <input
         name="address2"
         id="address2"
         onChange={e => handleChange(e)}
-        style={address2}
+        style={formInput}
       />
+      </td>
+      <td>
       <input
         name="address3"
         id="address3"
         onChange={e => handleChange(e)}
-        style={address3}
+        style={formInput}
       />
+      </td>
     </>
   );  
 };

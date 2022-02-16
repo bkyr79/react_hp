@@ -104,7 +104,7 @@ const Contact = (): JSX.Element => {
     outline: string;
     fontFamily: string;
     display: string;
-    marginBottom: string;
+    margin: string;
     border: string;
     borderRadius: string;
     height: string;
@@ -117,7 +117,7 @@ const Contact = (): JSX.Element => {
     outline: 'none',
     fontFamily: 'system-ui',
     display: 'block',
-    marginBottom: '10px',
+    margin: '7px 0',
     border: '3px solid #f6f5f4',
     borderRadius: '4px',
     height: '200px',
