@@ -13,14 +13,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactPostalCode_functionVer */ "./resources/ts/ContactPostalCode_functionVer.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactPostalCode_functionVer_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactAddress */ "./resources/ts/ContactAddress.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactAddress_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
   react_1 = __importDefault(react_1);
-  ContactPostalCode_functionVer_1 = __importDefault(ContactPostalCode_functionVer_1);
+  ContactAddress_1 = __importDefault(ContactAddress_1);
 
   var Contact = function Contact() {
     var content = {
@@ -117,7 +117,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
     }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       type: "text",
       style: formInput
-    }))), react_1["default"].createElement(ContactPostalCode_functionVer_1["default"], null), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -157,10 +157,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
 /***/ }),
 
-/***/ "./resources/ts/ContactPostalCode_functionVer.tsx":
-/*!********************************************************!*\
-  !*** ./resources/ts/ContactPostalCode_functionVer.tsx ***!
-  \********************************************************/
+/***/ "./resources/ts/ContactAddress.tsx":
+/*!*****************************************!*\
+  !*** ./resources/ts/ContactAddress.tsx ***!
+  \*****************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -308,7 +308,7 @@ var __importStar = this && this.__importStar || function (mod) {
     paddingLeft: '5px'
   };
 
-  var ContactPostalCodeFunctionVer = function ContactPostalCodeFunctionVer() {
+  var ContactAddress = function ContactAddress() {
     var _ref = (0, react_1.useState)({
       user: {
         e: {
@@ -359,13 +359,7 @@ var __importStar = this && this.__importStar || function (mod) {
           addrdetail: element3.value
         })
       });
-    }; // const onClickAdd = () => {
-    //   if (todoText === "") return;
-    //   const newTodos = [...incompleteTodos, todoText];
-    //   setIncompleteTodos(newTodos);
-    //   setTodoText("");
-    // };
-
+    };
 
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("tr", {
       style: tableRow
@@ -427,7 +421,7 @@ var __importStar = this && this.__importStar || function (mod) {
     }))));
   };
 
-  exports["default"] = ContactPostalCodeFunctionVer;
+  exports["default"] = ContactAddress;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 

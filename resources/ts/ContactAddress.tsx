@@ -1,4 +1,4 @@
-import React, { useState, useCallback, VFC } from "react";
+import React, { useState, VFC } from "react";
 
 
 const tableRow: {
@@ -171,7 +171,7 @@ const formInputAddrdetail: {
   paddingLeft: '5px'
 }
 
-const ContactPostalCodeFunctionVer: VFC = () => {
+const ContactAddress: VFC = () => {
   type StateType = {
     user: {
       e: {
@@ -262,13 +262,6 @@ const ContactPostalCodeFunctionVer: VFC = () => {
     });
   };
 
-  // const onClickAdd = () => {
-  //   if (todoText === "") return;
-  //   const newTodos = [...incompleteTodos, todoText];
-  //   setIncompleteTodos(newTodos);
-  //   setTodoText("");
-  // };
-
   return(
     <>
     <tr style={tableRow}>
@@ -333,4 +326,4 @@ const ContactPostalCodeFunctionVer: VFC = () => {
   );  
 };
 
-export default ContactPostalCodeFunctionVer;
+export default ContactAddress;

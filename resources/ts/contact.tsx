@@ -1,7 +1,5 @@
 import React from "react";
-import ContactPostalCode from "./ContactPostalCode";
-
-import ContactPostalCodeFunctionVer from "./ContactPostalCode_functionVer";
+import ContactAddress from "./ContactAddress";
 
 const Contact = (): JSX.Element => {
   const content: {
@@ -172,7 +170,7 @@ const Contact = (): JSX.Element => {
             <input type="text" style={formInput}/>
           </td>
         </tr>          
-            <ContactPostalCodeFunctionVer />
+            <ContactAddress />
         <tr style={tableRow}>
           <th style={tableHeader}><span>会社名：</span></th>
           <td>
