@@ -1,5 +1,7 @@
 import React from "react";
 import ContactAddress from "./ContactAddress";
+import SignupForm from "./SignupForm";
+
 
 const Contact = (): JSX.Element => {
   const content: {
@@ -196,6 +198,8 @@ const Contact = (): JSX.Element => {
           </td>
         </tr>          
       </table>
+
+<SignupForm />
 
       <input type="submit" value="確認" style={confirmBtn}/>
     </section>
