@@ -33,7 +33,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       fontSize: '15px'
     };
     var contentsBox = {
-      width: '40%',
+      width: '65%',
       marginLeft: 'auto',
       marginRight: 'auto',
       display: 'table',
@@ -67,7 +67,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       fontSize: '15px',
       color: '#777',
       boxSizing: 'border-box',
-      width: '130%',
+      width: '85%',
       paddingLeft: '5px'
     };
     var formTextarea = {
@@ -81,7 +81,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       fontSize: '15px',
       color: '#777',
       boxSizing: 'border-box',
-      width: '130%',
+      width: '85%',
       paddingLeft: '5px'
     };
     var confirmBtn = {
@@ -117,18 +117,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
     }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       type: "text",
       style: formInput
-    }))), react_1["default"].createElement("tr", {
-      style: tableRow
-    }, react_1["default"].createElement("th", {
-      style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement(ContactPostalCode_functionVer_1["default"], null))), react_1["default"].createElement("tr", {
-      style: tableRow
-    }, react_1["default"].createElement("th", {
-      style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      type: "text",
-      style: formInput
-    }))), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement(ContactPostalCode_functionVer_1["default"], null), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -233,6 +222,13 @@ var __importStar = this && this.__importStar || function (mod) {
     value: true
   }));
   react_1 = __importStar(react_1);
+  var tableRow = {
+    height: '40px',
+    marginBottom: '10px'
+  };
+  var tableHeader = {
+    textAlign: 'left'
+  };
   var postCodeContainer = {
     overflow: 'hidden'
   };
@@ -246,7 +242,7 @@ var __importStar = this && this.__importStar || function (mod) {
     fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '30%',
+    width: '15%',
     paddingLeft: '5px',
     "float": 'left'
   };
@@ -260,16 +256,16 @@ var __importStar = this && this.__importStar || function (mod) {
     fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '40%',
+    width: '20%',
     paddingLeft: '5px',
     "float": 'left'
   };
   var postCodeHyphen = {
     "float": 'left',
     height: '34px',
-    verticalAlign: 'middle'
+    paddingTop: '4px'
   };
-  var address1 = {
+  var formInputPrefectures = {
     outline: 'none',
     fontFamily: 'system-ui',
     display: 'block',
@@ -279,10 +275,12 @@ var __importStar = this && this.__importStar || function (mod) {
     fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '130%',
-    paddingLeft: '5px'
+    width: '30%',
+    paddingLeft: '5px',
+    marginRight: '3px',
+    "float": 'left'
   };
-  var address2 = {
+  var formInputCities = {
     outline: 'none',
     fontFamily: 'system-ui',
     display: 'block',
@@ -292,10 +290,11 @@ var __importStar = this && this.__importStar || function (mod) {
     fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '130%',
-    paddingLeft: '5px'
+    width: '30%',
+    paddingLeft: '5px',
+    "float": 'left'
   };
-  var address3 = {
+  var formInputAddrdetail = {
     outline: 'none',
     fontFamily: 'system-ui',
     display: 'block',
@@ -305,20 +304,7 @@ var __importStar = this && this.__importStar || function (mod) {
     fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '130%',
-    paddingLeft: '5px'
-  };
-  var formInput = {
-    outline: 'none',
-    fontFamily: 'system-ui',
-    display: 'block',
-    border: '3px solid #f6f5f4',
-    borderRadius: '4px',
-    height: '34px',
-    fontSize: '15px',
-    color: '#777',
-    boxSizing: 'border-box',
-    width: '130%',
+    width: '85%',
     paddingLeft: '5px'
   };
 
@@ -331,9 +317,9 @@ var __importStar = this && this.__importStar || function (mod) {
             value: ''
           }
         },
-        address1: null,
-        address2: '',
-        address3: ''
+        prefectures: null,
+        cities: '',
+        addrdetail: ''
       }
     }),
         _ref2 = _slicedToArray(_ref, 2),
@@ -358,19 +344,19 @@ var __importStar = this && this.__importStar || function (mod) {
     var complementAddress = function complementAddress() {
       var _window = window,
           AjaxZip3 = _window.AjaxZip3;
-      AjaxZip3.zip2addr('postCodeH', 'postCodeF', 'address1', 'address2', 'address3');
+      AjaxZip3.zip2addr('postCodeH', 'postCodeF', 'prefectures', 'cities', 'addrdetail');
     };
 
-    var element1 = document.getElementById('address1');
-    var element2 = document.getElementById('address2');
-    var element3 = document.getElementById('address3');
+    var element1 = document.getElementById('prefectures');
+    var element2 = document.getElementById('cities');
+    var element3 = document.getElementById('addrdetail');
 
     var onBlurZipcode = function onBlurZipcode() {
       setState({
         user: _objectSpread(_objectSpread({}, state.user), {}, {
-          address1: element1.value,
-          address2: element2.value,
-          address3: element3.value
+          prefectures: element1.value,
+          cities: element2.value,
+          addrdetail: element3.value
         })
       });
     }; // const onClickAdd = () => {
@@ -381,9 +367,13 @@ var __importStar = this && this.__importStar || function (mod) {
     // };
 
 
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("div", {
       style: postCodeContainer
-    }, react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+    }, react_1["default"].createElement("input", {
       name: "postCodeH",
       size: 3,
       maxLength: 3,
@@ -391,9 +381,9 @@ var __importStar = this && this.__importStar || function (mod) {
         return handleChange(e);
       },
       style: postCodeH
-    })), react_1["default"].createElement("div", {
+    }), react_1["default"].createElement("div", {
       style: postCodeHyphen
-    }, "-"), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+    }, "-"), react_1["default"].createElement("input", {
       name: "postCodeF",
       size: 4,
       maxLength: 4,
@@ -403,28 +393,38 @@ var __importStar = this && this.__importStar || function (mod) {
       onKeyUp: complementAddress,
       onBlur: onBlurZipcode,
       style: postCodeF
-    }))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      name: "address1",
-      id: "address1",
+    })))), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF11\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("div", {
+      style: postCodeContainer
+    }, react_1["default"].createElement("input", {
+      name: "prefectures",
+      id: "prefectures",
       onChange: function onChange(e) {
         return handleChange(e);
       },
-      style: formInput
-    })), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      name: "address2",
-      id: "address2",
+      style: formInputPrefectures
+    }), react_1["default"].createElement("input", {
+      name: "cities",
+      id: "cities",
       onChange: function onChange(e) {
         return handleChange(e);
       },
-      style: formInput
-    })), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      name: "address3",
-      id: "address3",
+      style: formInputCities
+    })))), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF12\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      name: "addrdetail",
+      id: "addrdetail",
       onChange: function onChange(e) {
         return handleChange(e);
       },
-      style: formInput
-    })));
+      style: formInputAddrdetail
+    }))));
   };
 
   exports["default"] = ContactPostalCodeFunctionVer;

@@ -33,7 +33,7 @@ const Contact = (): JSX.Element => {
     borderSpacing: string;
     borderColor: string;
   } = {
-    width: '40%',
+    width: '65%',
     marginLeft: 'auto',
     marginRight: 'auto',
     display: 'table',
@@ -96,7 +96,7 @@ const Contact = (): JSX.Element => {
     fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '130%',
+    width: '85%',
     paddingLeft: '5px'
   }
 
@@ -124,7 +124,7 @@ const Contact = (): JSX.Element => {
     fontSize: '15px',
     color: '#777',
     boxSizing: 'border-box',
-    width: '130%',
+    width: '85%',
     paddingLeft: '5px'
   }
 
@@ -172,20 +172,7 @@ const Contact = (): JSX.Element => {
             <input type="text" style={formInput}/>
           </td>
         </tr>          
-        <tr style={tableRow}>
-          <th style={tableHeader}><span>郵便番号：</span></th>
-          <td>
-            {/* <ContactPostalCode oya={"親が最初に持っているもの"}/> */}
-            {/* <ContactPostalCode /> */}
             <ContactPostalCodeFunctionVer />
-          </td>
-        </tr>                    
-        <tr style={tableRow}>
-          <th style={tableHeader}><span>住所：</span></th>
-          <td>
-            <input type="text" style={formInput}/>
-          </td>
-        </tr>          
         <tr style={tableRow}>
           <th style={tableHeader}><span>会社名：</span></th>
           <td>

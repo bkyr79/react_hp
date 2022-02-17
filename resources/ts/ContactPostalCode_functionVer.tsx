@@ -1,6 +1,20 @@
 import React, { useState, useCallback, VFC } from "react";
 
 
+const tableRow: {
+  height: string;
+  marginBottom: string;
+} = {
+  height: '40px',
+  marginBottom: '10px'
+}
+
+const tableHeader: {
+  textAlign: 'left';
+} = {
+  textAlign: 'left'
+}
+
 const postCodeContainer: {
   overflow: string;
 } = {
@@ -30,7 +44,7 @@ const postCodeH: {
   fontSize: '15px',
   color: '#777',
   boxSizing: 'border-box',
-  width: '30%',
+  width: '15%',
   paddingLeft: '5px',
   float: 'left'
 }
@@ -58,7 +72,7 @@ const postCodeF: {
   fontSize: '15px',
   color: '#777',
   boxSizing: 'border-box',
-  width: '40%',
+  width: '20%',
   paddingLeft: '5px',
   float: 'left'
 }
@@ -66,14 +80,72 @@ const postCodeF: {
 const postCodeHyphen: {
   float: 'left';
   height: string;
-  verticalAlign: string;
+  paddingTop: string;
 } = {
   float: 'left',
   height: '34px',
-  verticalAlign: 'middle'
+  paddingTop: '4px'
 }
 
-const address1: {
+const formInputPrefectures: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+  marginRight: string;
+  float: 'left';
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '30%',
+  paddingLeft: '5px',
+  marginRight: '3px',
+  float: 'left'
+}
+
+const formInputCities: {
+  outline: string;
+  fontFamily: string;
+  display: string;
+  border: string;
+  borderRadius: string;
+  height: string;
+  fontSize: string;
+  color: string;
+  boxSizing: 'border-box';
+  width: string;
+  paddingLeft: string;
+  float: 'left';
+} = {
+  outline: 'none',
+  fontFamily: 'system-ui',
+  display: 'block',
+  border: '3px solid #f6f5f4',
+  borderRadius: '4px',
+  height: '34px',
+  fontSize: '15px',
+  color: '#777',
+  boxSizing: 'border-box',
+  width: '30%',
+  paddingLeft: '5px',
+  float: 'left'
+}
+
+const formInputAddrdetail: {
   outline: string;
   fontFamily: string;
   display: string;
@@ -95,85 +167,7 @@ const address1: {
   fontSize: '15px',
   color: '#777',
   boxSizing: 'border-box',
-  width: '130%',
-  paddingLeft: '5px'
-}
-
-const address2: {
-  outline: string;
-  fontFamily: string;
-  display: string;
-  border: string;
-  borderRadius: string;
-  height: string;
-  fontSize: string;
-  color: string;
-  boxSizing: 'border-box';
-  width: string;
-  paddingLeft: string;
-} = {
-  outline: 'none',
-  fontFamily: 'system-ui',
-  display: 'block',
-  border: '3px solid #f6f5f4',
-  borderRadius: '4px',
-  height: '34px',
-  fontSize: '15px',
-  color: '#777',
-  boxSizing: 'border-box',
-  width: '130%',
-  paddingLeft: '5px'
-}
-
-const address3: {
-  outline: string;
-  fontFamily: string;
-  display: string;
-  border: string;
-  borderRadius: string;
-  height: string;
-  fontSize: string;
-  color: string;
-  boxSizing: 'border-box';
-  width: string;
-  paddingLeft: string;
-} = {
-  outline: 'none',
-  fontFamily: 'system-ui',
-  display: 'block',
-  border: '3px solid #f6f5f4',
-  borderRadius: '4px',
-  height: '34px',
-  fontSize: '15px',
-  color: '#777',
-  boxSizing: 'border-box',
-  width: '130%',
-  paddingLeft: '5px'
-}
-
-const formInput: {
-  outline: string;
-  fontFamily: string;
-  display: string;
-  border: string;
-  borderRadius: string;
-  height: string;
-  fontSize: string;
-  color: string;
-  boxSizing: 'border-box';
-  width: string;
-  paddingLeft: string;
-} = {
-  outline: 'none',
-  fontFamily: 'system-ui',
-  display: 'block',
-  border: '3px solid #f6f5f4',
-  borderRadius: '4px',
-  height: '34px',
-  fontSize: '15px',
-  color: '#777',
-  boxSizing: 'border-box',
-  width: '130%',
+  width: '85%',
   paddingLeft: '5px'
 }
 
@@ -186,9 +180,9 @@ const ContactPostalCodeFunctionVer: VFC = () => {
           value: string;
         }
       },
-      address1?: string | null;
-      address2?: string | null;
-      address3?: string | null; 
+      prefectures?: string | null;
+      cities?: string | null;
+      addrdetail?: string | null; 
     }    
   }
 
@@ -199,9 +193,9 @@ const ContactPostalCodeFunctionVer: VFC = () => {
         value: string;
       }
     },
-    address1?: string | null;
-    address2?: string | null;
-    address3?: string | null; 
+    prefectures?: string | null;
+    cities?: string | null;
+    addrdetail?: string | null; 
   }
 
   const [state, setState] = useState<StateType>({
@@ -212,9 +206,9 @@ const ContactPostalCodeFunctionVer: VFC = () => {
           value: '',
         }
       },
-      address1: null,
-      address2: '',
-      address3: ''    
+      prefectures: null,
+      cities: '',
+      addrdetail: ''    
     }
   });
 
@@ -227,9 +221,9 @@ const ContactPostalCodeFunctionVer: VFC = () => {
             value: string;
         }
       },
-      address1?: string | null;
-      address2?: string | null;
-      address3?: string | null; 
+      prefectures?: string | null;
+      cities?: string | null;
+      addrdetail?: string | null; 
     } = state.user;
     
     const key: keyof EventType = e.target.name;
@@ -248,22 +242,22 @@ const ContactPostalCodeFunctionVer: VFC = () => {
     AjaxZip3.zip2addr(
       'postCodeH',
       'postCodeF',
-      'address1',
-      'address2',
-      'address3'  
+      'prefectures',
+      'cities',
+      'addrdetail'  
     );
   };
 
-  const element1 = document.getElementById('address1')! as HTMLInputElement;
-  const element2 = document.getElementById('address2')! as HTMLInputElement;
-  const element3 = document.getElementById('address3')! as HTMLInputElement;
+  const element1 = document.getElementById('prefectures')! as HTMLInputElement;
+  const element2 = document.getElementById('cities')! as HTMLInputElement;
+  const element3 = document.getElementById('addrdetail')! as HTMLInputElement;
   const onBlurZipcode = () => {
     setState({
       user: {
         ...state.user,
-        address1: element1.value,
-        address2: element2.value,
-        address3: element3.value  
+        prefectures: element1.value,
+        cities: element2.value,
+        addrdetail: element3.value  
       }
     });
   };
@@ -277,55 +271,64 @@ const ContactPostalCodeFunctionVer: VFC = () => {
 
   return(
     <>
-    <div style={postCodeContainer}>
+    <tr style={tableRow}>
+      <th style={tableHeader}><span>郵便番号：</span></th>
       <td>
-      <input
-        name="postCodeH"
-        size={3}
-        maxLength={3}
-        onChange={e => handleChange(e)}
-        style={postCodeH}
-      />
+        <div style={postCodeContainer}>
+          <input
+            name="postCodeH"
+            size={3}
+            maxLength={3}
+            onChange={e => handleChange(e)}
+            style={postCodeH}
+          />
+          <div style={postCodeHyphen}>
+          -
+          </div>
+          <input
+            name="postCodeF"
+            size={4}
+            maxLength={4}
+            onChange={e => handleChange(e)}
+            onKeyUp={complementAddress}
+            onBlur={onBlurZipcode}
+            style={postCodeF}
+          />
+        </div>
       </td>
-      <div style={postCodeHyphen}>
-      -
-      </div>
+    </tr>        
+
+    <tr style={tableRow}>
+      <th style={tableHeader}><span>住所１：</span></th>
       <td>
-      <input
-        name="postCodeF"
-        size={4}
-        maxLength={4}
-        onChange={e => handleChange(e)}
-        onKeyUp={complementAddress}
-        onBlur={onBlurZipcode}
-        style={postCodeF}
-      />
+        <div style={postCodeContainer}>
+          <input
+            name="prefectures"
+            id="prefectures"
+            onChange={e => handleChange(e)}
+            style={formInputPrefectures}
+          />
+          <input
+            name="cities"
+            id="cities"
+            onChange={e => handleChange(e)}
+            style={formInputCities}
+          />
+        </div>
       </td>
-    </div>
-    <td>
-      <input
-        name="address1"
-        id="address1"
-        onChange={e => handleChange(e)}
-        style={formInput}
-      />
-      </td>
+    </tr>  
+
+    <tr style={tableRow}>
+      <th style={tableHeader}><span>住所２：</span></th>
       <td>
-      <input
-        name="address2"
-        id="address2"
-        onChange={e => handleChange(e)}
-        style={formInput}
-      />
+        <input
+          name="addrdetail"
+          id="addrdetail"
+          onChange={e => handleChange(e)}
+          style={formInputAddrdetail}
+        />
       </td>
-      <td>
-      <input
-        name="address3"
-        id="address3"
-        onChange={e => handleChange(e)}
-        style={formInput}
-      />
-      </td>
+    </tr>  
     </>
   );  
 };
