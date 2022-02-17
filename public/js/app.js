@@ -484,7 +484,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
   Yup = __importStar(Yup);
 
   var SignupForm = function SignupForm() {
-    var formik = (0, formik_1.useFormik)({
+    return react_1["default"].createElement(formik_1.Formik, {
       initialValues: {
         firstName: "",
         lastName: "",
@@ -495,42 +495,37 @@ var __importDefault = this && this.__importDefault || function (mod) {
         lastName: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
         email: Yup.string().email("Invalid email address").required("Required")
       }),
-      onSubmit: function onSubmit(values) {
-        alert(JSON.stringify(values, null, 2));
+      onSubmit: function onSubmit(values, _ref) {
+        var setSubmitting = _ref.setSubmitting;
+        setTimeout(function () {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
       }
-    });
-    return react_1["default"].createElement("form", {
-      onSubmit: formik.handleSubmit
-    }, react_1["default"].createElement("label", {
+    }, react_1["default"].createElement(formik_1.Form, null, react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
       htmlFor: "firstName"
-    }, "First Name"), react_1["default"].createElement("input", {
-      id: "firstName",
+    }, "First Name"), react_1["default"].createElement(formik_1.Field, {
       name: "firstName",
-      type: "text",
-      onChange: formik.handleChange,
-      onBlur: formik.handleBlur,
-      value: formik.values.firstName
-    }), formik.touched.firstName && formik.errors.firstName ? react_1["default"].createElement("div", null, formik.errors.firstName) : null, react_1["default"].createElement("label", {
+      type: "text"
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "firstName"
+    })), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
       htmlFor: "lastName"
-    }, "Last Name"), react_1["default"].createElement("input", {
-      id: "lastName",
+    }, "Last Name"), react_1["default"].createElement(formik_1.Field, {
       name: "lastName",
-      type: "text",
-      onChange: formik.handleChange,
-      onBlur: formik.handleBlur,
-      value: formik.values.lastName
-    }), formik.touched.lastName && formik.errors.lastName ? react_1["default"].createElement("div", null, formik.errors.lastName) : null, react_1["default"].createElement("label", {
+      type: "text"
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "lastName"
+    })), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
       htmlFor: "email"
-    }, "Email Address"), react_1["default"].createElement("input", {
-      id: "email",
+    }, "Email Address"), react_1["default"].createElement(formik_1.Field, {
       name: "email",
-      type: "email",
-      onChange: formik.handleChange,
-      onBlur: formik.handleBlur,
-      value: formik.values.email
-    }), formik.touched.email && formik.errors.email ? react_1["default"].createElement("div", null, formik.errors.email) : null, react_1["default"].createElement("button", {
+      type: "email"
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "email"
+    })), react_1["default"].createElement("button", {
       type: "submit"
-    }, "Submit"));
+    }, "Submit")));
   };
 
   exports["default"] = SignupForm;
