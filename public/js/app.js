@@ -109,7 +109,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
       outline: 'none',
       fontFamily: 'system-ui',
       display: 'block',
-      margin: '7px 0',
       border: '3px solid #f6f5f4',
       borderRadius: '4px',
       height: '200px',
@@ -230,12 +229,22 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }), react_1["default"].createElement(formik_1.ErrorMessage, {
       name: "subject"
     })), react_1["default"].createElement("tr", {
-      style: tableRowTextArea
+      style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
+    }, react_1["default"].createElement("label", {
+      htmlFor: "content"
+    }, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+      name: "content",
+      as: "textarea",
       style: formTextarea
-    })))))), react_1["default"].createElement("input", {
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "content"
+    }))))), react_1["default"].createElement("input", {
       type: "submit",
       value: "\u78BA\u8A8D",
       style: confirmBtn
