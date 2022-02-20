@@ -7,13 +7,47 @@
   \**********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactAddress */ "./resources/ts/ContactAddress.tsx"), __webpack_require__(/*! ./SignupForm */ "./resources/ts/SignupForm.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactAddress_1, SignupForm_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactAddress */ "./resources/ts/ContactAddress.tsx"), __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js"), __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactAddress_1, formik_1, Yup) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -21,7 +55,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   }));
   react_1 = __importDefault(react_1);
   ContactAddress_1 = __importDefault(ContactAddress_1);
-  SignupForm_1 = __importDefault(SignupForm_1);
+  Yup = __importStar(Yup);
 
   var Contact = function Contact() {
     var content = {
@@ -107,45 +141,101 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       style: description
     }, react_1["default"].createElement("span", {
       style: descriptionMsg
-    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("table", {
+    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement(formik_1.Formik, {
+      initialValues: {
+        name: "",
+        company: "",
+        email: "",
+        subject: "",
+        content: ""
+      },
+      validationSchema: Yup.object({
+        name: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
+        company: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
+        email: Yup.string().email("Invalid email address").required("Required"),
+        subject: Yup.string().email("Invalid email address").required("Required"),
+        content: Yup.string().email("Invalid email address").required("Required")
+      }),
+      onSubmit: function onSubmit(values, _ref) {
+        var setSubmitting = _ref.setSubmitting;
+        setTimeout(function () {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }
+    }, react_1["default"].createElement(formik_1.Form, null, react_1["default"].createElement("table", {
       style: contentsBox
     }, react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
+    }, react_1["default"].createElement("label", {
+      htmlFor: "name"
     }, react_1["default"].createElement("span", {
       style: tableHeaderTittle
-    }, "\u3054\u6C0F\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+    }, "\u3054\u6C0F\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+      name: "name",
       type: "text",
       style: formInput
-    }))), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "name"
+    })), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u4F1A\u793E\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+    }, react_1["default"].createElement("label", {
+      htmlFor: "company"
+    }, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u4F1A\u793E\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+      name: "company",
       type: "text",
       style: formInput
-    }))), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "company"
+    })), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+    }, react_1["default"].createElement("label", {
+      htmlFor: "email"
+    }, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+      name: "email",
       type: "text",
       style: formInput
-    }))), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "email"
+    })), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u4EF6\u540D\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+    }, react_1["default"].createElement("label", {
+      htmlFor: "subject"
+    }, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u4EF6\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+      name: "subject",
       type: "text",
       style: formInput
-    }))), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+      name: "subject"
+    })), react_1["default"].createElement("tr", {
       style: tableRowTextArea
     }, react_1["default"].createElement("th", {
       style: tableHeader
     }, react_1["default"].createElement("span", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
       style: formTextarea
-    })))), react_1["default"].createElement(SignupForm_1["default"], null), react_1["default"].createElement("input", {
+    })))))), react_1["default"].createElement("input", {
       type: "submit",
       value: "\u78BA\u8A8D",
       style: confirmBtn
@@ -423,112 +513,6 @@ var __importStar = this && this.__importStar || function (mod) {
   };
 
   exports["default"] = ContactAddress;
-}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ }),
-
-/***/ "./resources/ts/SignupForm.tsx":
-/*!*************************************!*\
-  !*** ./resources/ts/SignupForm.tsx ***!
-  \*************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js"), __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, formik_1, Yup) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", ({
-    value: true
-  }));
-  react_1 = __importDefault(react_1);
-  Yup = __importStar(Yup);
-
-  var SignupForm = function SignupForm() {
-    return react_1["default"].createElement(formik_1.Formik, {
-      initialValues: {
-        firstName: "",
-        lastName: "",
-        email: ""
-      },
-      validationSchema: Yup.object({
-        firstName: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
-        lastName: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
-        email: Yup.string().email("Invalid email address").required("Required")
-      }),
-      onSubmit: function onSubmit(values, _ref) {
-        var setSubmitting = _ref.setSubmitting;
-        setTimeout(function () {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }
-    }, react_1["default"].createElement(formik_1.Form, null, react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "firstName"
-    }, "First Name"), react_1["default"].createElement(formik_1.Field, {
-      name: "firstName",
-      type: "text"
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "firstName"
-    })), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "lastName"
-    }, "Last Name"), react_1["default"].createElement(formik_1.Field, {
-      name: "lastName",
-      type: "text"
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "lastName"
-    })), react_1["default"].createElement("div", null, react_1["default"].createElement("label", {
-      htmlFor: "email"
-    }, "Email Address"), react_1["default"].createElement(formik_1.Field, {
-      name: "email",
-      type: "email"
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "email"
-    })), react_1["default"].createElement("button", {
-      type: "submit"
-    }, "Submit")));
-  };
-
-  exports["default"] = SignupForm;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 

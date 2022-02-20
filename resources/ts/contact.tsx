@@ -1,6 +1,9 @@
 import React from "react";
 import ContactAddress from "./ContactAddress";
-import SignupForm from "./SignupForm";
+// import SignupForm from "./SignupForm";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
 
 
 const Contact = (): JSX.Element => {
@@ -165,32 +168,84 @@ const Contact = (): JSX.Element => {
       <h2>お問い合わせ</h2>
       <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
 
+    <Formik
+      initialValues={{ name: "", company: "", email: "", subject: "", content: "" }}
+      validationSchema={Yup.object({
+        name: Yup.string()
+          .max(15, "Must be 15 characters or less")
+          .required("Required"),
+          company: Yup.string()
+          .max(20, "Must be 20 characters or less")
+          .required("Required"),
+        email: Yup.string().email("Invalid email address").required("Required"),
+        subject: Yup.string().email("Invalid email address").required("Required"),
+        content: Yup.string().email("Invalid email address").required("Required")
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+
+      <Form>
       <table style={contentsBox}>
+
         <tr style={tableRow}>
-          <th style={tableHeader}><span style={tableHeaderTittle}>ご氏名：</span></th>
+          <th style={tableHeader}>
+            <label htmlFor="name"><span style={tableHeaderTittle}>ご氏名：</span></label>
+          </th>
           <td>
-            <input type="text" style={formInput}/>
+            <Field name="name" type="text" style={formInput} />
           </td>
-        </tr>          
+        </tr>
+        <tr>
+          <th style={tableHeader}></th>
+          <ErrorMessage name="name" />
+        </tr>
+
             <ContactAddress />
+
         <tr style={tableRow}>
-          <th style={tableHeader}><span>会社名：</span></th>
+          <th style={tableHeader}>
+            <label htmlFor="company"><span style={tableHeaderTittle}>会社名：</span></label>
+          </th>
           <td>
-            <input type="text" style={formInput}/>
+            <Field name="company" type="text" style={formInput} />
           </td>
-        </tr>          
+        </tr>
+        <tr>
+          <th style={tableHeader}></th>
+          <ErrorMessage name="company" />
+        </tr>
+
         <tr style={tableRow}>
-          <th style={tableHeader}><span>メールアドレス：</span></th>
+          <th style={tableHeader}>
+            <label htmlFor="email"><span style={tableHeaderTittle}>メールアドレス：</span></label>
+          </th>
           <td>
-            <input type="text" style={formInput}/>
+            <Field name="email" type="text" style={formInput} />
           </td>
-        </tr>          
+        </tr>
+        <tr>
+          <th style={tableHeader}></th>
+          <ErrorMessage name="email" />
+        </tr>
+
         <tr style={tableRow}>
-          <th style={tableHeader}><span>件名：</span></th>
+          <th style={tableHeader}>
+            <label htmlFor="subject"><span style={tableHeaderTittle}>件名：</span></label>
+          </th>
           <td>
-            <input type="text" style={formInput}/>
+            <Field name="subject" type="text" style={formInput} />
           </td>
-        </tr>          
+        </tr>
+        <tr>
+          <th style={tableHeader}></th>
+          <ErrorMessage name="subject" />
+        </tr>
+
         <tr style={tableRowTextArea}>
           <th style={tableHeader}><span>お問い合わせ内容：</span></th>
           <td>
@@ -198,8 +253,11 @@ const Contact = (): JSX.Element => {
           </td>
         </tr>          
       </table>
+      </Form>
 
-<SignupForm />
+    </Formik>
+
+{/* <SignupForm /> */}
 
       <input type="submit" value="確認" style={confirmBtn}/>
     </section>
