@@ -82,10 +82,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
       height: '40px',
       marginBottom: '10px'
     };
-    var tableRowTextArea = {
-      height: '40px',
-      marginTop: '100px'
-    };
     var tableHeader = {
       textAlign: 'left'
     };
@@ -146,14 +142,24 @@ var __importDefault = this && this.__importDefault || function (mod) {
         company: "",
         email: "",
         subject: "",
-        content: ""
+        content: "",
+        postCodeH: "",
+        postCodeF: "",
+        prefectures: "",
+        cities: "",
+        addrdetail: ""
       },
       validationSchema: Yup.object({
         name: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
         company: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
         email: Yup.string().email("Invalid email address").required("Required"),
         subject: Yup.string().email("Invalid email address").required("Required"),
-        content: Yup.string().email("Invalid email address").required("Required")
+        content: Yup.string().email("Invalid email address").required("Required"),
+        postCodeH: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
+        postCodeF: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
+        prefectures: Yup.string().email("Invalid email address").required("Required"),
+        cities: Yup.string().email("Invalid email address").required("Required"),
+        addrdetail: Yup.string().email("Invalid email address").required("Required")
       }),
       onSubmit: function onSubmit(values, _ref) {
         var setSubmitting = _ref.setSubmitting;
@@ -168,9 +174,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("label", {
-      htmlFor: "name"
-    }, react_1["default"].createElement("span", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
     }, "\u3054\u6C0F\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "name",
@@ -184,9 +188,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("label", {
-      htmlFor: "company"
-    }, react_1["default"].createElement("span", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
     }, "\u4F1A\u793E\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "company",
@@ -200,13 +202,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("label", {
-      htmlFor: "email"
-    }, react_1["default"].createElement("span", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
     }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "email",
-      type: "text",
+      type: "email",
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
@@ -216,9 +216,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("label", {
-      htmlFor: "subject"
-    }, react_1["default"].createElement("span", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
     }, "\u4EF6\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "subject",
@@ -232,9 +230,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("label", {
-      htmlFor: "content"
-    }, react_1["default"].createElement("span", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
     }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "content",
@@ -409,7 +405,19 @@ var __importStar = this && this.__importStar || function (mod) {
   };
 
   var ContactAddress = function ContactAddress() {
-    var _ref = (0, react_1.useState)({
+    // 郵便番号フォームの値を管理
+    var _ref = (0, react_1.useState)(''),
+        _ref2 = _slicedToArray(_ref, 2),
+        zipcodeValue = _ref2[0],
+        setZipcodeValue = _ref2[1]; // 住所１フォームの値を管理
+
+
+    var _ref3 = (0, react_1.useState)(''),
+        _ref4 = _slicedToArray(_ref3, 2),
+        addressValue = _ref4[0],
+        setAddressValue = _ref4[1];
+
+    var _ref5 = (0, react_1.useState)({
       user: {
         e: {
           target: {
@@ -417,17 +425,51 @@ var __importStar = this && this.__importStar || function (mod) {
             value: ''
           }
         },
-        prefectures: null,
+        prefectures: '',
         cities: '',
         addrdetail: ''
+      },
+      errorTitle: {
+        errorZipcode: zipcodeValue,
+        errorAddress: addressValue
       }
     }),
-        _ref2 = _slicedToArray(_ref, 2),
-        state = _ref2[0],
-        setState = _ref2[1]; // 引数eの型any対策は、以下のinstanceofで型ガードする
+        _ref6 = _slicedToArray(_ref5, 2),
+        state = _ref6[0],
+        setState = _ref6[1]; // 引数eの型any対策は、以下のinstanceofで型ガードする
 
 
-    var handleChange = function handleChange(e) {
+    var handleChangeZip = function handleChangeZip(e) {
+      var value = e.target.value;
+      var params = state.user;
+      var key = e.target.name;
+
+      if (value) {
+        setZipcodeValue('');
+      } // instanceofで型ガード
+
+
+      if (!(e.target instanceof HTMLInputElement)) {
+        return;
+      }
+
+      params[key] = e.target.value;
+      setState({
+        user: params,
+        errorTitle: {
+          errorZipcode: zipcodeValue,
+          errorAddress: addressValue
+        }
+      });
+    };
+
+    var handleChangeAddr = function handleChangeAddr(e) {
+      var value = e.target.value;
+
+      if (value) {
+        setAddressValue('');
+      }
+
       var params = state.user;
       var key = e.target.name; // instanceofで型ガード
 
@@ -437,14 +479,79 @@ var __importStar = this && this.__importStar || function (mod) {
 
       params[key] = e.target.value;
       setState({
-        user: params
+        user: params,
+        errorTitle: {
+          errorZipcode: zipcodeValue,
+          errorAddress: addressValue
+        }
       });
     };
 
-    var complementAddress = function complementAddress() {
+    var checkZipcode = function checkZipcode(e) {
+      var value = e.target.value;
+
+      if (!value) {
+        setZipcodeValue('入力してください');
+      }
+
+      if (value) {
+        setZipcodeValue('');
+      }
+
+      setState({
+        user: value,
+        errorTitle: {
+          errorZipcode: zipcodeValue,
+          errorAddress: addressValue
+        }
+      });
+    };
+
+    var checkAddress = function checkAddress(e) {
+      var value = e.target.value;
+
+      if (!value) {
+        setAddressValue('入力してください');
+      }
+
+      if (value) {
+        setAddressValue('');
+      }
+
+      setState({
+        user: value,
+        errorTitle: {
+          errorZipcode: zipcodeValue,
+          errorAddress: addressValue
+        }
+      }); // else if (value.length > 100) {
+      //   setState({
+      //     user: value,
+      //     errorTitle: {
+      //       errorZipcode: '記事タイトルは100文字以内で入力してください',
+      //       errorAddress: ''
+      //     }
+      //   })
+      // } else {
+      //   setState({
+      //     user: value,
+      //     errorTitle: {
+      //       errorZipcode: '',
+      //       errorAddress: ''
+      //     }
+      //   })
+      // }
+    };
+
+    var complementAddress = function complementAddress(e) {
       var _window = window,
           AjaxZip3 = _window.AjaxZip3;
       AjaxZip3.zip2addr('postCodeH', 'postCodeF', 'prefectures', 'cities', 'addrdetail');
+      var value = e.target.value;
+
+      if (value) {
+        setAddressValue('');
+      }
     };
 
     var element1 = document.getElementById('prefectures');
@@ -457,22 +564,34 @@ var __importStar = this && this.__importStar || function (mod) {
           prefectures: element1.value,
           cities: element2.value,
           addrdetail: element3.value
-        })
+        }),
+        errorTitle: {
+          errorZipcode: zipcodeValue,
+          errorAddress: addressValue
+        }
       });
+    };
+
+    var checkZipcodeOnBlur = function checkZipcodeOnBlur(e) {
+      checkZipcode(e);
+      onBlurZipcode;
     };
 
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("div", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("div", {
       style: postCodeContainer
     }, react_1["default"].createElement("input", {
       name: "postCodeH",
       size: 3,
       maxLength: 3,
       onChange: function onChange(e) {
-        return handleChange(e);
+        return handleChangeZip(e);
+      },
+      onBlur: function onBlur(e) {
+        return checkZipcodeOnBlur(e);
       },
       style: postCodeH
     }), react_1["default"].createElement("div", {
@@ -482,43 +601,57 @@ var __importStar = this && this.__importStar || function (mod) {
       size: 4,
       maxLength: 4,
       onChange: function onChange(e) {
-        return handleChange(e);
+        return handleChangeZip(e);
       },
       onKeyUp: complementAddress,
-      onBlur: onBlurZipcode,
+      onBlur: function onBlur(e) {
+        return checkZipcodeOnBlur(e);
+      },
       style: postCodeF
-    })))), react_1["default"].createElement("tr", {
+    })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF11\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("div", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF11\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("div", {
       style: postCodeContainer
     }, react_1["default"].createElement("input", {
       name: "prefectures",
       id: "prefectures",
       onChange: function onChange(e) {
-        return handleChange(e);
+        return handleChangeAddr(e);
+      },
+      onBlur: function onBlur(e) {
+        return checkAddress(e);
       },
       style: formInputPrefectures
     }), react_1["default"].createElement("input", {
       name: "cities",
       id: "cities",
       onChange: function onChange(e) {
-        return handleChange(e);
+        return handleChangeAddr(e);
+      },
+      onBlur: function onBlur(e) {
+        return checkAddress(e);
       },
       style: formInputCities
-    })))), react_1["default"].createElement("tr", {
+    })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement("div", null, state.errorTitle.errorAddress)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
-    }, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF12\uFF1A")), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", null, "\u4F4F\u6240\uFF12\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "addrdetail",
       id: "addrdetail",
       onChange: function onChange(e) {
-        return handleChange(e);
+        return handleChangeZip(e);
       },
       style: formInputAddrdetail
-    }))));
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    })));
   };
 
   exports["default"] = ContactAddress;

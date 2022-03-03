@@ -54,16 +54,6 @@ const Contact = (): JSX.Element => {
     marginBottom: '10px'
   }
 
-  const tableRowTextArea: {
-    height: '40px',
-
-    marginTop: string;
-  } = {
-    height: '40px',
-
-    marginTop: '100px'
-  }
-
   const tableHeader: {
     textAlign: 'left';
   } = {
@@ -166,17 +156,37 @@ const Contact = (): JSX.Element => {
       <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
 
       <Formik
-        initialValues={{ name: "", company: "", email: "", subject: "", content: "" }}
+        initialValues={{
+          name: "",
+          company: "",
+          email: "",
+          subject: "",
+          content: "",
+          postCodeH: "",
+          postCodeF: "",
+          prefectures: "",
+          cities: "",
+          addrdetail: ""
+        }}
         validationSchema={Yup.object({
           name: Yup.string()
             .max(15, "Must be 15 characters or less")
             .required("Required"),
-            company: Yup.string()
+          company: Yup.string()
             .max(20, "Must be 20 characters or less")
             .required("Required"),
           email: Yup.string().email("Invalid email address").required("Required"),
           subject: Yup.string().email("Invalid email address").required("Required"),
-          content: Yup.string().email("Invalid email address").required("Required")
+          content: Yup.string().email("Invalid email address").required("Required"),
+          postCodeH: Yup.string()
+            .max(15, "Must be 15 characters or less")
+            .required("Required"),
+          postCodeF: Yup.string()
+            .max(20, "Must be 20 characters or less")
+            .required("Required"),
+          prefectures: Yup.string().email("Invalid email address").required("Required"),
+          cities: Yup.string().email("Invalid email address").required("Required"),
+          addrdetail: Yup.string().email("Invalid email address").required("Required")
         })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -191,7 +201,7 @@ const Contact = (): JSX.Element => {
 
           <tr style={tableRow}>
             <th style={tableHeader}>
-              <label htmlFor="name"><span style={tableHeaderTittle}>ご氏名：</span></label>
+              <label><span style={tableHeaderTittle}>ご氏名：</span></label>
             </th>
             <td>
               <Field name="name" type="text" style={formInput} />
@@ -202,11 +212,11 @@ const Contact = (): JSX.Element => {
             <ErrorMessage name="name" />
           </tr>
 
-              <ContactAddress />
+          <ContactAddress />
 
           <tr style={tableRow}>
             <th style={tableHeader}>
-              <label htmlFor="company"><span style={tableHeaderTittle}>会社名：</span></label>
+              <label><span style={tableHeaderTittle}>会社名：</span></label>
             </th>
             <td>
               <Field name="company" type="text" style={formInput} />
@@ -219,10 +229,10 @@ const Contact = (): JSX.Element => {
 
           <tr style={tableRow}>
             <th style={tableHeader}>
-              <label htmlFor="email"><span style={tableHeaderTittle}>メールアドレス：</span></label>
+              <label><span style={tableHeaderTittle}>メールアドレス：</span></label>
             </th>
             <td>
-              <Field name="email" type="text" style={formInput} />
+              <Field name="email" type="email" style={formInput} />
             </td>
           </tr>
           <tr>
@@ -232,7 +242,7 @@ const Contact = (): JSX.Element => {
 
           <tr style={tableRow}>
             <th style={tableHeader}>
-              <label htmlFor="subject"><span style={tableHeaderTittle}>件名：</span></label>
+              <label><span style={tableHeaderTittle}>件名：</span></label>
             </th>
             <td>
               <Field name="subject" type="text" style={formInput} />
@@ -245,7 +255,7 @@ const Contact = (): JSX.Element => {
 
           <tr style={tableRow}>
             <th style={tableHeader}>
-              <label htmlFor="content"><span style={tableHeaderTittle}>お問い合わせ内容：</span></label>
+              <label><span style={tableHeaderTittle}>お問い合わせ内容：</span></label>
             </th>
             <td>
               <Field name="content" as="textarea" style={formTextarea} />

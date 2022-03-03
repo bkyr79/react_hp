@@ -1,4 +1,5 @@
 import React, { useState, VFC } from "react";
+import { Field, ErrorMessage } from "formik";
 
 
 const tableRow: {
@@ -180,10 +181,14 @@ const ContactAddress: VFC = () => {
           value: string;
         }
       },
-      prefectures?: string | null;
-      cities?: string | null;
-      addrdetail?: string | null; 
-    }    
+      prefectures?: string | null | undefined;
+      cities?: string | null | undefined;
+      addrdetail?: string | null | undefined; 
+    },
+    errorTitle: {
+      errorZipcode: string | undefined,
+      errorAddress: string | undefined
+    }
   }
 
   type EventType = {
@@ -193,10 +198,15 @@ const ContactAddress: VFC = () => {
         value: string;
       }
     },
-    prefectures?: string | null;
-    cities?: string | null;
-    addrdetail?: string | null; 
+    prefectures?: string | null | undefined;
+    cities?: string | null | undefined;
+    addrdetail?: string | null | undefined; 
   }
+
+  // 郵便番号フォームの値を管理
+  const [zipcodeValue, setZipcodeValue] = useState('');
+  // 住所１フォームの値を管理
+  const [addressValue, setAddressValue] = useState('');
 
   const [state, setState] = useState<StateType>({
     user: {
@@ -206,24 +216,68 @@ const ContactAddress: VFC = () => {
           value: '',
         }
       },
-      prefectures: null,
+      prefectures: '',
       cities: '',
       addrdetail: ''    
+    },
+    errorTitle: {
+      errorZipcode: zipcodeValue,
+      errorAddress: addressValue
     }
   });
 
   // 引数eの型any対策は、以下のinstanceofで型ガードする
-  const handleChange = (e :any) => {
+  const handleChangeZip = (e: any) => {
+    const value = e.target.value;
     const params: {
       e: {
         target: {
-            name: string;
-            value: string;
+          name: string;
+          value: string;
         }
       },
-      prefectures?: string | null;
-      cities?: string | null;
-      addrdetail?: string | null; 
+      prefectures?: string | null | undefined;
+      cities?: string | null | undefined;
+      addrdetail?: string | null | undefined; 
+    } = state.user;    
+    const key: keyof EventType = e.target.name;
+
+    if (value) {
+      setZipcodeValue('');
+    }
+
+    // instanceofで型ガード
+    if (!(e.target instanceof HTMLInputElement)) {
+      return;
+    }
+
+    params[key] = e.target.value;
+
+    setState({
+      user: params,
+      errorTitle: {
+        errorZipcode: zipcodeValue,
+        errorAddress: addressValue
+      } 
+    });    
+  }
+
+  const handleChangeAddr = (e: any) => {
+    const value = e.target.value;
+    if (value) {
+      setAddressValue('');
+    }
+
+    const params: {
+      e: {
+        target: {
+          name: string;
+          value: string;
+        }
+      },
+      prefectures?: string | null | undefined;
+      cities?: string | null | undefined;
+      addrdetail?: string | null | undefined; 
     } = state.user;
     
     const key: keyof EventType = e.target.name;
@@ -234,10 +288,69 @@ const ContactAddress: VFC = () => {
     }
 
     params[key] = e.target.value;
-    setState({ user: params });
+    setState({
+      user: params,
+      errorTitle: {
+        errorZipcode: zipcodeValue,
+        errorAddress: addressValue
+      } 
+    });    
   }
 
-  const complementAddress = () => {
+  const checkZipcode = (e: any) => {
+    const value = e.target.value;
+    if (value) {
+      setZipcodeValue('');
+    }
+    if (!value) {
+      setZipcodeValue('入力してください');
+    }
+
+    setState({
+      user: value,
+      errorTitle: {
+        errorZipcode: zipcodeValue,
+        errorAddress: addressValue
+      }
+    })
+  }
+
+  const checkAddress = (e: any) => {
+    const value = e.target.value;
+    if (!value) {
+      setAddressValue('入力してください');
+    }
+    if (value) {
+      setAddressValue('');
+    } 
+    setState({
+      user: value,
+      errorTitle: {
+        errorZipcode: zipcodeValue,
+        errorAddress: addressValue
+      }
+    })
+
+    // else if (value.length > 100) {
+    //   setState({
+    //     user: value,
+    //     errorTitle: {
+    //       errorZipcode: '記事タイトルは100文字以内で入力してください',
+    //       errorAddress: ''
+    //     }
+    //   })
+    // } else {
+    //   setState({
+    //     user: value,
+    //     errorTitle: {
+    //       errorZipcode: '',
+    //       errorAddress: ''
+    //     }
+    //   })
+    // }
+  }
+
+  const complementAddress = (e: any) => {
     const { AjaxZip3 } = window as any;
     AjaxZip3.zip2addr(
       'postCodeH',
@@ -246,6 +359,11 @@ const ContactAddress: VFC = () => {
       'cities',
       'addrdetail'  
     );
+
+    const value = e.target.value;
+    if (value) {
+      setAddressValue('');
+    } 
   };
 
   const element1 = document.getElementById('prefectures')! as HTMLInputElement;
@@ -258,21 +376,33 @@ const ContactAddress: VFC = () => {
         prefectures: element1.value,
         cities: element2.value,
         addrdetail: element3.value  
+      },
+      errorTitle: {
+        errorZipcode: zipcodeValue,
+        errorAddress: addressValue
       }
     });
   };
+  
+  const checkZipcodeOnBlur = (e: any) => {
+    checkZipcode(e);
+    onBlurZipcode;
+  }
 
   return(
     <>
     <tr style={tableRow}>
-      <th style={tableHeader}><span>郵便番号：</span></th>
+      <th style={tableHeader}>
+        <label><span>郵便番号：</span></label>
+      </th>
       <td>
         <div style={postCodeContainer}>
           <input
             name="postCodeH"
             size={3}
             maxLength={3}
-            onChange={e => handleChange(e)}
+            onChange={(e) => handleChangeZip(e)}
+            onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeH}
           />
           <div style={postCodeHyphen}>
@@ -282,46 +412,66 @@ const ContactAddress: VFC = () => {
             name="postCodeF"
             size={4}
             maxLength={4}
-            onChange={e => handleChange(e)}
+            onChange={(e) => handleChangeZip(e)}
             onKeyUp={complementAddress}
-            onBlur={onBlurZipcode}
+            onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeF}
           />
         </div>
       </td>
-    </tr>        
+    </tr>
+    <tr>
+      <th style={tableHeader}></th>      
+      <div>{state.errorTitle.errorZipcode}</div>
+      {/* <ErrorMessage name="postCodeH" /> */}
+    </tr>
 
     <tr style={tableRow}>
-      <th style={tableHeader}><span>住所１：</span></th>
+      <th style={tableHeader}>
+        <label><span>住所１：</span></label>
+      </th>
       <td>
         <div style={postCodeContainer}>
           <input
             name="prefectures"
             id="prefectures"
-            onChange={e => handleChange(e)}
+            onChange={(e) => handleChangeAddr(e)}
+            onBlur={(e) => checkAddress(e)}
             style={formInputPrefectures}
           />
           <input
             name="cities"
             id="cities"
-            onChange={e => handleChange(e)}
+            onChange={(e) => handleChangeAddr(e)}
+            onBlur={(e) => checkAddress(e)}
             style={formInputCities}
           />
         </div>
       </td>
     </tr>  
+    <tr>
+      <th style={tableHeader}></th>
+      <div>{state.errorTitle.errorAddress}</div>
+      {/* <ErrorMessage name="prefectures" /> */}
+    </tr>
 
     <tr style={tableRow}>
-      <th style={tableHeader}><span>住所２：</span></th>
+      <th style={tableHeader}>
+        <label><span>住所２：</span></label>
+      </th>
       <td>
         <input
           name="addrdetail"
           id="addrdetail"
-          onChange={e => handleChange(e)}
+          onChange={(e) => handleChangeZip(e)}
           style={formInputAddrdetail}
         />
       </td>
-    </tr>  
+    </tr>
+    <tr>
+      <th style={tableHeader}></th>
+      {/* <ErrorMessage name="addrdetail" /> */}
+    </tr>
     </>
   );  
 };
