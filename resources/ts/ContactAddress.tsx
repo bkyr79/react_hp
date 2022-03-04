@@ -297,14 +297,27 @@ const ContactAddress: VFC = () => {
     });    
   }
 
+  const checkZipHead = (str: any) => {
+    const regex = /^[0-9]{3}$/;
+    if(regex.test(str)){
+      setZipcodeValue('チェックする文字列と正規表現が一致');
+    }  }
+
+  const checkBlank = (str: any) => {
+    if (!str) {
+      setZipcodeValue('入力してください');
+    }
+  }
+
   const checkZipcode = (e: any) => {
     const value = e.target.value;
     if (value) {
       setZipcodeValue('');
     }
-    if (!value) {
-      setZipcodeValue('入力してください');
-    }
+
+    checkBlank(value);
+
+    checkZipHead(value);
 
     setState({
       user: value,

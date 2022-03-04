@@ -487,17 +487,30 @@ var __importStar = this && this.__importStar || function (mod) {
       });
     };
 
-    var checkZipcode = function checkZipcode(e) {
-      var value = e.target.value;
+    var checkZipHead = function checkZipHead(str) {
+      var regex = /^[0-9]{3}$/;
 
-      if (!value) {
+      if (regex.test(str)) {
+        setZipcodeValue('チェックする文字列と正規表現が一致');
+      }
+    };
+
+    var checkBlank = function checkBlank(str) {
+      // 空欄チェック
+      if (!str) {
         setZipcodeValue('入力してください');
       }
+    };
+
+    var checkZipcode = function checkZipcode(e) {
+      var value = e.target.value;
 
       if (value) {
         setZipcodeValue('');
       }
 
+      checkBlank(value);
+      checkZipHead(value);
       setState({
         user: value,
         errorTitle: {
