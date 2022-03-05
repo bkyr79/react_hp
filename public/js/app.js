@@ -487,22 +487,29 @@ var __importStar = this && this.__importStar || function (mod) {
       });
     };
 
-    var checkZipHead = function checkZipHead(str) {
+    var ZipHeadDigits = function ZipHeadDigits(str) {
       var regex = /^[0-9]{3}$/;
 
-      if (regex.test(str)) {
-        setZipcodeValue('チェックする文字列と正規表現が一致');
+      if (!regex.test(str)) {
+        setZipcodeValue('郵便番号の桁数が正しくありません');
+      }
+    };
+
+    var ZipFooterDigits = function ZipFooterDigits(str) {
+      var regex = /^[0-9]{4}$/;
+
+      if (!regex.test(str)) {
+        setZipcodeValue('郵便番号の桁数が正しくありません④');
       }
     };
 
     var checkBlank = function checkBlank(str) {
-      // 空欄チェック
       if (!str) {
         setZipcodeValue('入力してください');
       }
     };
 
-    var checkZipcode = function checkZipcode(e) {
+    var checkZipHeadForm = function checkZipHeadForm(e) {
       var value = e.target.value;
 
       if (value) {
@@ -510,7 +517,25 @@ var __importStar = this && this.__importStar || function (mod) {
       }
 
       checkBlank(value);
-      checkZipHead(value);
+      ZipHeadDigits(value);
+      setState({
+        user: value,
+        errorTitle: {
+          errorZipcode: zipcodeValue,
+          errorAddress: addressValue
+        }
+      });
+    };
+
+    var checkZipFooterForm = function checkZipFooterForm(e) {
+      var value = e.target.value;
+
+      if (value) {
+        setZipcodeValue('');
+      }
+
+      checkBlank(value);
+      ZipFooterDigits(value);
       setState({
         user: value,
         errorTitle: {
@@ -585,8 +610,13 @@ var __importStar = this && this.__importStar || function (mod) {
       });
     };
 
-    var checkZipcodeOnBlur = function checkZipcodeOnBlur(e) {
-      checkZipcode(e);
+    var checkZipcodeHOnBlur = function checkZipcodeHOnBlur(e) {
+      checkZipHeadForm(e);
+      onBlurZipcode;
+    };
+
+    var checkZipcodeFOnBlur = function checkZipcodeFOnBlur(e) {
+      checkZipFooterForm(e);
       onBlurZipcode;
     };
 
@@ -604,7 +634,7 @@ var __importStar = this && this.__importStar || function (mod) {
         return handleChangeZip(e);
       },
       onBlur: function onBlur(e) {
-        return checkZipcodeOnBlur(e);
+        return checkZipcodeHOnBlur(e);
       },
       style: postCodeH
     }), react_1["default"].createElement("div", {
@@ -618,7 +648,7 @@ var __importStar = this && this.__importStar || function (mod) {
       },
       onKeyUp: complementAddress,
       onBlur: function onBlur(e) {
-        return checkZipcodeOnBlur(e);
+        return checkZipcodeFOnBlur(e);
       },
       style: postCodeF
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {

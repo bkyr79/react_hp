@@ -297,11 +297,19 @@ const ContactAddress: VFC = () => {
     });    
   }
 
-  const checkZipHead = (str: any) => {
+  const ZipHeadDigits = (str: any) => {
     const regex = /^[0-9]{3}$/;
-    if(regex.test(str)){
-      setZipcodeValue('チェックする文字列と正規表現が一致');
-    }  }
+    if(!regex.test(str)){
+      setZipcodeValue('郵便番号の桁数が正しくありません');
+    }
+  }
+
+  const ZipFooterDigits = (str: any) => {
+    const regex = /^[0-9]{4}$/;
+    if(!regex.test(str)){
+      setZipcodeValue('郵便番号の桁数が正しくありません④');
+    }
+  }
 
   const checkBlank = (str: any) => {
     if (!str) {
@@ -309,15 +317,32 @@ const ContactAddress: VFC = () => {
     }
   }
 
-  const checkZipcode = (e: any) => {
+  // 郵便番号フォーム（頭）のバリデーション
+  const checkZipHeadForm = (e: any) => {
     const value = e.target.value;
     if (value) {
       setZipcodeValue('');
     }
-
     checkBlank(value);
+    ZipHeadDigits(value);
 
-    checkZipHead(value);
+    setState({
+      user: value,
+      errorTitle: {
+        errorZipcode: zipcodeValue,
+        errorAddress: addressValue
+      }
+    })
+  }
+
+  // 郵便番号フォーム（後ろ）のバリデーション
+  const checkZipFooterForm = (e: any) => {
+    const value = e.target.value;
+    if (value) {
+      setZipcodeValue('');
+    }
+    checkBlank(value);
+    ZipFooterDigits(value);
 
     setState({
       user: value,
@@ -397,8 +422,13 @@ const ContactAddress: VFC = () => {
     });
   };
   
-  const checkZipcodeOnBlur = (e: any) => {
-    checkZipcode(e);
+  const checkZipcodeHOnBlur = (e: any) => {
+    checkZipHeadForm(e);
+    onBlurZipcode;
+  }
+
+  const checkZipcodeFOnBlur = (e: any) => {
+    checkZipFooterForm(e);
     onBlurZipcode;
   }
 
@@ -415,7 +445,7 @@ const ContactAddress: VFC = () => {
             size={3}
             maxLength={3}
             onChange={(e) => handleChangeZip(e)}
-            onBlur={(e) => checkZipcodeOnBlur(e)}
+            onBlur={(e) => checkZipcodeHOnBlur(e)}
             style={postCodeH}
           />
           <div style={postCodeHyphen}>
@@ -427,7 +457,7 @@ const ContactAddress: VFC = () => {
             maxLength={4}
             onChange={(e) => handleChangeZip(e)}
             onKeyUp={complementAddress}
-            onBlur={(e) => checkZipcodeOnBlur(e)}
+            onBlur={(e) => checkZipcodeFOnBlur(e)}
             style={postCodeF}
           />
         </div>
