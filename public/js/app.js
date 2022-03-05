@@ -430,7 +430,12 @@ var __importStar = this && this.__importStar || function (mod) {
         addrdetail: ''
       },
       errorTitle: {
-        errorZipcode: zipcodeValue,
+        errorZipcode: {
+          errorZipcodeH: zipcodeValue,
+          // （郵便番号の）第１フォーム入力内容の誤り有無に関する条件分岐
+          // 目的: 以下のように条件分岐することで、第１フォームのエラー表示が第２フォームのエラー表示に上書きされないようになる
+          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+        },
         errorAddress: addressValue
       }
     }),
@@ -457,7 +462,10 @@ var __importStar = this && this.__importStar || function (mod) {
       setState({
         user: params,
         errorTitle: {
-          errorZipcode: zipcodeValue,
+          errorZipcode: {
+            errorZipcodeH: zipcodeValue,
+            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+          },
           errorAddress: addressValue
         }
       });
@@ -481,25 +489,69 @@ var __importStar = this && this.__importStar || function (mod) {
       setState({
         user: params,
         errorTitle: {
-          errorZipcode: zipcodeValue,
+          errorZipcode: {
+            errorZipcodeH: zipcodeValue,
+            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+          },
           errorAddress: addressValue
         }
       });
+    }; // 空白を含む
+
+
+    var SpaceError = function SpaceError(str) {
+      var hankakuSpace = /(  )+/; //半角スペースの連記
+
+      var zenkakuSpace = /(　　)+/; //全角スペースの連記
+
+      var hanzenkakuSpace = /( +)+(　+)/; //半角スペース、全角スペースの順の記載
+
+      var zenhankakuSpace = /(　+)+( +)/; //全角スペース、半角スペースの順の記載
+
+      if (hankakuSpace.test(str)) {
+        return false;
+      }
+
+      if (zenkakuSpace.test(str)) {
+        return false;
+      }
+
+      if (hanzenkakuSpace.test(str)) {
+        return false;
+      }
+
+      if (zenhankakuSpace.test(str)) {
+        return false;
+      }
+
+      if (str === ' ' || str === '　') {
+        return false;
+      }
+
+      return true;
     };
 
-    var ZipHeadDigits = function ZipHeadDigits(str) {
+    var checkSpace = function checkSpace(value) {
+      if (!SpaceError(value)) {
+        setZipcodeValue('スペースは使用できません');
+      }
+    }; // 郵便番号（頭の）桁数
+
+
+    var ZipHeaderDigits = function ZipHeaderDigits(str) {
       var regex = /^[0-9]{3}$/;
 
       if (!regex.test(str)) {
-        setZipcodeValue('郵便番号の桁数が正しくありません');
+        setZipcodeValue('郵便番号の形式が正しくありません');
       }
-    };
+    }; // 郵便番号（後ろの）桁数
+
 
     var ZipFooterDigits = function ZipFooterDigits(str) {
       var regex = /^[0-9]{4}$/;
 
       if (!regex.test(str)) {
-        setZipcodeValue('郵便番号の桁数が正しくありません④');
+        setZipcodeValue('郵便番号の形式が正しくありません');
       }
     };
 
@@ -507,25 +559,31 @@ var __importStar = this && this.__importStar || function (mod) {
       if (!str) {
         setZipcodeValue('入力してください');
       }
-    };
+    }; // 郵便番号フォーム（頭）のバリデーション
 
-    var checkZipHeadForm = function checkZipHeadForm(e) {
+
+    var checkZipHeaderForm = function checkZipHeaderForm(e) {
       var value = e.target.value;
 
       if (value) {
         setZipcodeValue('');
       }
 
+      ZipHeaderDigits(value);
       checkBlank(value);
-      ZipHeadDigits(value);
+      checkSpace(value);
       setState({
         user: value,
         errorTitle: {
-          errorZipcode: zipcodeValue,
+          errorZipcode: {
+            errorZipcodeH: zipcodeValue,
+            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+          },
           errorAddress: addressValue
         }
       });
-    };
+    }; // 郵便番号フォーム（後ろ）のバリデーション
+
 
     var checkZipFooterForm = function checkZipFooterForm(e) {
       var value = e.target.value;
@@ -534,12 +592,16 @@ var __importStar = this && this.__importStar || function (mod) {
         setZipcodeValue('');
       }
 
-      checkBlank(value);
       ZipFooterDigits(value);
+      checkBlank(value);
+      checkSpace(value);
       setState({
         user: value,
         errorTitle: {
-          errorZipcode: zipcodeValue,
+          errorZipcode: {
+            errorZipcodeH: zipcodeValue,
+            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+          },
           errorAddress: addressValue
         }
       });
@@ -559,7 +621,10 @@ var __importStar = this && this.__importStar || function (mod) {
       setState({
         user: value,
         errorTitle: {
-          errorZipcode: zipcodeValue,
+          errorZipcode: {
+            errorZipcodeH: zipcodeValue,
+            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+          },
           errorAddress: addressValue
         }
       }); // else if (value.length > 100) {
@@ -604,14 +669,17 @@ var __importStar = this && this.__importStar || function (mod) {
           addrdetail: element3.value
         }),
         errorTitle: {
-          errorZipcode: zipcodeValue,
+          errorZipcode: {
+            errorZipcodeH: zipcodeValue,
+            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+          },
           errorAddress: addressValue
         }
       });
     };
 
     var checkZipcodeHOnBlur = function checkZipcodeHOnBlur(e) {
-      checkZipHeadForm(e);
+      checkZipHeaderForm(e);
       onBlurZipcode;
     };
 
@@ -653,7 +721,7 @@ var __importStar = this && this.__importStar || function (mod) {
       style: postCodeF
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode)), react_1["default"].createElement("tr", {
+    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeH), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeF)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader

@@ -186,7 +186,10 @@ const ContactAddress: VFC = () => {
       addrdetail?: string | null | undefined; 
     },
     errorTitle: {
-      errorZipcode: string | undefined,
+      errorZipcode: {
+        errorZipcodeH: string,
+        errorZipcodeF: string | undefined
+      },
       errorAddress: string | undefined
     }
   }
@@ -221,7 +224,13 @@ const ContactAddress: VFC = () => {
       addrdetail: ''    
     },
     errorTitle: {
-      errorZipcode: zipcodeValue,
+      errorZipcode: {
+        errorZipcodeH: zipcodeValue,
+
+        // （郵便番号の）第１フォーム入力内容の誤り有無に関する条件分岐
+        // 目的: 以下のように条件分岐することで、第１フォームのエラー表示が第２フォームのエラー表示に上書きされないようになる
+        errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+      },      
       errorAddress: addressValue
     }
   });
@@ -256,7 +265,10 @@ const ContactAddress: VFC = () => {
     setState({
       user: params,
       errorTitle: {
-        errorZipcode: zipcodeValue,
+        errorZipcode: {
+          errorZipcodeH: zipcodeValue,
+          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+        },
         errorAddress: addressValue
       } 
     });    
@@ -291,23 +303,58 @@ const ContactAddress: VFC = () => {
     setState({
       user: params,
       errorTitle: {
-        errorZipcode: zipcodeValue,
+        errorZipcode: {
+          errorZipcodeH: zipcodeValue,
+          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+        },
         errorAddress: addressValue
       } 
     });    
   }
 
-  const ZipHeadDigits = (str: any) => {
-    const regex = /^[0-9]{3}$/;
-    if(!regex.test(str)){
-      setZipcodeValue('郵便番号の桁数が正しくありません');
+  // 空白を含む
+  const SpaceError = (str: any) => {
+    const hankakuSpace = /(  )+/; //半角スペースの連記
+    const zenkakuSpace = /(　　)+/; //全角スペースの連記
+    const hanzenkakuSpace = /( +)+(　+)/; //半角スペース、全角スペースの順の記載
+    const zenhankakuSpace = /(　+)+( +)/; //全角スペース、半角スペースの順の記載
+    if(hankakuSpace.test(str)){
+      return false;
+    }
+    if(zenkakuSpace.test(str)){
+      return false;
+    }
+    if(hanzenkakuSpace.test(str)){
+      return false;
+    }
+    if(zenhankakuSpace.test(str)){
+      return false;
+    }
+    if(str === ' ' || str === '　'){
+      return false;
+    }
+    return true;
+  }
+  
+  const checkSpace = (value: any) => {
+    if(!SpaceError(value)){
+      setZipcodeValue('スペースは使用できません');
     }
   }
 
+  // 郵便番号（頭の）桁数
+  const ZipHeaderDigits = (str: any) => {
+    const regex = /^[0-9]{3}$/;
+    if(!regex.test(str)){
+      setZipcodeValue('郵便番号の形式が正しくありません');
+    }
+  }
+
+  // 郵便番号（後ろの）桁数
   const ZipFooterDigits = (str: any) => {
     const regex = /^[0-9]{4}$/;
     if(!regex.test(str)){
-      setZipcodeValue('郵便番号の桁数が正しくありません④');
+      setZipcodeValue('郵便番号の形式が正しくありません');
     }
   }
 
@@ -318,18 +365,22 @@ const ContactAddress: VFC = () => {
   }
 
   // 郵便番号フォーム（頭）のバリデーション
-  const checkZipHeadForm = (e: any) => {
+  const checkZipHeaderForm = (e: any) => {
     const value = e.target.value;
     if (value) {
       setZipcodeValue('');
     }
+    ZipHeaderDigits(value);
     checkBlank(value);
-    ZipHeadDigits(value);
+    checkSpace(value);
 
     setState({
       user: value,
       errorTitle: {
-        errorZipcode: zipcodeValue,
+        errorZipcode: {
+          errorZipcodeH: zipcodeValue,
+          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+        },
         errorAddress: addressValue
       }
     })
@@ -341,13 +392,17 @@ const ContactAddress: VFC = () => {
     if (value) {
       setZipcodeValue('');
     }
-    checkBlank(value);
     ZipFooterDigits(value);
+    checkBlank(value);
+    checkSpace(value);
 
     setState({
       user: value,
       errorTitle: {
-        errorZipcode: zipcodeValue,
+        errorZipcode: {
+          errorZipcodeH: zipcodeValue,
+          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+        },
         errorAddress: addressValue
       }
     })
@@ -364,7 +419,10 @@ const ContactAddress: VFC = () => {
     setState({
       user: value,
       errorTitle: {
-        errorZipcode: zipcodeValue,
+        errorZipcode: {
+          errorZipcodeH: zipcodeValue,
+          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+        },
         errorAddress: addressValue
       }
     })
@@ -416,14 +474,17 @@ const ContactAddress: VFC = () => {
         addrdetail: element3.value  
       },
       errorTitle: {
-        errorZipcode: zipcodeValue,
+        errorZipcode: {
+          errorZipcodeH: zipcodeValue,
+          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+        },
         errorAddress: addressValue
       }
     });
   };
   
   const checkZipcodeHOnBlur = (e: any) => {
-    checkZipHeadForm(e);
+    checkZipHeaderForm(e);
     onBlurZipcode;
   }
 
@@ -465,7 +526,8 @@ const ContactAddress: VFC = () => {
     </tr>
     <tr>
       <th style={tableHeader}></th>      
-      <div>{state.errorTitle.errorZipcode}</div>
+      <div>{state.errorTitle.errorZipcode.errorZipcodeH}</div>
+      <div>{state.errorTitle.errorZipcode.errorZipcodeF}</div>
       {/* <ErrorMessage name="postCodeH" /> */}
     </tr>
 
