@@ -188,7 +188,7 @@ const ContactAddress: VFC = () => {
     errorTitle: {
       errorZipcode: {
         errorZipcodeH: string,
-        errorZipcodeF: string | undefined
+        errorZipcodeF: () => string | undefined
       },
       errorAddress: string | undefined
     }
@@ -211,6 +211,19 @@ const ContactAddress: VFC = () => {
   // 住所１フォームの値を管理
   const [addressValue, setAddressValue] = useState('');
 
+  // （郵便番号の）第１フォーム入力内容の誤り有無に関する条件分岐
+  // 目的: 以下のように条件分岐することで、第１フォームのエラー表示が第２フォームのエラー表示に上書きされないようになる
+  const errorZipF = (): string | undefined => {
+    let val: string | undefined = '';
+    if(zipcodeValue != '') {
+      val = undefined;
+    }
+    if(zipcodeValue === '') {
+      val = zipcodeValue;
+    }
+    return val;
+  }
+
   const [state, setState] = useState<StateType>({
     user: {
       e: {
@@ -226,10 +239,7 @@ const ContactAddress: VFC = () => {
     errorTitle: {
       errorZipcode: {
         errorZipcodeH: zipcodeValue,
-
-        // （郵便番号の）第１フォーム入力内容の誤り有無に関する条件分岐
-        // 目的: 以下のように条件分岐することで、第１フォームのエラー表示が第２フォームのエラー表示に上書きされないようになる
-        errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+        errorZipcodeF: errorZipF,
       },      
       errorAddress: addressValue
     }
@@ -267,7 +277,7 @@ const ContactAddress: VFC = () => {
       errorTitle: {
         errorZipcode: {
           errorZipcodeH: zipcodeValue,
-          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+          errorZipcodeF: errorZipF,
         },
         errorAddress: addressValue
       } 
@@ -305,7 +315,7 @@ const ContactAddress: VFC = () => {
       errorTitle: {
         errorZipcode: {
           errorZipcodeH: zipcodeValue,
-          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+          errorZipcodeF: errorZipF,
         },
         errorAddress: addressValue
       } 
@@ -313,7 +323,7 @@ const ContactAddress: VFC = () => {
   }
 
   // 空白を含む
-  const SpaceError = (str: any) => {
+  const spacePattern = (str: any) => {
     const hankakuSpace = /(  )+/; //半角スペースの連記
     const zenkakuSpace = /(　　)+/; //全角スペースの連記
     const hanzenkakuSpace = /( +)+(　+)/; //半角スペース、全角スペースの順の記載
@@ -337,7 +347,7 @@ const ContactAddress: VFC = () => {
   }
   
   const checkSpace = (value: any) => {
-    if(!SpaceError(value)){
+    if(!spacePattern(value)){
       setZipcodeValue('スペースは使用できません');
     }
   }
@@ -379,7 +389,7 @@ const ContactAddress: VFC = () => {
       errorTitle: {
         errorZipcode: {
           errorZipcodeH: zipcodeValue,
-          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+          errorZipcodeF: errorZipF,
         },
         errorAddress: addressValue
       }
@@ -401,7 +411,7 @@ const ContactAddress: VFC = () => {
       errorTitle: {
         errorZipcode: {
           errorZipcodeH: zipcodeValue,
-          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+          errorZipcodeF: errorZipF,
         },
         errorAddress: addressValue
       }
@@ -421,29 +431,11 @@ const ContactAddress: VFC = () => {
       errorTitle: {
         errorZipcode: {
           errorZipcodeH: zipcodeValue,
-          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+          errorZipcodeF: errorZipF,
         },
         errorAddress: addressValue
       }
     })
-
-    // else if (value.length > 100) {
-    //   setState({
-    //     user: value,
-    //     errorTitle: {
-    //       errorZipcode: '記事タイトルは100文字以内で入力してください',
-    //       errorAddress: ''
-    //     }
-    //   })
-    // } else {
-    //   setState({
-    //     user: value,
-    //     errorTitle: {
-    //       errorZipcode: '',
-    //       errorAddress: ''
-    //     }
-    //   })
-    // }
   }
 
   const complementAddress = (e: any) => {
@@ -476,7 +468,7 @@ const ContactAddress: VFC = () => {
       errorTitle: {
         errorZipcode: {
           errorZipcodeH: zipcodeValue,
-          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue,
+          errorZipcodeF: errorZipF,
         },
         errorAddress: addressValue
       }

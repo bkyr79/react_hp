@@ -415,7 +415,23 @@ var __importStar = this && this.__importStar || function (mod) {
     var _ref3 = (0, react_1.useState)(''),
         _ref4 = _slicedToArray(_ref3, 2),
         addressValue = _ref4[0],
-        setAddressValue = _ref4[1];
+        setAddressValue = _ref4[1]; // （郵便番号の）第１フォーム入力内容の誤り有無に関する条件分岐
+    // 目的: 以下のように条件分岐することで、第１フォームのエラー表示が第２フォームのエラー表示に上書きされないようになる
+
+
+    var errorZipF = function errorZipF() {
+      var val = '';
+
+      if (zipcodeValue != '') {
+        val = undefined;
+      }
+
+      if (zipcodeValue === '') {
+        val = 'zipcodeValue';
+      }
+
+      return val;
+    };
 
     var _ref5 = (0, react_1.useState)({
       user: {
@@ -432,9 +448,7 @@ var __importStar = this && this.__importStar || function (mod) {
       errorTitle: {
         errorZipcode: {
           errorZipcodeH: zipcodeValue,
-          // （郵便番号の）第１フォーム入力内容の誤り有無に関する条件分岐
-          // 目的: 以下のように条件分岐することで、第１フォームのエラー表示が第２フォームのエラー表示に上書きされないようになる
-          errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+          errorZipcodeF: errorZipF
         },
         errorAddress: addressValue
       }
@@ -464,7 +478,7 @@ var __importStar = this && this.__importStar || function (mod) {
         errorTitle: {
           errorZipcode: {
             errorZipcodeH: zipcodeValue,
-            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+            errorZipcodeF: errorZipF
           },
           errorAddress: addressValue
         }
@@ -491,7 +505,7 @@ var __importStar = this && this.__importStar || function (mod) {
         errorTitle: {
           errorZipcode: {
             errorZipcodeH: zipcodeValue,
-            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+            errorZipcodeF: errorZipF
           },
           errorAddress: addressValue
         }
@@ -499,7 +513,7 @@ var __importStar = this && this.__importStar || function (mod) {
     }; // 空白を含む
 
 
-    var SpaceError = function SpaceError(str) {
+    var spacePattern = function spacePattern(str) {
       var hankakuSpace = /(  )+/; //半角スペースの連記
 
       var zenkakuSpace = /(　　)+/; //全角スペースの連記
@@ -532,7 +546,7 @@ var __importStar = this && this.__importStar || function (mod) {
     };
 
     var checkSpace = function checkSpace(value) {
-      if (!SpaceError(value)) {
+      if (!spacePattern(value)) {
         setZipcodeValue('スペースは使用できません');
       }
     }; // 郵便番号（頭の）桁数
@@ -577,7 +591,7 @@ var __importStar = this && this.__importStar || function (mod) {
         errorTitle: {
           errorZipcode: {
             errorZipcodeH: zipcodeValue,
-            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+            errorZipcodeF: errorZipF
           },
           errorAddress: addressValue
         }
@@ -600,7 +614,7 @@ var __importStar = this && this.__importStar || function (mod) {
         errorTitle: {
           errorZipcode: {
             errorZipcodeH: zipcodeValue,
-            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+            errorZipcodeF: errorZipF
           },
           errorAddress: addressValue
         }
@@ -623,27 +637,11 @@ var __importStar = this && this.__importStar || function (mod) {
         errorTitle: {
           errorZipcode: {
             errorZipcodeH: zipcodeValue,
-            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+            errorZipcodeF: errorZipF
           },
           errorAddress: addressValue
         }
-      }); // else if (value.length > 100) {
-      //   setState({
-      //     user: value,
-      //     errorTitle: {
-      //       errorZipcode: '記事タイトルは100文字以内で入力してください',
-      //       errorAddress: ''
-      //     }
-      //   })
-      // } else {
-      //   setState({
-      //     user: value,
-      //     errorTitle: {
-      //       errorZipcode: '',
-      //       errorAddress: ''
-      //     }
-      //   })
-      // }
+      });
     };
 
     var complementAddress = function complementAddress(e) {
@@ -671,7 +669,7 @@ var __importStar = this && this.__importStar || function (mod) {
         errorTitle: {
           errorZipcode: {
             errorZipcodeH: zipcodeValue,
-            errorZipcodeF: zipcodeValue != '' ? undefined : zipcodeValue
+            errorZipcodeF: errorZipF
           },
           errorAddress: addressValue
         }
@@ -721,7 +719,7 @@ var __importStar = this && this.__importStar || function (mod) {
       style: postCodeF
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeH), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeF)), react_1["default"].createElement("tr", {
+    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeF)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
