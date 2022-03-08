@@ -246,8 +246,19 @@ const ContactAddress: VFC = () => {
   });
 
   // 引数eの型any対策は、以下のinstanceofで型ガードする
-  const handleChangeZip = (e: any) => {
+  const handleChange = (e: any) => {
+    const name = e.target.name;
     const value = e.target.value;
+
+    if (value) {
+      if(name === 'postCodeH' || name === 'postCodeF'){
+        setZipcodeValue('');
+      }
+      if(name === 'prefectures' || name === 'cities'){
+        setAddressValue('');
+      }
+    }
+
     const params: {
       e: {
         target: {
@@ -261,10 +272,6 @@ const ContactAddress: VFC = () => {
     } = state.user;    
     const key: keyof EventType = e.target.name;
 
-    if (value) {
-      setZipcodeValue('');
-    }
-
     // instanceofで型ガード
     if (!(e.target instanceof HTMLInputElement)) {
       return;
@@ -283,46 +290,23 @@ const ContactAddress: VFC = () => {
       } 
     });    
   }
-
-  const handleChangeAddr = (e: any) => {
-    const value = e.target.value;
-    if (value) {
-      setAddressValue('');
+  
+  // 郵便番号（頭の）桁数
+  const ZipHeaderDigits = (str: any) => {
+    const regex = /^[0-9]{3}$/;
+    if(!regex.test(str)){
+      setZipcodeValue('郵便番号の形式が正しくありません');
     }
-
-    const params: {
-      e: {
-        target: {
-          name: string;
-          value: string;
-        }
-      },
-      prefectures?: string | null | undefined;
-      cities?: string | null | undefined;
-      addrdetail?: string | null | undefined; 
-    } = state.user;
-    
-    const key: keyof EventType = e.target.name;
-
-    // instanceofで型ガード
-    if (!(e.target instanceof HTMLInputElement)) {
-      return;
-    }
-
-    params[key] = e.target.value;
-    setState({
-      user: params,
-      errorTitle: {
-        errorZipcode: {
-          errorZipcodeH: zipcodeValue,
-          errorZipcodeF: errorZipF,
-        },
-        errorAddress: addressValue
-      } 
-    });    
   }
 
-  // 空白を含む
+  // 郵便番号（後ろの）桁数
+  const ZipFooterDigits = (str: any) => {
+    const regex = /^[0-9]{4}$/;
+    if(!regex.test(str)){
+      setZipcodeValue('郵便番号の形式が正しくありません');
+    }
+  }
+
   const spacePattern = (str: any) => {
     const hankakuSpace = /(  )+/; //半角スペースの連記
     const zenkakuSpace = /(　　)+/; //全角スペースの連記
@@ -345,87 +329,51 @@ const ContactAddress: VFC = () => {
     }
     return true;
   }
-  
-  const checkSpace = (value: any) => {
+
+  const checkSpace = (name: any, value: any) => {
     if(!spacePattern(value)){
-      setZipcodeValue('スペースは使用できません');
-    }
-  }
-
-  // 郵便番号（頭の）桁数
-  const ZipHeaderDigits = (str: any) => {
-    const regex = /^[0-9]{3}$/;
-    if(!regex.test(str)){
-      setZipcodeValue('郵便番号の形式が正しくありません');
-    }
-  }
-
-  // 郵便番号（後ろの）桁数
-  const ZipFooterDigits = (str: any) => {
-    const regex = /^[0-9]{4}$/;
-    if(!regex.test(str)){
-      setZipcodeValue('郵便番号の形式が正しくありません');
-    }
-  }
-
-  const checkBlank = (str: any) => {
-    if (!str) {
-      setZipcodeValue('入力してください');
-    }
-  }
-
-  // 郵便番号フォーム（頭）のバリデーション
-  const checkZipHeaderForm = (e: any) => {
-    const value = e.target.value;
-    if (value) {
-      setZipcodeValue('');
-    }
-    ZipHeaderDigits(value);
-    checkBlank(value);
-    checkSpace(value);
-
-    setState({
-      user: value,
-      errorTitle: {
-        errorZipcode: {
-          errorZipcodeH: zipcodeValue,
-          errorZipcodeF: errorZipF,
-        },
-        errorAddress: addressValue
+      if(name === 'postCodeH' || name === 'postCodeF'){
+        setZipcodeValue('スペースは使用できません');
       }
-    })
-  }
-
-  // 郵便番号フォーム（後ろ）のバリデーション
-  const checkZipFooterForm = (e: any) => {
-    const value = e.target.value;
-    if (value) {
-      setZipcodeValue('');
-    }
-    ZipFooterDigits(value);
-    checkBlank(value);
-    checkSpace(value);
-
-    setState({
-      user: value,
-      errorTitle: {
-        errorZipcode: {
-          errorZipcodeH: zipcodeValue,
-          errorZipcodeF: errorZipF,
-        },
-        errorAddress: addressValue
+      if(name === 'prefectures' || name === 'cities'){
+        setAddressValue('スペースは使用できません');
       }
-    })
+    }
   }
 
-  const checkAddress = (e: any) => {
-    const value = e.target.value;
+  const checkBlank = (name: any, value: any) => {
     if (!value) {
-      setAddressValue('入力してください');
+      if(name === 'postCodeH' || name === 'postCodeF'){
+        setZipcodeValue('入力してください');
+      }
+      if(name === 'prefectures' || name === 'cities'){
+        setAddressValue('入力してください');
+      }
     }
+  }
+
+  const checkForm = (e: any) => {
+    const name = e.target.name;
+    const value = e.target.value;
     if (value) {
-      setAddressValue('');
-    } 
+      if(name === 'postCodeH' || name === 'postCodeF'){
+        setZipcodeValue('');
+      }
+      if(name === 'prefectures' || name === 'cities'){
+        setAddressValue('');
+      }
+    }
+
+    if(name === 'postCodeH'){
+      ZipHeaderDigits(value);
+    }
+    if(name === 'postCodeF'){
+      ZipFooterDigits(value);
+    }
+
+    checkSpace(name, value);
+    checkBlank(name, value);
+
     setState({
       user: value,
       errorTitle: {
@@ -475,13 +423,8 @@ const ContactAddress: VFC = () => {
     });
   };
   
-  const checkZipcodeHOnBlur = (e: any) => {
-    checkZipHeaderForm(e);
-    onBlurZipcode;
-  }
-
-  const checkZipcodeFOnBlur = (e: any) => {
-    checkZipFooterForm(e);
+  const checkZipcodeOnBlur = (e: any) => {
+    checkForm(e);
     onBlurZipcode;
   }
 
@@ -497,8 +440,8 @@ const ContactAddress: VFC = () => {
             name="postCodeH"
             size={3}
             maxLength={3}
-            onChange={(e) => handleChangeZip(e)}
-            onBlur={(e) => checkZipcodeHOnBlur(e)}
+            onChange={(e) => handleChange(e)}
+            onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeH}
           />
           <div style={postCodeHyphen}>
@@ -508,9 +451,9 @@ const ContactAddress: VFC = () => {
             name="postCodeF"
             size={4}
             maxLength={4}
-            onChange={(e) => handleChangeZip(e)}
+            onChange={(e) => handleChange(e)}
             onKeyUp={complementAddress}
-            onBlur={(e) => checkZipcodeFOnBlur(e)}
+            onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeF}
           />
         </div>
@@ -532,15 +475,15 @@ const ContactAddress: VFC = () => {
           <input
             name="prefectures"
             id="prefectures"
-            onChange={(e) => handleChangeAddr(e)}
-            onBlur={(e) => checkAddress(e)}
+            onChange={(e) => handleChange(e)}
+            onBlur={(e) => checkForm(e)}
             style={formInputPrefectures}
           />
           <input
             name="cities"
             id="cities"
-            onChange={(e) => handleChangeAddr(e)}
-            onBlur={(e) => checkAddress(e)}
+            onChange={(e) => handleChange(e)}
+            onBlur={(e) => checkForm(e)}
             style={formInputCities}
           />
         </div>
@@ -560,7 +503,7 @@ const ContactAddress: VFC = () => {
         <input
           name="addrdetail"
           id="addrdetail"
-          onChange={(e) => handleChangeZip(e)}
+          onChange={(e) => handleChange(e)}
           style={formInputAddrdetail}
         />
       </td>

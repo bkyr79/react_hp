@@ -427,7 +427,7 @@ var __importStar = this && this.__importStar || function (mod) {
       }
 
       if (zipcodeValue === '') {
-        val = 'zipcodeValue';
+        val = zipcodeValue;
       }
 
       return val;
@@ -458,38 +458,18 @@ var __importStar = this && this.__importStar || function (mod) {
         setState = _ref6[1]; // 引数eの型any対策は、以下のinstanceofで型ガードする
 
 
-    var handleChangeZip = function handleChangeZip(e) {
+    var handleChange = function handleChange(e) {
+      var name = e.target.name;
       var value = e.target.value;
-      var params = state.user;
-      var key = e.target.name;
 
       if (value) {
-        setZipcodeValue('');
-      } // instanceofで型ガード
-
-
-      if (!(e.target instanceof HTMLInputElement)) {
-        return;
-      }
-
-      params[key] = e.target.value;
-      setState({
-        user: params,
-        errorTitle: {
-          errorZipcode: {
-            errorZipcodeH: zipcodeValue,
-            errorZipcodeF: errorZipF
-          },
-          errorAddress: addressValue
+        if (name === 'postCodeH' || name === 'postCodeF') {
+          setZipcodeValue('');
         }
-      });
-    };
 
-    var handleChangeAddr = function handleChangeAddr(e) {
-      var value = e.target.value;
-
-      if (value) {
-        setAddressValue('');
+        if (name === 'prefectures' || name === 'cities') {
+          setAddressValue('');
+        }
       }
 
       var params = state.user;
@@ -510,8 +490,7 @@ var __importStar = this && this.__importStar || function (mod) {
           errorAddress: addressValue
         }
       });
-    }; // 空白を含む
-
+    };
 
     var spacePattern = function spacePattern(str) {
       var hankakuSpace = /(  )+/; //半角スペースの連記
@@ -545,9 +524,15 @@ var __importStar = this && this.__importStar || function (mod) {
       return true;
     };
 
-    var checkSpace = function checkSpace(value) {
+    var checkSpace = function checkSpace(name, value) {
       if (!spacePattern(value)) {
-        setZipcodeValue('スペースは使用できません');
+        if (name === 'postCodeH' || name === 'postCodeF') {
+          setZipcodeValue('スペースは使用できません');
+        }
+
+        if (name === 'prefectures' || name === 'cities') {
+          setAddressValue('スペースは使用できません');
+        }
       }
     }; // 郵便番号（頭の）桁数
 
@@ -569,69 +554,73 @@ var __importStar = this && this.__importStar || function (mod) {
       }
     };
 
-    var checkBlank = function checkBlank(str) {
-      if (!str) {
-        setZipcodeValue('入力してください');
-      }
-    }; // 郵便番号フォーム（頭）のバリデーション
-
-
-    var checkZipHeaderForm = function checkZipHeaderForm(e) {
-      var value = e.target.value;
-
-      if (value) {
-        setZipcodeValue('');
-      }
-
-      ZipHeaderDigits(value);
-      checkBlank(value);
-      checkSpace(value);
-      setState({
-        user: value,
-        errorTitle: {
-          errorZipcode: {
-            errorZipcodeH: zipcodeValue,
-            errorZipcodeF: errorZipF
-          },
-          errorAddress: addressValue
-        }
-      });
-    }; // 郵便番号フォーム（後ろ）のバリデーション
-
-
-    var checkZipFooterForm = function checkZipFooterForm(e) {
-      var value = e.target.value;
-
-      if (value) {
-        setZipcodeValue('');
-      }
-
-      ZipFooterDigits(value);
-      checkBlank(value);
-      checkSpace(value);
-      setState({
-        user: value,
-        errorTitle: {
-          errorZipcode: {
-            errorZipcodeH: zipcodeValue,
-            errorZipcodeF: errorZipF
-          },
-          errorAddress: addressValue
-        }
-      });
-    };
-
-    var checkAddress = function checkAddress(e) {
-      var value = e.target.value;
-
+    var checkBlank = function checkBlank(name, value) {
       if (!value) {
-        setAddressValue('入力してください');
+        if (name === 'postCodeH' || name === 'postCodeF') {
+          setZipcodeValue('入力してください');
+        }
+
+        if (name === 'prefectures' || name === 'cities') {
+          setAddressValue('入力してください');
+        }
       }
+    }; // 郵便番号フォームのバリデーション
+    // const checkForm = (e: any) => {
+    //   const name = e.target.name;
+    //   const value = e.target.value;
+    //   if (value) {
+    //     if(name === 'postCodeH' || name === 'postCodeF'){
+    //       setZipcodeValue('');
+    //     }
+    //     if(name === 'prefectures' || name === 'cities'){
+    //       setAddressValue('');
+    //     }
+    //   }
+    //   if(name === 'postCodeH'){
+    //     ZipHeaderDigits(value);
+    //   }
+    //   if(name === 'postCodeF'){
+    //     ZipFooterDigits(value);
+    //   }
+    //   checkBlank(value);
+    //   checkSpace(value);
+    //   setState({
+    //     user: value,
+    //     errorTitle: {
+    //       errorZipcode: {
+    //         errorZipcodeH: zipcodeValue,
+    //         errorZipcodeF: errorZipF,
+    //       },
+    //       errorAddress: addressValue
+    //     }
+    //   })
+    // }
+
+
+    var checkForm = function checkForm(e) {
+      var name = e.target.name;
+      var value = e.target.value;
 
       if (value) {
-        setAddressValue('');
+        if (name === 'postCodeH' || name === 'postCodeF') {
+          setZipcodeValue('');
+        }
+
+        if (name === 'prefectures' || name === 'cities') {
+          setAddressValue('');
+        }
       }
 
+      if (name === 'postCodeH') {
+        ZipHeaderDigits(value);
+      }
+
+      if (name === 'postCodeF') {
+        ZipFooterDigits(value);
+      }
+
+      checkBlank(name, value);
+      checkSpace(name, value);
       setState({
         user: value,
         errorTitle: {
@@ -676,13 +665,8 @@ var __importStar = this && this.__importStar || function (mod) {
       });
     };
 
-    var checkZipcodeHOnBlur = function checkZipcodeHOnBlur(e) {
-      checkZipHeaderForm(e);
-      onBlurZipcode;
-    };
-
-    var checkZipcodeFOnBlur = function checkZipcodeFOnBlur(e) {
-      checkZipFooterForm(e);
+    var checkZipcodeOnBlur = function checkZipcodeOnBlur(e) {
+      checkForm(e);
       onBlurZipcode;
     };
 
@@ -697,10 +681,10 @@ var __importStar = this && this.__importStar || function (mod) {
       size: 3,
       maxLength: 3,
       onChange: function onChange(e) {
-        return handleChangeZip(e);
+        return handleChange(e);
       },
       onBlur: function onBlur(e) {
-        return checkZipcodeHOnBlur(e);
+        return checkZipcodeOnBlur(e);
       },
       style: postCodeH
     }), react_1["default"].createElement("div", {
@@ -710,16 +694,16 @@ var __importStar = this && this.__importStar || function (mod) {
       size: 4,
       maxLength: 4,
       onChange: function onChange(e) {
-        return handleChangeZip(e);
+        return handleChange(e);
       },
       onKeyUp: complementAddress,
       onBlur: function onBlur(e) {
-        return checkZipcodeFOnBlur(e);
+        return checkZipcodeOnBlur(e);
       },
       style: postCodeF
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeF)), react_1["default"].createElement("tr", {
+    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeH), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeF)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -729,20 +713,20 @@ var __importStar = this && this.__importStar || function (mod) {
       name: "prefectures",
       id: "prefectures",
       onChange: function onChange(e) {
-        return handleChangeAddr(e);
+        return handleChange(e);
       },
       onBlur: function onBlur(e) {
-        return checkAddress(e);
+        return checkForm(e);
       },
       style: formInputPrefectures
     }), react_1["default"].createElement("input", {
       name: "cities",
       id: "cities",
       onChange: function onChange(e) {
-        return handleChangeAddr(e);
+        return handleChange(e);
       },
       onBlur: function onBlur(e) {
-        return checkAddress(e);
+        return checkForm(e);
       },
       style: formInputCities
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
@@ -755,7 +739,7 @@ var __importStar = this && this.__importStar || function (mod) {
       name: "addrdetail",
       id: "addrdetail",
       onChange: function onChange(e) {
-        return handleChangeZip(e);
+        return handleChange(e);
       },
       style: formInputAddrdetail
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
