@@ -490,50 +490,6 @@ var __importStar = this && this.__importStar || function (mod) {
           errorAddress: addressValue
         }
       });
-    };
-
-    var spacePattern = function spacePattern(str) {
-      var hankakuSpace = /(  )+/; //半角スペースの連記
-
-      var zenkakuSpace = /(　　)+/; //全角スペースの連記
-
-      var hanzenkakuSpace = /( +)+(　+)/; //半角スペース、全角スペースの順の記載
-
-      var zenhankakuSpace = /(　+)+( +)/; //全角スペース、半角スペースの順の記載
-
-      if (hankakuSpace.test(str)) {
-        return false;
-      }
-
-      if (zenkakuSpace.test(str)) {
-        return false;
-      }
-
-      if (hanzenkakuSpace.test(str)) {
-        return false;
-      }
-
-      if (zenhankakuSpace.test(str)) {
-        return false;
-      }
-
-      if (str === ' ' || str === '　') {
-        return false;
-      }
-
-      return true;
-    };
-
-    var checkSpace = function checkSpace(name, value) {
-      if (!spacePattern(value)) {
-        if (name === 'postCodeH' || name === 'postCodeF') {
-          setZipcodeValue('スペースは使用できません');
-        }
-
-        if (name === 'prefectures' || name === 'cities') {
-          setAddressValue('スペースは使用できません');
-        }
-      }
     }; // 郵便番号（頭の）桁数
 
 
@@ -554,6 +510,50 @@ var __importStar = this && this.__importStar || function (mod) {
       }
     };
 
+    var spacePattern = function spacePattern(str) {
+      var halfSpace = /(  )+/; //半角スペースの連記
+
+      var fullSpace = /(　　)+/; //全角スペースの連記
+
+      var half_fullSpace = /( +)+(　+)/; //半角スペース、全角スペースの順の記載
+
+      var full_halfSpace = /(　+)+( +)/; //全角スペース、半角スペースの順の記載
+
+      if (halfSpace.test(str)) {
+        return false;
+      }
+
+      if (fullSpace.test(str)) {
+        return false;
+      }
+
+      if (half_fullSpace.test(str)) {
+        return false;
+      }
+
+      if (full_halfSpace.test(str)) {
+        return false;
+      }
+
+      if (str === ' ' || str === '　') {
+        return false;
+      }
+
+      return true;
+    };
+
+    var checkSpace = function checkSpace(name, value) {
+      if (!spacePattern(value)) {
+        if (name === 'postCodeH' || name === 'postCodeF') {
+          setZipcodeValue('スペースは使用できません');
+        }
+
+        if (name === 'prefectures' || name === 'cities') {
+          setAddressValue('スペースは使用できません');
+        }
+      }
+    };
+
     var checkBlank = function checkBlank(name, value) {
       if (!value) {
         if (name === 'postCodeH' || name === 'postCodeF') {
@@ -564,38 +564,7 @@ var __importStar = this && this.__importStar || function (mod) {
           setAddressValue('入力してください');
         }
       }
-    }; // 郵便番号フォームのバリデーション
-    // const checkForm = (e: any) => {
-    //   const name = e.target.name;
-    //   const value = e.target.value;
-    //   if (value) {
-    //     if(name === 'postCodeH' || name === 'postCodeF'){
-    //       setZipcodeValue('');
-    //     }
-    //     if(name === 'prefectures' || name === 'cities'){
-    //       setAddressValue('');
-    //     }
-    //   }
-    //   if(name === 'postCodeH'){
-    //     ZipHeaderDigits(value);
-    //   }
-    //   if(name === 'postCodeF'){
-    //     ZipFooterDigits(value);
-    //   }
-    //   checkBlank(value);
-    //   checkSpace(value);
-    //   setState({
-    //     user: value,
-    //     errorTitle: {
-    //       errorZipcode: {
-    //         errorZipcodeH: zipcodeValue,
-    //         errorZipcodeF: errorZipF,
-    //       },
-    //       errorAddress: addressValue
-    //     }
-    //   })
-    // }
-
+    };
 
     var checkForm = function checkForm(e) {
       var name = e.target.name;
@@ -619,8 +588,8 @@ var __importStar = this && this.__importStar || function (mod) {
         ZipFooterDigits(value);
       }
 
-      checkBlank(name, value);
       checkSpace(name, value);
+      checkBlank(name, value);
       setState({
         user: value,
         errorTitle: {

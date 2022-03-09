@@ -308,20 +308,20 @@ const ContactAddress: VFC = () => {
   }
 
   const spacePattern = (str: any) => {
-    const hankakuSpace = /(  )+/; //半角スペースの連記
-    const zenkakuSpace = /(　　)+/; //全角スペースの連記
-    const hanzenkakuSpace = /( +)+(　+)/; //半角スペース、全角スペースの順の記載
-    const zenhankakuSpace = /(　+)+( +)/; //全角スペース、半角スペースの順の記載
-    if(hankakuSpace.test(str)){
+    const halfSpace = /(  )+/; //半角スペースの連記
+    const fullSpace = /(　　)+/; //全角スペースの連記
+    const half_fullSpace = /( +)+(　+)/; //半角スペース、全角スペースの順の記載
+    const full_halfSpace = /(　+)+( +)/; //全角スペース、半角スペースの順の記載
+    if(halfSpace.test(str)){
       return false;
     }
-    if(zenkakuSpace.test(str)){
+    if(fullSpace.test(str)){
       return false;
     }
-    if(hanzenkakuSpace.test(str)){
+    if(half_fullSpace.test(str)){
       return false;
     }
-    if(zenhankakuSpace.test(str)){
+    if(full_halfSpace.test(str)){
       return false;
     }
     if(str === ' ' || str === '　'){
