@@ -142,24 +142,16 @@ var __importDefault = this && this.__importDefault || function (mod) {
         company: "",
         email: "",
         subject: "",
-        content: "",
-        postCodeH: "",
-        postCodeF: "",
-        prefectures: "",
-        cities: "",
-        addrdetail: ""
+        content: ""
       },
       validationSchema: Yup.object({
-        name: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
-        company: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
-        email: Yup.string().email("Invalid email address").required("Required"),
-        subject: Yup.string().email("Invalid email address").required("Required"),
-        content: Yup.string().email("Invalid email address").required("Required"),
-        postCodeH: Yup.string().max(15, "Must be 15 characters or less").required("Required"),
-        postCodeF: Yup.string().max(20, "Must be 20 characters or less").required("Required"),
-        prefectures: Yup.string().email("Invalid email address").required("Required"),
-        cities: Yup.string().email("Invalid email address").required("Required"),
-        addrdetail: Yup.string().email("Invalid email address").required("Required")
+        name: Yup.string().max(15, "Must be 15 characters or less").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+          message: '文字列が有効ではありません（なんちゃって）'
+        }),
+        company: Yup.string().max(20, "Must be 20 characters or less").required("入力してください"),
+        email: Yup.string().email("Invalid email address").required("入力してください"),
+        subject: Yup.string().email("Invalid email address").required("入力してください"),
+        content: Yup.string().email("Invalid email address").required("入力してください")
       }),
       onSubmit: function onSubmit(values, _ref) {
         var setSubmitting = _ref.setSubmitting;

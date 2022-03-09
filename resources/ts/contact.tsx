@@ -162,31 +162,23 @@ const Contact = (): JSX.Element => {
           email: "",
           subject: "",
           content: "",
-          postCodeH: "",
-          postCodeF: "",
-          prefectures: "",
-          cities: "",
-          addrdetail: ""
         }}
         validationSchema={Yup.object({
           name: Yup.string()
             .max(15, "Must be 15 characters or less")
-            .required("Required"),
+            .required("入力してください")
+            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
           company: Yup.string()
             .max(20, "Must be 20 characters or less")
-            .required("Required"),
-          email: Yup.string().email("Invalid email address").required("Required"),
-          subject: Yup.string().email("Invalid email address").required("Required"),
-          content: Yup.string().email("Invalid email address").required("Required"),
-          postCodeH: Yup.string()
-            .max(15, "Must be 15 characters or less")
-            .required("Required"),
-          postCodeF: Yup.string()
-            .max(20, "Must be 20 characters or less")
-            .required("Required"),
-          prefectures: Yup.string().email("Invalid email address").required("Required"),
-          cities: Yup.string().email("Invalid email address").required("Required"),
-          addrdetail: Yup.string().email("Invalid email address").required("Required")
+            .required("入力してください")
+            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+          email: Yup.string().email("Invalid email address").required("入力してください"),
+          subject: Yup.string()
+            .required("入力してください")
+            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+          content: Yup.string()
+            .required("入力してください")
+            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
         })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
