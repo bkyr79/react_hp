@@ -148,10 +148,10 @@ var __importDefault = this && this.__importDefault || function (mod) {
         name: Yup.string().max(15, "15文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
           message: '文字列が有効ではありません'
         }),
-        company: Yup.string().max(20, "Must be 20 characters or less").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        company: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
           message: '文字列が有効ではありません'
         }),
-        email: Yup.string().email("Invalid email address").required("入力してください"),
+        email: Yup.string().email("'Emailの形式で入力してください。").required("入力してください"),
         subject: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
           message: '文字列が有効ではありません'
         }),
