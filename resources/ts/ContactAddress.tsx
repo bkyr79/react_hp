@@ -172,6 +172,12 @@ const formInputAddrdetail: {
   paddingLeft: '5px'
 }
 
+const errorTitle: {
+  color: string;
+} = {
+  color: 'red'
+}
+
 const ContactAddress: VFC = () => {
   type StateType = {
     user: {
@@ -461,9 +467,8 @@ const ContactAddress: VFC = () => {
     </tr>
     <tr>
       <th style={tableHeader}></th>      
-      <div>{state.errorTitle.errorZipcode.errorZipcodeH}</div>
-      <div>{state.errorTitle.errorZipcode.errorZipcodeF}</div>
-      {/* <ErrorMessage name="postCodeH" /> */}
+      <div style={errorTitle}>{state.errorTitle.errorZipcode.errorZipcodeH}</div>
+      <div style={errorTitle}>{state.errorTitle.errorZipcode.errorZipcodeF}</div>
     </tr>
 
     <tr style={tableRow}>
@@ -491,8 +496,7 @@ const ContactAddress: VFC = () => {
     </tr>  
     <tr>
       <th style={tableHeader}></th>
-      <div>{state.errorTitle.errorAddress}</div>
-      {/* <ErrorMessage name="prefectures" /> */}
+      <div style={errorTitle}>{state.errorTitle.errorAddress}</div>
     </tr>
 
     <tr style={tableRow}>
@@ -510,7 +514,6 @@ const ContactAddress: VFC = () => {
     </tr>
     <tr>
       <th style={tableHeader}></th>
-      {/* <ErrorMessage name="addrdetail" /> */}
     </tr>
     </>
   );  

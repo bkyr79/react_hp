@@ -130,6 +130,9 @@ var __importDefault = this && this.__importDefault || function (mod) {
       background: 'linear-gradient(to right, #E3E3E3, #90979f)',
       margin: '25px 0 60px 0'
     };
+    var errorTitle = {
+      color: 'red'
+    };
     return react_1["default"].createElement("section", {
       style: content
     }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
@@ -151,8 +154,8 @@ var __importDefault = this && this.__importDefault || function (mod) {
         company: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
           message: '文字列が有効ではありません'
         }),
-        email: Yup.string().email("'Emailの形式で入力してください。").required("入力してください"),
-        subject: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        email: Yup.string().email("Emailの形式で入力してください。").required("入力してください"),
+        subject: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
           message: '文字列が有効ではありません'
         }),
         content: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
@@ -180,9 +183,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, react_1["default"].createElement(formik_1.ErrorMessage, {
       name: "name"
-    })), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -194,9 +199,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, react_1["default"].createElement(formik_1.ErrorMessage, {
       name: "company"
-    })), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -208,9 +215,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, react_1["default"].createElement(formik_1.ErrorMessage, {
       name: "email"
-    })), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -222,9 +231,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, react_1["default"].createElement(formik_1.ErrorMessage, {
       name: "subject"
-    })), react_1["default"].createElement("tr", {
+    }))), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -236,9 +247,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: formTextarea
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement(formik_1.ErrorMessage, {
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, react_1["default"].createElement(formik_1.ErrorMessage, {
       name: "content"
-    }))))), react_1["default"].createElement("input", {
+    })))))), react_1["default"].createElement("input", {
       type: "submit",
       value: "\u78BA\u8A8D",
       style: confirmBtn
@@ -400,6 +413,9 @@ var __importStar = this && this.__importStar || function (mod) {
     boxSizing: 'border-box',
     width: '85%',
     paddingLeft: '5px'
+  };
+  var errorTitle = {
+    color: 'red'
   };
 
   var ContactAddress = function ContactAddress() {
@@ -670,7 +686,11 @@ var __importStar = this && this.__importStar || function (mod) {
       style: postCodeF
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeH), react_1["default"].createElement("div", null, state.errorTitle.errorZipcode.errorZipcodeF)), react_1["default"].createElement("tr", {
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, state.errorTitle.errorZipcode.errorZipcodeH), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, state.errorTitle.errorZipcode.errorZipcodeF)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -698,7 +718,9 @@ var __importStar = this && this.__importStar || function (mod) {
       style: formInputCities
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
-    }), react_1["default"].createElement("div", null, state.errorTitle.errorAddress)), react_1["default"].createElement("tr", {
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, state.errorTitle.errorAddress)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader

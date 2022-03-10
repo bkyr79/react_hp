@@ -150,6 +150,12 @@ const Contact = (): JSX.Element => {
     margin: '25px 0 60px 0'
   }
 
+  const errorTitle: {
+    color: string;
+  } = {
+    color: 'red'
+  }
+
   return (
     <section style={content}>
       <h2>お問い合わせ</h2>
@@ -204,7 +210,7 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <ErrorMessage name="name" />
+            <div style={errorTitle}><ErrorMessage name="name" /></div>
           </tr>
 
           <ContactAddress />
@@ -219,7 +225,7 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <ErrorMessage name="company" />
+            <div style={errorTitle}><ErrorMessage name="company" /></div>
           </tr>
 
           <tr style={tableRow}>
@@ -232,7 +238,7 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <ErrorMessage name="email" />
+            <div style={errorTitle}><ErrorMessage name="email" /></div>
           </tr>
 
           <tr style={tableRow}>
@@ -245,7 +251,7 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <ErrorMessage name="subject" />
+            <div style={errorTitle}><ErrorMessage name="subject" /></div>
           </tr>
 
           <tr style={tableRow}>
@@ -258,7 +264,7 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <ErrorMessage name="content" />
+            <div style={errorTitle}><ErrorMessage name="content" /></div>
           </tr>
 
         </table>
