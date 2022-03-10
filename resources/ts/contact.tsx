@@ -165,7 +165,7 @@ const Contact = (): JSX.Element => {
         }}
         validationSchema={Yup.object({
           name: Yup.string()
-            .max(15, "Must be 15 characters or less")
+            .max(15, "15文字以内で入力してください")
             .required("入力してください")
             .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
           company: Yup.string()

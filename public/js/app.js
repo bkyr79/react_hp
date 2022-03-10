@@ -145,13 +145,19 @@ var __importDefault = this && this.__importDefault || function (mod) {
         content: ""
       },
       validationSchema: Yup.object({
-        name: Yup.string().max(15, "Must be 15 characters or less").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-          message: '文字列が有効ではありません（なんちゃって）'
+        name: Yup.string().max(15, "15文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+          message: '文字列が有効ではありません'
         }),
-        company: Yup.string().max(20, "Must be 20 characters or less").required("入力してください"),
+        company: Yup.string().max(20, "Must be 20 characters or less").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+          message: '文字列が有効ではありません'
+        }),
         email: Yup.string().email("Invalid email address").required("入力してください"),
-        subject: Yup.string().email("Invalid email address").required("入力してください"),
-        content: Yup.string().email("Invalid email address").required("入力してください")
+        subject: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+          message: '文字列が有効ではありません'
+        }),
+        content: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+          message: '文字列が有効ではありません'
+        })
       }),
       onSubmit: function onSubmit(values, _ref) {
         var setSubmitting = _ref.setSubmitting;
