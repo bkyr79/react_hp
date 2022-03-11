@@ -152,8 +152,12 @@ const Contact = (): JSX.Element => {
 
   const errorTitle: {
     color: string;
+    textAlign: 'left';
+    paddingLeft: string;
   } = {
-    color: 'red'
+    color: 'red',
+    textAlign: 'left',
+    paddingLeft: '5px'
   }
 
   return (

@@ -174,8 +174,12 @@ const formInputAddrdetail: {
 
 const errorTitle: {
   color: string;
+  textAlign: 'left';
+  paddingLeft: string;
 } = {
-  color: 'red'
+  color: 'red',
+  textAlign: 'left',
+  paddingLeft: '5px'
 }
 
 const ContactAddress: VFC = () => {
@@ -260,7 +264,7 @@ const ContactAddress: VFC = () => {
       if(name === 'postCodeH' || name === 'postCodeF'){
         setZipcodeValue('');
       }
-      if(name === 'prefectures' || name === 'cities'){
+      if(name === 'prefectures' || name === 'cities' || name === 'addrdetail'){
         setAddressValue('');
       }
     }
@@ -341,7 +345,7 @@ const ContactAddress: VFC = () => {
       if(name === 'postCodeH' || name === 'postCodeF'){
         setZipcodeValue('スペースは使用できません');
       }
-      if(name === 'prefectures' || name === 'cities'){
+      if(name === 'prefectures' || name === 'cities' || name === 'addrdetail'){
         setAddressValue('スペースは使用できません');
       }
     }
@@ -365,7 +369,7 @@ const ContactAddress: VFC = () => {
       if(name === 'postCodeH' || name === 'postCodeF'){
         setZipcodeValue('');
       }
-      if(name === 'prefectures' || name === 'cities'){
+      if(name === 'prefectures' || name === 'cities' || name === 'addrdetail'){
         setAddressValue('');
       }
     }
@@ -508,6 +512,7 @@ const ContactAddress: VFC = () => {
           name="addrdetail"
           id="addrdetail"
           onChange={(e) => handleChange(e)}
+          onBlur={(e) => checkForm(e)}
           style={formInputAddrdetail}
         />
       </td>

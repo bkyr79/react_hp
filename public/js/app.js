@@ -131,7 +131,9 @@ var __importDefault = this && this.__importDefault || function (mod) {
       margin: '25px 0 60px 0'
     };
     var errorTitle = {
-      color: 'red'
+      color: 'red',
+      textAlign: 'left',
+      paddingLeft: '5px'
     };
     return react_1["default"].createElement("section", {
       style: content
@@ -415,7 +417,9 @@ var __importStar = this && this.__importStar || function (mod) {
     paddingLeft: '5px'
   };
   var errorTitle = {
-    color: 'red'
+    color: 'red',
+    textAlign: 'left',
+    paddingLeft: '5px'
   };
 
   var ContactAddress = function ContactAddress() {
@@ -481,7 +485,7 @@ var __importStar = this && this.__importStar || function (mod) {
           setZipcodeValue('');
         }
 
-        if (name === 'prefectures' || name === 'cities') {
+        if (name === 'prefectures' || name === 'cities' || name === 'addrdetail') {
           setAddressValue('');
         }
       }
@@ -562,7 +566,7 @@ var __importStar = this && this.__importStar || function (mod) {
           setZipcodeValue('スペースは使用できません');
         }
 
-        if (name === 'prefectures' || name === 'cities') {
+        if (name === 'prefectures' || name === 'cities' || name === 'addrdetail') {
           setAddressValue('スペースは使用できません');
         }
       }
@@ -589,7 +593,7 @@ var __importStar = this && this.__importStar || function (mod) {
           setZipcodeValue('');
         }
 
-        if (name === 'prefectures' || name === 'cities') {
+        if (name === 'prefectures' || name === 'cities' || name === 'addrdetail') {
           setAddressValue('');
         }
       }
@@ -729,6 +733,9 @@ var __importStar = this && this.__importStar || function (mod) {
       id: "addrdetail",
       onChange: function onChange(e) {
         return handleChange(e);
+      },
+      onBlur: function onBlur(e) {
+        return checkForm(e);
       },
       style: formInputAddrdetail
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
