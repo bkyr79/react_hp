@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,8 @@ Route::get('/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
 
+Route::post('/contact/confirm', [ContactController::class, 'store'])->name('contact.confirm');
+
+Route::post('/sample', [ContactController::class, 'sample']);
+
+Route::view('/confirm', 'sample');

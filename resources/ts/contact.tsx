@@ -2,7 +2,8 @@ import React from "react";
 import ContactAddress from "./ContactAddress";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 const Contact = (): JSX.Element => {
@@ -160,11 +161,27 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
+  const ajax = (e: any) => {
+    e.preventDefault();
+
+    // axios.post('/sample', '成功！')
+    // .then(function (data) {
+    //   console.log(data);
+    //   // return data;
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    
+    const navigation = useNavigate();
+    navigation("/confirm");
+  }
+
   return (
     <section style={content}>
       <h2>お問い合わせ</h2>
       <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
-
+      
       <Formik
         initialValues={{
           name: "",
@@ -276,7 +293,7 @@ const Contact = (): JSX.Element => {
 
       </Formik>
 
-      <input type="submit" value="確認" style={confirmBtn}/>
+      <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button>
     </section>
   );
 };
