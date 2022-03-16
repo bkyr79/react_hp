@@ -69,6 +69,7 @@ const App = (): JSX.Element => {
           <Route path="/profile" element={<h2>プロフィールです</h2>} />
           <Route path="/reserve" element={<h2>予約ページです</h2>} />
           <Route path="/diary" element={<h2>日記です</h2>} />
+          <Route path="/sample" element={<div>サンプル画面です</div>}/>
       </Routes>
     </BrowserRouter>
   );

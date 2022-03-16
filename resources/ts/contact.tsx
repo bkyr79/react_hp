@@ -161,20 +161,23 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
+  const navigation = useNavigate();
   const ajax = (e: any) => {
     e.preventDefault();
 
-    // axios.post('/sample', '成功！')
-    // .then(function (data) {
-    //   console.log(data);
-    //   // return data;
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+    let name = document.getElementById('name')!.outerHTML;
+    // let name = '宮迫';
+
+    axios.post('/sample', name)
+    .then(function (data) {
+      console.log(data);
+      // return data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     
-    const navigation = useNavigate();
-    navigation("/confirm");
+    navigation("/sample");
   }
 
   return (
@@ -226,7 +229,7 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>ご氏名：</span></label>
             </th>
             <td>
-              <Field name="name" type="text" style={formInput} />
+              <Field name="name" type="text" id="name" style={formInput} />
             </td>
           </tr>
           <tr>

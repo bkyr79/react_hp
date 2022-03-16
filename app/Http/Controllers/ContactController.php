@@ -30,11 +30,11 @@ class ContactController extends Controller
     }
 
     public function sample(Request $request){
-        $data = $request['name'];   // 「名前」の入力値を取り出す
+        // return view("sample", [
+        //     response()->json(["controllerdata" => $data])
+        // ]);  
+        return response()->json([$request->all()]); 
 
-        return view("sample", [
-            response()->json(["data" => $data])
-        ]);  
-        // return response()->json([$request->all()]);      
+        // return $request->all(); 
     }
 }

@@ -21,5 +21,3 @@ Route::get('/{any}', function () {
 Route::post('/contact/confirm', [ContactController::class, 'store'])->name('contact.confirm');
 
 Route::post('/sample', [ContactController::class, 'sample']);
-
-Route::view('/confirm', 'sample');
