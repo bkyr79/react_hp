@@ -33,8 +33,8 @@ class ContactController extends Controller
         // return view("sample", [
         //     response()->json(["controllerdata" => $data])
         // ]);  
-        return response()->json([$request->all()]); 
+        // return response()->json([$request->all()]); 
 
-        // return $request->all(); 
+        return $request->all(); 
     }
 }

@@ -2193,7 +2193,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
     var ajax = function ajax(e) {
       e.preventDefault();
-      var name = document.getElementById('name').outerText; // let name = '宮迫';
+      var name = document.getElementById('name').outerHTML; // let name = '宮迫';
 
       axios_1["default"].post('/sample', name).then(function (data) {
         console.log(data); // return data;
