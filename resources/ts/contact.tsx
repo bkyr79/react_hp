@@ -160,7 +160,8 @@ const Contact = (): JSX.Element => {
     textAlign: 'left',
     paddingLeft: '5px'
   }
-
+  const inputNa = document.getElementById('name');
+  const namae        = inputNa?.getAttribute('value');
 
   // 入力値の全てを、連想配列に格納する
   const inputAll = (e: any) => {
@@ -188,7 +189,7 @@ const Contact = (): JSX.Element => {
     const subject     = inputSu?.getAttribute('value');
     const content     = inputCt?.textContent;
 
-    let inputAll: {
+    const inputAll: {
       name: string | null | undefined,
       postCodeH: string | null | undefined,
       postCodeF: string | null | undefined,
@@ -212,25 +213,24 @@ const Contact = (): JSX.Element => {
       content: content,
     };
 
-    console.log(inputAll);
+    return inputAll;
   }
 
   const navigation = useNavigate();
-  // const ajax = (e: any) => {
-  //   e.preventDefault();
+  const ajax = (e: any) => {
+    e.preventDefault();
 
-
-  //   axios.post('/sample', name)
-  //   .then(function (data) {
-  //     console.log(data);
-  //     // return data;
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-    
-  //   navigation("/sample");
-  // }
+    axios.post('/sample', inputAll(e))
+    .then(function (data) {
+      console.log(data);
+      // return data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+        
+    navigation("/sample");
+  }
 
   return (
     <section style={content}>
@@ -348,7 +348,7 @@ const Contact = (): JSX.Element => {
 
       </Formik>
 
-      <button onClick={(e) => inputAll(e)} style={confirmBtn}>確認</button>
+      <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button>
     </section>
   );
 };
