@@ -161,24 +161,74 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
-  const navigation = useNavigate();
-  const ajax = (e: any) => {
+  const ajaxPre = (e: any) => {
     e.preventDefault();
 
-    let name = document.getElementById('name')!.outerHTML;
-    // let name = '宮迫';
-
-    axios.post('/sample', name)
-    .then(function (data) {
-      console.log(data);
-      // return data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    const inputNa = document.getElementById('name');
+    const inputPh = document.getElementById('postCodeH');
+    const inputPf = document.getElementById('postCodeF');
+    const inputPr = document.getElementById('prefectures');
+    const inputCi = document.getElementById('cities');
+    const inputAd = document.getElementById('addrdetail');
+    const inputCm = document.getElementById('company');
+    const inputEm = document.getElementById('email');
+    const inputSu = document.getElementById('subject');
+    const inputCt = document.getElementById('content');
     
-    navigation("/sample");
+    const name        = inputNa?.getAttribute('value');
+    const postCodeH   = inputPh?.getAttribute('value');
+    const postCodeF   = inputPf?.getAttribute('value');
+    const prefectures = inputPr?.getAttribute('value');
+    const cities      = inputCi?.getAttribute('value');
+    const addrdetail  = inputAd?.getAttribute('value');
+    const company     = inputCm?.getAttribute('value');
+    const email       = inputEm?.getAttribute('value');
+    const subject     = inputSu?.getAttribute('value');
+    const content     = inputCt?.getAttribute('value');
+
+    let array: {
+      name: string | null | undefined,
+      postCodeH: string | null | undefined,
+      postCodeF: string | null | undefined,
+      prefectures: string | null | undefined,
+      cities: string | null | undefined,
+      addrdetail: string | null | undefined,
+      company: string | null | undefined,
+      email: string | null | undefined,
+      subject: string | null | undefined,
+      content: string | null | undefined,      
+    } = {
+      name: name,
+      postCodeH: '',
+      postCodeF: '',
+      prefectures: '',
+      cities: '',
+      addrdetail: '',
+      company: '',
+      email: '',
+      subject: '',
+      content: '',      
+    };
+
+    console.log(array["name"]);
   }
+
+  const navigation = useNavigate();
+  // const ajax = (e: any) => {
+  //   e.preventDefault();
+
+
+  //   axios.post('/sample', name)
+  //   .then(function (data) {
+  //     console.log(data);
+  //     // return data;
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+    
+  //   navigation("/sample");
+  // }
 
   return (
     <section style={content}>
@@ -296,7 +346,7 @@ const Contact = (): JSX.Element => {
 
       </Formik>
 
-      <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button>
+      <button onClick={(e) => ajaxPre(e)} style={confirmBtn}>確認</button>
     </section>
   );
 };
