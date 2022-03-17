@@ -134,9 +134,9 @@ var __importDefault = this && this.__importDefault || function (mod) {
       color: 'red',
       textAlign: 'left',
       paddingLeft: '5px'
-    };
+    }; // 入力値の全てを、連想配列に格納する
 
-    var ajaxPre = function ajaxPre(e) {
+    var inputAll = function inputAll(e) {
       e.preventDefault();
       var inputNa = document.getElementById('name');
       var inputPh = document.getElementById('postCodeH');
@@ -149,28 +149,28 @@ var __importDefault = this && this.__importDefault || function (mod) {
       var inputSu = document.getElementById('subject');
       var inputCt = document.getElementById('content');
       var name = inputNa === null || inputNa === void 0 ? void 0 : inputNa.getAttribute('value');
-      var postCodeH = inputPh === null || inputPh === void 0 ? void 0 : inputPh.getAttribute('value');
-      var postCodeF = inputPf === null || inputPf === void 0 ? void 0 : inputPf.getAttribute('value');
-      var prefectures = inputPr === null || inputPr === void 0 ? void 0 : inputPr.getAttribute('value');
-      var cities = inputCi === null || inputCi === void 0 ? void 0 : inputCi.getAttribute('value');
-      var addrdetail = inputAd === null || inputAd === void 0 ? void 0 : inputAd.getAttribute('value');
+      var postCodeH = inputPh === null || inputPh === void 0 ? void 0 : inputPh.value;
+      var postCodeF = inputPf === null || inputPf === void 0 ? void 0 : inputPf.value;
+      var prefectures = inputPr === null || inputPr === void 0 ? void 0 : inputPr.value;
+      var cities = inputCi === null || inputCi === void 0 ? void 0 : inputCi.value;
+      var addrdetail = inputAd === null || inputAd === void 0 ? void 0 : inputAd.value;
       var company = inputCm === null || inputCm === void 0 ? void 0 : inputCm.getAttribute('value');
       var email = inputEm === null || inputEm === void 0 ? void 0 : inputEm.getAttribute('value');
       var subject = inputSu === null || inputSu === void 0 ? void 0 : inputSu.getAttribute('value');
-      var content = inputCt === null || inputCt === void 0 ? void 0 : inputCt.getAttribute('value');
-      var array = {
+      var content = inputCt === null || inputCt === void 0 ? void 0 : inputCt.textContent;
+      var inputAll = {
         name: name,
-        postCodeH: '',
-        postCodeF: '',
-        prefectures: '',
-        cities: '',
-        addrdetail: '',
-        company: '',
-        email: '',
-        subject: '',
-        content: ''
+        postCodeH: postCodeH,
+        postCodeF: postCodeF,
+        prefectures: prefectures,
+        cities: cities,
+        addrdetail: addrdetail,
+        company: company,
+        email: email,
+        subject: subject,
+        content: content
       };
-      console.log(array["name"]);
+      console.log(inputAll);
     };
 
     var navigation = (0, react_router_dom_1.useNavigate)(); // const ajax = (e: any) => {
@@ -250,6 +250,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }, "\u4F1A\u793E\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "company",
       type: "text",
+      id: "company",
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
@@ -266,6 +267,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "email",
       type: "email",
+      id: "email",
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
@@ -282,6 +284,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }, "\u4EF6\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "subject",
       type: "text",
+      id: "subject",
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
@@ -298,6 +301,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
       name: "content",
       as: "textarea",
+      id: "content",
       style: formTextarea
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
@@ -307,7 +311,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       name: "content"
     })))))), react_1["default"].createElement("button", {
       onClick: function onClick(e) {
-        return ajaxPre(e);
+        return inputAll(e);
       },
       style: confirmBtn
     }, "\u78BA\u8A8D"));
@@ -708,7 +712,14 @@ var __importStar = this && this.__importStar || function (mod) {
     var checkZipcodeOnBlur = function checkZipcodeOnBlur(e) {
       checkForm(e);
       onBlurZipcode;
-    };
+    }; // const ajaxPreAddressVer = (e: any) => {
+    //   const inputPh = document.getElementById('postCodeH');
+    //   const inputPf = document.getElementById('postCodeF');
+    //   const inputPr = document.getElementById('prefectures');
+    //   const inputCi = document.getElementById('cities');
+    //   const inputAd = document.getElementById('addrdetail');
+    // }
+
 
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("tr", {
       style: tableRow
@@ -726,7 +737,8 @@ var __importStar = this && this.__importStar || function (mod) {
       onBlur: function onBlur(e) {
         return checkZipcodeOnBlur(e);
       },
-      style: postCodeH
+      style: postCodeH,
+      id: "postCodeH"
     }), react_1["default"].createElement("div", {
       style: postCodeHyphen
     }, "-"), react_1["default"].createElement("input", {
@@ -740,7 +752,8 @@ var __importStar = this && this.__importStar || function (mod) {
       onBlur: function onBlur(e) {
         return checkZipcodeOnBlur(e);
       },
-      style: postCodeF
+      style: postCodeF,
+      id: "postCodeF"
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {

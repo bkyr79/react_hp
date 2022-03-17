@@ -161,32 +161,34 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
-  const ajaxPre = (e: any) => {
+
+  // 入力値の全てを、連想配列に格納する
+  const inputAll = (e: any) => {
     e.preventDefault();
 
     const inputNa = document.getElementById('name');
-    const inputPh = document.getElementById('postCodeH');
-    const inputPf = document.getElementById('postCodeF');
-    const inputPr = document.getElementById('prefectures');
-    const inputCi = document.getElementById('cities');
-    const inputAd = document.getElementById('addrdetail');
+    const inputPh = document.getElementById('postCodeH')! as HTMLInputElement;
+    const inputPf = document.getElementById('postCodeF')! as HTMLInputElement;
+    const inputPr = document.getElementById('prefectures')! as HTMLInputElement;
+    const inputCi = document.getElementById('cities')! as HTMLInputElement;
+    const inputAd = document.getElementById('addrdetail')! as HTMLInputElement;
     const inputCm = document.getElementById('company');
     const inputEm = document.getElementById('email');
     const inputSu = document.getElementById('subject');
     const inputCt = document.getElementById('content');
     
     const name        = inputNa?.getAttribute('value');
-    const postCodeH   = inputPh?.getAttribute('value');
-    const postCodeF   = inputPf?.getAttribute('value');
-    const prefectures = inputPr?.getAttribute('value');
-    const cities      = inputCi?.getAttribute('value');
-    const addrdetail  = inputAd?.getAttribute('value');
+    const postCodeH   = inputPh?.value;
+    const postCodeF   = inputPf?.value;
+    const prefectures = inputPr?.value;
+    const cities      = inputCi?.value;
+    const addrdetail  = inputAd?.value;
     const company     = inputCm?.getAttribute('value');
     const email       = inputEm?.getAttribute('value');
     const subject     = inputSu?.getAttribute('value');
-    const content     = inputCt?.getAttribute('value');
+    const content     = inputCt?.textContent;
 
-    let array: {
+    let inputAll: {
       name: string | null | undefined,
       postCodeH: string | null | undefined,
       postCodeF: string | null | undefined,
@@ -199,18 +201,18 @@ const Contact = (): JSX.Element => {
       content: string | null | undefined,      
     } = {
       name: name,
-      postCodeH: '',
-      postCodeF: '',
-      prefectures: '',
-      cities: '',
-      addrdetail: '',
-      company: '',
-      email: '',
-      subject: '',
-      content: '',      
+      postCodeH: postCodeH,
+      postCodeF: postCodeF,
+      prefectures: prefectures,
+      cities: cities,
+      addrdetail: addrdetail,
+      company: company,
+      email: email,
+      subject: subject,
+      content: content,
     };
 
-    console.log(array["name"]);
+    console.log(inputAll);
   }
 
   const navigation = useNavigate();
@@ -294,7 +296,7 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>会社名：</span></label>
             </th>
             <td>
-              <Field name="company" type="text" style={formInput} />
+              <Field name="company" type="text" id="company" style={formInput} />
             </td>
           </tr>
           <tr>
@@ -307,7 +309,7 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>メールアドレス：</span></label>
             </th>
             <td>
-              <Field name="email" type="email" style={formInput} />
+              <Field name="email" type="email" id="email" style={formInput} />
             </td>
           </tr>
           <tr>
@@ -320,7 +322,7 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>件名：</span></label>
             </th>
             <td>
-              <Field name="subject" type="text" style={formInput} />
+              <Field name="subject" type="text" id="subject" style={formInput} />
             </td>
           </tr>
           <tr>
@@ -333,7 +335,7 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>お問い合わせ内容：</span></label>
             </th>
             <td>
-              <Field name="content" as="textarea" style={formTextarea} />
+              <Field name="content" as="textarea" id="content" style={formTextarea} />
             </td>
           </tr>
           <tr>
@@ -346,7 +348,7 @@ const Contact = (): JSX.Element => {
 
       </Formik>
 
-      <button onClick={(e) => ajaxPre(e)} style={confirmBtn}>確認</button>
+      <button onClick={(e) => inputAll(e)} style={confirmBtn}>確認</button>
     </section>
   );
 };

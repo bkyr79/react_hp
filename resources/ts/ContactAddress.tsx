@@ -438,6 +438,15 @@ const ContactAddress: VFC = () => {
     onBlurZipcode;
   }
 
+  // const ajaxPreAddressVer = (e: any) => {
+  //   const inputPh = document.getElementById('postCodeH');
+  //   const inputPf = document.getElementById('postCodeF');
+  //   const inputPr = document.getElementById('prefectures');
+  //   const inputCi = document.getElementById('cities');
+  //   const inputAd = document.getElementById('addrdetail');
+
+  // }
+
   return(
     <>
     <tr style={tableRow}>
@@ -453,6 +462,7 @@ const ContactAddress: VFC = () => {
             onChange={(e) => handleChange(e)}
             onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeH}
+            id="postCodeH"
           />
           <div style={postCodeHyphen}>
           -
@@ -465,6 +475,7 @@ const ContactAddress: VFC = () => {
             onKeyUp={complementAddress}
             onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeF}
+            id="postCodeF"
           />
         </div>
       </td>
