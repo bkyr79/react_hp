@@ -18,6 +18,10 @@ Route::get('/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
 
-Route::post('/contact/confirm', [ContactController::class, 'store'])->name('contact.confirm');
+Route::post('/store', [ContactController::class, 'store']);
 
 Route::post('/sample', [ContactController::class, 'sample']);
+
+Route::post('/temSample', function () {
+    return view('contact.temporaryConfirm');
+});

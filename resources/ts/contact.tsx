@@ -160,8 +160,6 @@ const Contact = (): JSX.Element => {
     textAlign: 'left',
     paddingLeft: '5px'
   }
-  const inputNa = document.getElementById('name');
-  const namae        = inputNa?.getAttribute('value');
 
   // 入力値の全てを、連想配列に格納する
   const inputAll = (e: any) => {
@@ -220,7 +218,7 @@ const Contact = (): JSX.Element => {
   const ajax = (e: any) => {
     e.preventDefault();
 
-    axios.post('/sample', inputAll(e))
+    axios.post('/store', inputAll(e))
     .then(function (data) {
       console.log(data);
       // return data;
@@ -229,7 +227,7 @@ const Contact = (): JSX.Element => {
       console.log(error);
     });
         
-    navigation("/sample");
+    // navigation("/sample");
   }
 
   return (

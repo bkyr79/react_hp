@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title')</title>
   @yield('stylesheet')
-  <link href="{{ asset('/css/dropmenu.css') }}" rel="stylesheet" type="text/css">
+  {{-- <link href="{{ asset('/css/dropmenu.css') }}" rel="stylesheet" type="text/css"> --}}
 </head>
 <body>
 @yield('content')
 </body>
+  <script src="{{ mix('js/app.js') }}"></script>
 </html>

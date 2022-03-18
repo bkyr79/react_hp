@@ -2188,9 +2188,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       color: 'red',
       textAlign: 'left',
       paddingLeft: '5px'
-    };
-    var inputNa = document.getElementById('name');
-    var namae = inputNa === null || inputNa === void 0 ? void 0 : inputNa.getAttribute('value'); // 入力値の全てを、連想配列に格納する
+    }; // 入力値の全てを、連想配列に格納する
 
     var inputAll = function inputAll(e) {
       e.preventDefault();
@@ -2225,8 +2223,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
         email: email,
         subject: subject,
         content: content
-      }; // console.log(inputAll);
-
+      };
       return inputAll;
     };
 
@@ -2234,16 +2231,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
     var ajax = function ajax(e) {
       e.preventDefault();
-      var kari = {
-        name: '名前',
-        address: '世界'
-      };
-      axios_1["default"].post('/sample', inputAll(e)).then(function (data) {
+      axios_1["default"].post('/store', inputAll(e)).then(function (data) {
         console.log(data); // return data;
       })["catch"](function (error) {
         console.log(error);
-      });
-      navigation("/sample");
+      }); // navigation("/sample");
     };
 
     return react_1["default"].createElement("section", {
