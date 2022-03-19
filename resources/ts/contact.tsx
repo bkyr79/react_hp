@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import ContactAddress from "./ContactAddress";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import {useForm} from 'react-hook-form'
+import Confirmation from './Confirmation'
 
 
 const Contact = (): JSX.Element => {
@@ -161,6 +163,15 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
+  const {register, handleSubmit, watch, reset, getValues} = useForm()
+
+  // 入力内容確認画面の表示・非表示
+  const [isConfirmationVisible, setIsConfirmationVisible] = useState(false)
+  // 閉じるボタンを押した時非表示にする
+  const hideConfirmation = () => setIsConfirmationVisible(false)
+  // submitボタンを押した時、入力内容確認画面を表示させる
+  const onSubmitData = () => setIsConfirmationVisible(true)
+
   // 入力値の全てを、連想配列に格納する
   const inputAll = (e: any) => {
     e.preventDefault();
@@ -230,7 +241,7 @@ const Contact = (): JSX.Element => {
     })
     .catch(function (error) {
       console.log(error);
-    });        
+    });
   }
 
   return (
@@ -270,11 +281,13 @@ const Contact = (): JSX.Element => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
-          }, 400);
+          }
+          , 400);
         }}
       >
 
-        <Form>
+        {/* FormタグにonSubmitの記載は有効です */}
+        <Form onSubmit={handleSubmit(onSubmitData)}>
         <table style={contentsBox}>
 
           <tr style={tableRow}>
@@ -345,12 +358,24 @@ const Contact = (): JSX.Element => {
           </tr>
 
         </table>
-        </Form>
 
+        <input
+          type='submit'
+          value='入力内容を確認'
+        />
+        </Form>
       </Formik>
 
       <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button>
       {/* <button onClick={switchScreen} style={confirmBtn}>確認</button> */}
+
+      {isConfirmationVisible &&//trueの時だけ入力内容確認画面を表示
+        <Confirmation//入力内容確認画面コンポーネント
+          values={getValues()}//getValues()でフォーム全体のデータを返してくれる！！
+          hideConfirmation={hideConfirmation}//入力内容確認画面表示・非表示のstateをConfirmationに渡す
+        />
+      }
+
     </section>
   );
 };
