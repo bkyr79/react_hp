@@ -2229,13 +2229,18 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
     var navigation = (0, react_router_dom_1.useNavigate)();
 
+    var switchScreen = function switchScreen() {
+      navigation('/sample');
+    }; // 入力値がDBに登録される
+
+
     var ajax = function ajax(e) {
       e.preventDefault();
       axios_1["default"].post('/store', inputAll(e)).then(function (data) {
-        console.log(data); // return data;
+        console.log(data);
       })["catch"](function (error) {
         console.log(error);
-      }); // navigation("/sample");
+      });
     };
 
     return react_1["default"].createElement("section", {
@@ -2362,9 +2367,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }, react_1["default"].createElement(formik_1.ErrorMessage, {
       name: "content"
     })))))), react_1["default"].createElement("button", {
-      onClick: function onClick(e) {
-        return ajax(e);
-      },
+      onClick: switchScreen,
       style: confirmBtn
     }, "\u78BA\u8A8D"));
   };

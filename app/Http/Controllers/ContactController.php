@@ -16,24 +16,14 @@ class ContactController extends Controller
     }
 
     public function store(Request $request){
-        $contact = new Contact;
-        
         Contact::create([
-            // 'name' => $request->name,
-            // 'zip' => $request->postCodeH,
-            // 'address' => $request->prefectures,
-            // 'company' => $request->company,
-            // 'email' => $request->email,
-            // 'subject' => $request->subject,
-            // 'message' => $request->content
-            'name' => '名前',
-            'zip' => '郵便番号',
-            'address' => '住所',
-            'company' => '会社名',
-            'email' => 'メールアドレス',
-            'subject' => '件名',
-            'message' => '内容'
-
+            'name' => $request->name,
+            'zip' => $request->postCodeH,
+            'address' => $request->prefectures,
+            'company' => $request->company,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->content
         ]);
 
         // return redirect()->route('contact')

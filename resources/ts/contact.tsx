@@ -215,19 +215,22 @@ const Contact = (): JSX.Element => {
   }
 
   const navigation = useNavigate();
+  // 画面遷移する
+  const switchScreen = () => {
+    navigation('/sample');
+  }
+
+  // 入力値がDBに登録される
   const ajax = (e: any) => {
     e.preventDefault();
 
     axios.post('/store', inputAll(e))
     .then(function (data) {
       console.log(data);
-      // return data;
     })
     .catch(function (error) {
       console.log(error);
-    });
-        
-    // navigation("/sample");
+    });        
   }
 
   return (
@@ -347,6 +350,7 @@ const Contact = (): JSX.Element => {
       </Formik>
 
       <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button>
+      {/* <button onClick={switchScreen} style={confirmBtn}>確認</button> */}
     </section>
   );
 };
