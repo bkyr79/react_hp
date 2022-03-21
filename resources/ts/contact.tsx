@@ -1,12 +1,25 @@
 import React, {useState} from "react";
 import ContactAddress from "./ContactAddress";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, useFormik } from "formik";
 import * as Yup from "yup";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import {useForm} from 'react-hook-form'
 import Confirmation from './Confirmation'
 
+
+type FormValueType = {
+  name: string | null | undefined,
+  postCodeH: string | null | undefined,
+  postCodeF: string | null | undefined,
+  prefectures: string | null | undefined,
+  cities: string | null | undefined,
+  addrdetail: string | null | undefined,
+  company: string | null | undefined,
+  email: string | null | undefined,
+  subject: string | null | undefined,
+  content: string | null | undefined,
+};
 
 const Contact = (): JSX.Element => {
   const content: {
@@ -163,7 +176,7 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
-  const {register, handleSubmit, watch, reset, getValues} = useForm()
+  const {handleSubmit, getValues} = useForm()
 
   // 入力内容確認画面の表示・非表示
   const [isConfirmationVisible, setIsConfirmationVisible] = useState(false)
@@ -173,7 +186,9 @@ const Contact = (): JSX.Element => {
   const onSubmitData = () => setIsConfirmationVisible(true)
 
   // 入力値の全てを、連想配列に格納する
-  const inputAll = (e: any) => {
+  const inputAllFunction = (e: any) => {
+    // const inputAllFunction = () => {
+
     e.preventDefault();
 
     const inputNa = document.getElementById('name');
@@ -235,7 +250,7 @@ const Contact = (): JSX.Element => {
   const ajax = (e: any) => {
     e.preventDefault();
 
-    axios.post('/store', inputAll(e))
+    axios.post('/store', inputAllFunction(e))
     .then(function (data) {
       console.log(data);
     })
@@ -244,50 +259,101 @@ const Contact = (): JSX.Element => {
     });
   }
 
+  const initialValues: {
+    name: string;
+    postCodeH: string;
+    postCodeF: string;
+    prefectures: string;
+    cities: string;
+    addrdetail: string;
+    company: string;
+    email: string;
+    subject: string;
+    content: string;
+} = {
+    name: '',
+    postCodeH: '000',
+    postCodeF: '0000',
+    prefectures: '何とか',
+    cities: 'かんとか',
+    addrdetail: 'ああだ',
+    company: '',
+    email: '',
+    subject: '',
+    content: '',
+  }
+
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .max(15, "15文字以内で入力してください")
+      .required("入力してください")
+      .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+    company: Yup.string()
+      .max(20, "20文字以内で入力してください")
+      .required("入力してください")
+      .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+    email: Yup.string()
+      .email("Emailの形式で入力してください。")
+      .required("入力してください"),
+    subject: Yup.string()
+      .max(20, "20文字以内で入力してください")
+      .required("入力してください")
+      .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+    content: Yup.string()
+      .required("入力してください")
+      .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+  })
+
+  // submitボタンを押した時、入力内容確認画面を表示させる
+  const onSubmit = () => {handleSubmit(onSubmitData)}
+  
+  const formik = 
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit,
+    })
+
   return (
     <section style={content}>
       <h2>お問い合わせ</h2>
       <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
       
-      <Formik
-        initialValues={{
-          name: "",
-          company: "",
-          email: "",
-          subject: "",
-          content: "",
-        }}
-        validationSchema={Yup.object({
-          name: Yup.string()
-            .max(15, "15文字以内で入力してください")
-            .required("入力してください")
-            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-          company: Yup.string()
-            .max(20, "20文字以内で入力してください")
-            .required("入力してください")
-            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-          email: Yup.string()
-            .email("Emailの形式で入力してください。")
-            .required("入力してください"),
-          subject: Yup.string()
-            .max(20, "20文字以内で入力してください")
-            .required("入力してください")
-            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-          content: Yup.string()
-            .required("入力してください")
-            .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-        })}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }
-          , 400);
-        }}
-      >
+      {/* <Formik
+        initialValues = {initialValues}
+        // validationSchema = {Yup.object({
+        //   name: Yup.string()
+        //     .max(15, "15文字以内で入力してください")
+        //     .required("入力してください")
+        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+        //   company: Yup.string()
+        //     .max(20, "20文字以内で入力してください")
+        //     .required("入力してください")
+        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+        //   email: Yup.string()
+        //     .email("Emailの形式で入力してください。")
+        //     .required("入力してください"),
+        //   subject: Yup.string()
+        //     .max(20, "20文字以内で入力してください")
+        //     .required("入力してください")
+        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+        //   content: Yup.string()
+        //     .required("入力してください")
+        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
+        // })}
+        // onSubmit = {(values, { setSubmitting }) => {
+        //   setTimeout(() => {
+        //     alert(JSON.stringify(values, null, 2));
+        //     setSubmitting(false);
+        //   }
+        //   , 400);
+        // }}
+        onSubmit = {onSubmit}
+      > */}
 
         {/* FormタグにonSubmitの記載は有効です */}
-        <Form onSubmit={handleSubmit(onSubmitData)}>
+        {/* <Form onSubmit={handleSubmit(onSubmitData)}> */}
+        <form onSubmit={handleSubmit(onSubmitData)}>
         <table style={contentsBox}>
 
           <tr style={tableRow}>
@@ -295,12 +361,13 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>ご氏名：</span></label>
             </th>
             <td>
-              <Field name="name" type="text" id="name" style={formInput} />
+              <input name="name" type="text" id="name" value={formik.values.name} onChange={formik.handleChange} style={formInput} />
             </td>
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <div style={errorTitle}><ErrorMessage name="name" /></div>
+            {/* <div style={errorTitle}><ErrorMessage name="name" /></div> */}
+            <div style={errorTitle}>{formik.errors.name}</div>
           </tr>
 
           <ContactAddress />
@@ -310,12 +377,13 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>会社名：</span></label>
             </th>
             <td>
-              <Field name="company" type="text" id="company" style={formInput} />
+              <input name="company" type="text" id="company" value={formik.values.company} onChange={formik.handleChange} style={formInput} />
             </td>
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <div style={errorTitle}><ErrorMessage name="company" /></div>
+            {/* <div style={errorTitle}><ErrorMessage name="company" /></div> */}
+            <div style={errorTitle}>{formik.errors.company}</div>
           </tr>
 
           <tr style={tableRow}>
@@ -323,12 +391,13 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>メールアドレス：</span></label>
             </th>
             <td>
-              <Field name="email" type="email" id="email" style={formInput} />
+              <input name="email" type="email" id="email" value={formik.values.email} onChange={formik.handleChange} style={formInput} />
             </td>
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <div style={errorTitle}><ErrorMessage name="email" /></div>
+            {/* <div style={errorTitle}><ErrorMessage name="email" /></div> */}
+            <div style={errorTitle}>{formik.errors.email}</div>
           </tr>
 
           <tr style={tableRow}>
@@ -336,12 +405,13 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>件名：</span></label>
             </th>
             <td>
-              <Field name="subject" type="text" id="subject" style={formInput} />
+              <input name="subject" type="text" id="subject" value={formik.values.subject} onChange={formik.handleChange} style={formInput} />
             </td>
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <div style={errorTitle}><ErrorMessage name="subject" /></div>
+            {/* <div style={errorTitle}><ErrorMessage name="subject" /></div> */}
+            <div style={errorTitle}>{formik.errors.subject}</div>
           </tr>
 
           <tr style={tableRow}>
@@ -349,12 +419,13 @@ const Contact = (): JSX.Element => {
               <label><span style={tableHeaderTittle}>お問い合わせ内容：</span></label>
             </th>
             <td>
-              <Field name="content" as="textarea" id="content" style={formTextarea} />
+              <textarea name="content" id="content" value={formik.values.content} onChange={formik.handleChange} style={formTextarea} />
             </td>
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            <div style={errorTitle}><ErrorMessage name="content" /></div>
+            {/* <div style={errorTitle}><ErrorMessage name="content" /></div> */}
+            <div style={errorTitle}>{formik.errors.content}</div>
           </tr>
 
         </table>
@@ -363,15 +434,16 @@ const Contact = (): JSX.Element => {
           type='submit'
           value='入力内容を確認'
         />
-        </Form>
-      </Formik>
+        {/* </Form> */}
+        </form>
+      {/* </Formik> */}
 
-      <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button>
+      {/* <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button> */}
       {/* <button onClick={switchScreen} style={confirmBtn}>確認</button> */}
 
       {isConfirmationVisible &&//trueの時だけ入力内容確認画面を表示
         <Confirmation//入力内容確認画面コンポーネント
-          values={getValues()}//getValues()でフォーム全体のデータを返してくれる！！
+          values={formik.values}//getValues()でフォーム全体のデータを返してくれる！！
           hideConfirmation={hideConfirmation}//入力内容確認画面表示・非表示のstateをConfirmationに渡す
         />
       }

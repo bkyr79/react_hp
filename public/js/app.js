@@ -2076,8 +2076,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
   var Confirmation = function Confirmation(props) {
     var values = props.values,
-        hideConfirmation = props.hideConfirmation;
-    return react_1["default"].createElement(react_1["default"].Fragment, null, "\u78BA\u8A8D\u753B\u9762\uFF08\u30C6\u30B9\u30C8\uFF09", react_1["default"].createElement("p", null, "\u6C0F\u540D\uFF1A", values.name), react_1["default"].createElement("input", {
+        hideConfirmation = props.hideConfirmation; // console.log(values.name)
+
+    return react_1["default"].createElement(react_1["default"].Fragment, null, "\u78BA\u8A8D\u753B\u9762\uFF08\u30C6\u30B9\u30C8\uFF09", react_1["default"].createElement("p", null, "\u6C0F\u540D\uFF1A", values.name), react_1["default"].createElement("p", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A", values.postCodeH, "-", values.postCodeF), react_1["default"].createElement("p", null, "\u4F4F\u6240\uFF11\uFF1A", values.prefectures, "-", values.cities), react_1["default"].createElement("p", null, "\u4F4F\u6240\uFF12\uFF1A", values.addrdetail), react_1["default"].createElement("p", null, "\u4F1A\u793E\u540D\uFF1A", values.company), react_1["default"].createElement("p", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A", values.email), react_1["default"].createElement("p", null, "\u4EF6\u540D\uFF1A", values.subject), react_1["default"].createElement("p", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A", values.content), react_1["default"].createElement("input", {
       type: 'button',
       onClick: hideConfirmation,
       //クリックでstateをクリアし、入力内容確認画面コンポーネントを非表示にする
@@ -2241,10 +2242,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     };
 
     var _ref = (0, react_hook_form_1.useForm)(),
-        register = _ref.register,
         handleSubmit = _ref.handleSubmit,
-        watch = _ref.watch,
-        reset = _ref.reset,
         getValues = _ref.getValues; // 入力内容確認画面の表示・非表示
 
 
@@ -2264,7 +2262,8 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }; // 入力値の全てを、連想配列に格納する
 
 
-    var inputAll = function inputAll(e) {
+    var inputAllFunction = function inputAllFunction(e) {
+      // const inputAllFunction = () => {
       e.preventDefault();
       var inputNa = document.getElementById('name');
       var inputPh = document.getElementById('postCodeH');
@@ -2310,50 +2309,57 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
     var ajax = function ajax(e) {
       e.preventDefault();
-      axios_1["default"].post('/store', inputAll(e)).then(function (data) {
+      axios_1["default"].post('/store', inputAllFunction(e)).then(function (data) {
         console.log(data);
       })["catch"](function (error) {
         console.log(error);
       });
     };
 
+    var initialValues = {
+      name: '',
+      postCodeH: '000',
+      postCodeF: '0000',
+      prefectures: '何とか',
+      cities: 'かんとか',
+      addrdetail: 'ああだ',
+      company: '',
+      email: '',
+      subject: '',
+      content: ''
+    };
+    var validationSchema = Yup.object({
+      name: Yup.string().max(15, "15文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      }),
+      company: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      }),
+      email: Yup.string().email("Emailの形式で入力してください。").required("入力してください"),
+      subject: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      }),
+      content: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      })
+    }); // submitボタンを押した時、入力内容確認画面を表示させる
+
+    var onSubmit = function onSubmit() {
+      handleSubmit(onSubmitData);
+    };
+
+    var formik = (0, formik_1.useFormik)({
+      initialValues: initialValues,
+      validationSchema: validationSchema,
+      onSubmit: onSubmit
+    });
     return react_1["default"].createElement("section", {
       style: content
     }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
       style: description
     }, react_1["default"].createElement("span", {
       style: descriptionMsg
-    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement(formik_1.Formik, {
-      initialValues: {
-        name: "",
-        company: "",
-        email: "",
-        subject: "",
-        content: ""
-      },
-      validationSchema: Yup.object({
-        name: Yup.string().max(15, "15文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-          message: '文字列が有効ではありません'
-        }),
-        company: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-          message: '文字列が有効ではありません'
-        }),
-        email: Yup.string().email("Emailの形式で入力してください。").required("入力してください"),
-        subject: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-          message: '文字列が有効ではありません'
-        }),
-        content: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-          message: '文字列が有効ではありません'
-        })
-      }),
-      onSubmit: function onSubmit(values, _ref4) {
-        var setSubmitting = _ref4.setSubmitting;
-        setTimeout(function () {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }
-    }, react_1["default"].createElement(formik_1.Form, {
+    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", {
       onSubmit: handleSubmit(onSubmitData)
     }, react_1["default"].createElement("table", {
       style: contentsBox
@@ -2363,97 +2369,91 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: tableHeader
     }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
-    }, "\u3054\u6C0F\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+    }, "\u3054\u6C0F\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "name",
       type: "text",
       id: "name",
+      value: formik.values.name,
+      onChange: formik.handleChange,
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {
       style: errorTitle
-    }, react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "name"
-    }))), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
+    }, formik.errors.name)), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
     }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
-    }, "\u4F1A\u793E\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+    }, "\u4F1A\u793E\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "company",
       type: "text",
       id: "company",
+      value: formik.values.company,
+      onChange: formik.handleChange,
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {
       style: errorTitle
-    }, react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "company"
-    }))), react_1["default"].createElement("tr", {
+    }, formik.errors.company)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
     }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
-    }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+    }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "email",
       type: "email",
       id: "email",
+      value: formik.values.email,
+      onChange: formik.handleChange,
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {
       style: errorTitle
-    }, react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "email"
-    }))), react_1["default"].createElement("tr", {
+    }, formik.errors.email)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
     }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
-    }, "\u4EF6\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+    }, "\u4EF6\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
       name: "subject",
       type: "text",
       id: "subject",
+      value: formik.values.subject,
+      onChange: formik.handleChange,
       style: formInput
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {
       style: errorTitle
-    }, react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "subject"
-    }))), react_1["default"].createElement("tr", {
+    }, formik.errors.subject)), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
     }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
       style: tableHeaderTittle
-    }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement(formik_1.Field, {
+    }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
       name: "content",
-      as: "textarea",
       id: "content",
+      value: formik.values.content,
+      onChange: formik.handleChange,
       style: formTextarea
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {
       style: errorTitle
-    }, react_1["default"].createElement(formik_1.ErrorMessage, {
-      name: "content"
-    })))), react_1["default"].createElement("input", {
+    }, formik.errors.content))), react_1["default"].createElement("input", {
       type: 'submit',
       value: "\u5165\u529B\u5185\u5BB9\u3092\u78BA\u8A8D"
-    }))), react_1["default"].createElement("button", {
-      onClick: function onClick(e) {
-        return ajax(e);
-      },
-      style: confirmBtn
-    }, "\u78BA\u8A8D"), isConfirmationVisible && //trueの時だけ入力内容確認画面を表示
+    })), isConfirmationVisible && //trueの時だけ入力内容確認画面を表示
     react_1["default"].createElement(Confirmation_1["default"] //入力内容確認画面コンポーネント
     , {
-      values: getValues(),
+      values: formik.values,
       hideConfirmation: hideConfirmation
     }));
   };
