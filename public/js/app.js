@@ -2231,38 +2231,23 @@ var __importDefault = this && this.__importDefault || function (mod) {
       boxSizing: 'border-box',
       width: '85%',
       paddingLeft: '5px'
-    }; // const confirmBtn: {
-    //   display: string,
-    //   border: string;
-    //   cursor: string;
-    //   borderRadius: string;
-    //   boxSizing: 'border-box';
-    //   transition: string;
-    //   boxShadow: string;
-    //   loat: string;
-    //   color: string;
-    //   padding: string;
-    //   fontSize: string;
-    //   width: string;
-    //   background: string;
-    //   margin: string;
-    // } = {
-    //   display: 'inline-block',
-    //   border: 'none',
-    //   cursor: 'pointer',
-    //   borderRadius: '5px',
-    //   boxSizing: 'border-box',
-    //   transition: '.3s',
-    //   boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-    //   loat: 'right',
-    //   color: '#fff',
-    //   padding: '15px 30px',
-    //   fontSize: '18px',
-    //   width: '65%',
-    //   background: 'linear-gradient(to right, #E3E3E3, #90979f)',
-    //   margin: '25px 0 60px 0'
-    // }
-
+    };
+    var confirmBtn = {
+      display: 'inline-block',
+      border: 'none',
+      cursor: 'pointer',
+      borderRadius: '5px',
+      boxSizing: 'border-box',
+      transition: '.3s',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+      loat: 'right',
+      color: '#fff',
+      padding: '15px 30px',
+      fontSize: '18px',
+      width: '65%',
+      background: 'linear-gradient(to right, #E3E3E3, #90979f)',
+      margin: '25px 0 60px 0'
+    };
     var errorTitle = {
       color: 'red',
       textAlign: 'left',
@@ -2512,7 +2497,8 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: errorTitle
     }, formik.errors.content))), react_1["default"].createElement("input", {
       type: 'submit',
-      value: "\u5165\u529B\u5185\u5BB9\u3092\u78BA\u8A8D"
+      value: "\u5165\u529B\u5185\u5BB9\u3092\u78BA\u8A8D",
+      style: confirmBtn
     })), isConfirmationVisible && //trueの時だけ入力内容確認画面を表示
     react_1["default"].createElement(Confirmation_1["default"] //入力内容確認画面コンポーネント
     , {

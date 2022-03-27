@@ -142,37 +142,37 @@ const Contact: FC = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
-  // const confirmBtn: {
-  //   display: string,
-  //   border: string;
-  //   cursor: string;
-  //   borderRadius: string;
-  //   boxSizing: 'border-box';
-  //   transition: string;
-  //   boxShadow: string;
-  //   loat: string;
-  //   color: string;
-  //   padding: string;
-  //   fontSize: string;
-  //   width: string;
-  //   background: string;
-  //   margin: string;
-  // } = {
-  //   display: 'inline-block',
-  //   border: 'none',
-  //   cursor: 'pointer',
-  //   borderRadius: '5px',
-  //   boxSizing: 'border-box',
-  //   transition: '.3s',
-  //   boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-  //   loat: 'right',
-  //   color: '#fff',
-  //   padding: '15px 30px',
-  //   fontSize: '18px',
-  //   width: '65%',
-  //   background: 'linear-gradient(to right, #E3E3E3, #90979f)',
-  //   margin: '25px 0 60px 0'
-  // }
+  const confirmBtn: {
+    display: string,
+    border: string;
+    cursor: string;
+    borderRadius: string;
+    boxSizing: 'border-box';
+    transition: string;
+    boxShadow: string;
+    loat: string;
+    color: string;
+    padding: string;
+    fontSize: string;
+    width: string;
+    background: string;
+    margin: string;
+  } = {
+    display: 'inline-block',
+    border: 'none',
+    cursor: 'pointer',
+    borderRadius: '5px',
+    boxSizing: 'border-box',
+    transition: '.3s',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+    loat: 'right',
+    color: '#fff',
+    padding: '15px 30px',
+    fontSize: '18px',
+    width: '65%',
+    background: 'linear-gradient(to right, #E3E3E3, #90979f)',
+    margin: '25px 0 60px 0'
+  }
 
   const errorTitle: {
     color: string;
@@ -418,7 +418,7 @@ const Contact: FC = (): JSX.Element => {
           </tr>
         </table>
 
-        <input type='submit' value='入力内容を確認' />
+        <input type='submit' value='確認' style={confirmBtn} />
       </form>
 
       {/* <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button> */}
