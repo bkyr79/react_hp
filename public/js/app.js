@@ -2076,9 +2076,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
   var Confirmation = function Confirmation(props) {
     var values = props.values,
-        hideConfirmation = props.hideConfirmation; // console.log(values.name)
+        postCodeHValue = props.postCodeHValue,
+        postCodeFValue = props.postCodeFValue,
+        prefecturesValue = props.prefecturesValue,
+        citiesValue = props.citiesValue,
+        addrdetailValue = props.addrdetailValue,
+        hideConfirmation = props.hideConfirmation; // console.log(contactAddressValue)
 
-    return react_1["default"].createElement(react_1["default"].Fragment, null, "\u78BA\u8A8D\u753B\u9762\uFF08\u30C6\u30B9\u30C8\uFF09", react_1["default"].createElement("p", null, "\u6C0F\u540D\uFF1A", values.name), react_1["default"].createElement("p", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A", values.postCodeH, "-", values.postCodeF), react_1["default"].createElement("p", null, "\u4F4F\u6240\uFF11\uFF1A", values.prefectures, "-", values.cities), react_1["default"].createElement("p", null, "\u4F4F\u6240\uFF12\uFF1A", values.addrdetail), react_1["default"].createElement("p", null, "\u4F1A\u793E\u540D\uFF1A", values.company), react_1["default"].createElement("p", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A", values.email), react_1["default"].createElement("p", null, "\u4EF6\u540D\uFF1A", values.subject), react_1["default"].createElement("p", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A", values.content), react_1["default"].createElement("input", {
+    return react_1["default"].createElement(react_1["default"].Fragment, null, "\u78BA\u8A8D\u753B\u9762\uFF08\u30C6\u30B9\u30C8\uFF09", react_1["default"].createElement("p", null, "\u6C0F\u540D\uFF1A", values.name), react_1["default"].createElement("p", null, "\u90F5\u4FBF\u756A\u53F7\uFF1A", postCodeHValue, "-", postCodeFValue), react_1["default"].createElement("p", null, "\u4F4F\u6240\uFF11\uFF1A", prefecturesValue, " ", citiesValue), react_1["default"].createElement("p", null, "\u4F4F\u6240\uFF12\uFF1A", addrdetailValue), react_1["default"].createElement("p", null, "\u4F1A\u793E\u540D\uFF1A", values.company), react_1["default"].createElement("p", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A", values.email), react_1["default"].createElement("p", null, "\u4EF6\u540D\uFF1A", values.subject), react_1["default"].createElement("p", null, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A", values.content), react_1["default"].createElement("input", {
       type: 'button',
       onClick: hideConfirmation,
       //クリックでstateをクリアし、入力内容確認画面コンポーネントを非表示にする
@@ -2156,11 +2161,19 @@ var __importDefault = this && this.__importDefault || function (mod) {
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
+  exports.UserCount = void 0;
   react_1 = __importStar(react_1);
   ContactAddress_1 = __importDefault(ContactAddress_1);
   Yup = __importStar(Yup);
   axios_1 = __importDefault(axios_1);
   Confirmation_1 = __importDefault(Confirmation_1);
+  exports.UserCount = react_1["default"].createContext({
+    postCodeH: '',
+    postCodeF: '',
+    prefectures: '',
+    cities: '',
+    addrdetail: ''
+  });
 
   var Contact = function Contact() {
     var content = {
@@ -2218,38 +2231,49 @@ var __importDefault = this && this.__importDefault || function (mod) {
       boxSizing: 'border-box',
       width: '85%',
       paddingLeft: '5px'
-    };
-    var confirmBtn = {
-      display: 'inline-block',
-      border: 'none',
-      cursor: 'pointer',
-      borderRadius: '5px',
-      boxSizing: 'border-box',
-      transition: '.3s',
-      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-      loat: 'right',
-      color: '#fff',
-      padding: '15px 30px',
-      fontSize: '18px',
-      width: '65%',
-      background: 'linear-gradient(to right, #E3E3E3, #90979f)',
-      margin: '25px 0 60px 0'
-    };
+    }; // const confirmBtn: {
+    //   display: string,
+    //   border: string;
+    //   cursor: string;
+    //   borderRadius: string;
+    //   boxSizing: 'border-box';
+    //   transition: string;
+    //   boxShadow: string;
+    //   loat: string;
+    //   color: string;
+    //   padding: string;
+    //   fontSize: string;
+    //   width: string;
+    //   background: string;
+    //   margin: string;
+    // } = {
+    //   display: 'inline-block',
+    //   border: 'none',
+    //   cursor: 'pointer',
+    //   borderRadius: '5px',
+    //   boxSizing: 'border-box',
+    //   transition: '.3s',
+    //   boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+    //   loat: 'right',
+    //   color: '#fff',
+    //   padding: '15px 30px',
+    //   fontSize: '18px',
+    //   width: '65%',
+    //   background: 'linear-gradient(to right, #E3E3E3, #90979f)',
+    //   margin: '25px 0 60px 0'
+    // }
+
     var errorTitle = {
       color: 'red',
       textAlign: 'left',
       paddingLeft: '5px'
-    };
+    }; // const resourceName = React.useContext(UserCount);
+    // 入力内容確認画面の表示・非表示
 
-    var _ref = (0, react_hook_form_1.useForm)(),
-        handleSubmit = _ref.handleSubmit,
-        getValues = _ref.getValues; // 入力内容確認画面の表示・非表示
-
-
-    var _ref2 = (0, react_1.useState)(false),
-        _ref3 = _slicedToArray(_ref2, 2),
-        isConfirmationVisible = _ref3[0],
-        setIsConfirmationVisible = _ref3[1]; // 閉じるボタンを押した時非表示にする
+    var _ref = (0, react_1.useState)(false),
+        _ref2 = _slicedToArray(_ref, 2),
+        isConfirmationVisible = _ref2[0],
+        setIsConfirmationVisible = _ref2[1]; // 閉じるボタンを押した時非表示にする
 
 
     var hideConfirmation = function hideConfirmation() {
@@ -2263,7 +2287,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
 
     var inputAllFunction = function inputAllFunction(e) {
-      // const inputAllFunction = () => {
       e.preventDefault();
       var inputNa = document.getElementById('name');
       var inputPh = document.getElementById('postCodeH');
@@ -2318,11 +2341,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
     var initialValues = {
       name: '',
-      postCodeH: '000',
-      postCodeF: '0000',
-      prefectures: '何とか',
-      cities: 'かんとか',
-      addrdetail: 'ああだ',
+      postCodeH: '',
+      postCodeF: '',
+      prefectures: '',
+      cities: '',
+      addrdetail: '',
       company: '',
       email: '',
       subject: '',
@@ -2342,7 +2365,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
       content: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
         message: '文字列が有効ではありません'
       })
-    }); // submitボタンを押した時、入力内容確認画面を表示させる
+    });
+
+    var _ref3 = (0, react_hook_form_1.useForm)(),
+        handleSubmit = _ref3.handleSubmit; // submitボタンを押した時、入力内容確認画面を表示させる
+
 
     var onSubmit = function onSubmit() {
       handleSubmit(onSubmitData);
@@ -2352,7 +2379,34 @@ var __importDefault = this && this.__importDefault || function (mod) {
       initialValues: initialValues,
       validationSchema: validationSchema,
       onSubmit: onSubmit
-    });
+    }); // ContactAddressコンポーネントに渡すためのuseState
+    // 子コンポーネントから親コンポーネントのstateを変更することで、子から親へ値を渡せる
+
+    var _ref4 = (0, react_1.useState)(""),
+        _ref5 = _slicedToArray(_ref4, 2),
+        postCodeHProp = _ref5[0],
+        setPostCodeHProp = _ref5[1];
+
+    var _ref6 = (0, react_1.useState)(""),
+        _ref7 = _slicedToArray(_ref6, 2),
+        postCodeFProp = _ref7[0],
+        setPostCodeFProp = _ref7[1];
+
+    var _ref8 = (0, react_1.useState)(""),
+        _ref9 = _slicedToArray(_ref8, 2),
+        prefecturesProp = _ref9[0],
+        setPrefecturesProp = _ref9[1];
+
+    var _ref10 = (0, react_1.useState)(""),
+        _ref11 = _slicedToArray(_ref10, 2),
+        citiesProp = _ref11[0],
+        setCitiesProp = _ref11[1];
+
+    var _ref12 = (0, react_1.useState)(""),
+        _ref13 = _slicedToArray(_ref12, 2),
+        addrdetailProp = _ref13[0],
+        setAddrdetailProp = _ref13[1];
+
     return react_1["default"].createElement("section", {
       style: content
     }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
@@ -2380,7 +2434,16 @@ var __importDefault = this && this.__importDefault || function (mod) {
       style: tableHeader
     }), react_1["default"].createElement("div", {
       style: errorTitle
-    }, formik.errors.name)), react_1["default"].createElement(ContactAddress_1["default"], null), react_1["default"].createElement("tr", {
+    }, formik.errors.name)), react_1["default"].createElement(ContactAddress_1["default"]
+    /* @ts-ignore */
+    , {
+      /* @ts-ignore */
+      setPostCodeHProp: setPostCodeHProp,
+      setPostCodeFProp: setPostCodeFProp,
+      setPrefecturesProp: setPrefecturesProp,
+      setCitiesProp: setCitiesProp,
+      setAddrdetailProp: setAddrdetailProp
+    }), postCodeHProp, postCodeFProp, prefecturesProp, citiesProp, addrdetailProp, react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -2454,6 +2517,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
     react_1["default"].createElement(Confirmation_1["default"] //入力内容確認画面コンポーネント
     , {
       values: formik.values,
+      postCodeHValue: postCodeHProp,
+      postCodeFValue: postCodeFProp,
+      prefecturesValue: prefecturesProp,
+      citiesValue: citiesProp,
+      addrdetailValue: addrdetailProp,
       hideConfirmation: hideConfirmation
     }));
   };
@@ -2522,7 +2590,7 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js"), __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.cjs.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, formik_1, react_hook_form_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -2618,9 +2686,9 @@ var __importStar = this && this.__importStar || function (mod) {
     color: 'red',
     textAlign: 'left',
     paddingLeft: '5px'
-  };
+  }; // @ts-ignore
 
-  var ContactAddress = function ContactAddress() {
+  var ContactAddress = function ContactAddress(props) {
     // 郵便番号フォームの値を管理
     var _ref = (0, react_1.useState)(''),
         _ref2 = _slicedToArray(_ref, 2),
@@ -2706,6 +2774,12 @@ var __importStar = this && this.__importStar || function (mod) {
           errorAddress: addressValue
         }
       });
+      formik.setFieldValue(name, value);
+    };
+
+    var aaa = function aaa() {
+      formik.setFieldValue("prefectures", element1.value);
+      formik.setFieldValue("cities", element2.value);
     }; // 郵便番号（頭の）桁数
 
 
@@ -2816,6 +2890,7 @@ var __importStar = this && this.__importStar || function (mod) {
           errorAddress: addressValue
         }
       });
+      formik.setFieldValue(name, value);
     };
 
     var complementAddress = function complementAddress(e) {
@@ -2851,6 +2926,9 @@ var __importStar = this && this.__importStar || function (mod) {
     };
 
     var checkZipcodeOnBlur = function checkZipcodeOnBlur(e) {
+      var name = e.target.name;
+      var value = e.target.value;
+      formik.setFieldValue(name, value);
       checkForm(e);
       onBlurZipcode;
     }; // const ajaxPreAddressVer = (e: any) => {
@@ -2862,6 +2940,35 @@ var __importStar = this && this.__importStar || function (mod) {
     // }
 
 
+    var _ref7 = (0, react_hook_form_1.useForm)(),
+        handleSubmit = _ref7.handleSubmit; // 入力内容確認画面の表示・非表示
+
+
+    var _ref8 = (0, react_1.useState)(false),
+        _ref9 = _slicedToArray(_ref8, 2),
+        isConfirmationVisible = _ref9[0],
+        setIsConfirmationVisible = _ref9[1]; // submitボタンを押した時、入力内容確認画面を表示させる
+
+
+    var onSubmitData = function onSubmitData() {
+      return setIsConfirmationVisible(true);
+    };
+
+    var onSubmit = function onSubmit() {
+      handleSubmit(onSubmitData);
+    };
+
+    var initialValues = {
+      postCodeH: '',
+      postCodeF: '',
+      prefectures: '',
+      cities: '',
+      addrdetail: ''
+    };
+    var formik = (0, formik_1.useFormik)({
+      initialValues: initialValues,
+      onSubmit: onSubmit
+    });
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
@@ -2879,7 +2986,8 @@ var __importStar = this && this.__importStar || function (mod) {
         return checkZipcodeOnBlur(e);
       },
       style: postCodeH,
-      id: "postCodeH"
+      id: "postCodeH",
+      value: props.setPostCodeHProp(formik.values.postCodeH)
     }), react_1["default"].createElement("div", {
       style: postCodeHyphen
     }, "-"), react_1["default"].createElement("input", {
@@ -2889,12 +2997,15 @@ var __importStar = this && this.__importStar || function (mod) {
       onChange: function onChange(e) {
         return handleChange(e);
       },
-      onKeyUp: complementAddress,
+      onKeyUp: function onKeyUp(e) {
+        return complementAddress(e);
+      },
       onBlur: function onBlur(e) {
         return checkZipcodeOnBlur(e);
       },
       style: postCodeF,
-      id: "postCodeF"
+      id: "postCodeF",
+      value: props.setPostCodeFProp(formik.values.postCodeF)
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {
@@ -2916,7 +3027,8 @@ var __importStar = this && this.__importStar || function (mod) {
       onBlur: function onBlur(e) {
         return checkForm(e);
       },
-      style: formInputPrefectures
+      style: formInputPrefectures,
+      value: props.setPrefecturesProp(formik.values.prefectures)
     }), react_1["default"].createElement("input", {
       name: "cities",
       id: "cities",
@@ -2926,7 +3038,8 @@ var __importStar = this && this.__importStar || function (mod) {
       onBlur: function onBlur(e) {
         return checkForm(e);
       },
-      style: formInputCities
+      style: formInputCities,
+      value: props.setCitiesProp(formik.values.cities)
     })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     }), react_1["default"].createElement("div", {
@@ -2944,7 +3057,9 @@ var __importStar = this && this.__importStar || function (mod) {
       onBlur: function onBlur(e) {
         return checkForm(e);
       },
-      style: formInputAddrdetail
+      onFocus: aaa,
+      style: formInputAddrdetail,
+      value: props.setAddrdetailProp(formik.values.addrdetail)
     }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
       style: tableHeader
     })));

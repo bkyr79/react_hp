@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, FC, Dispatch, SetStateAction, useContext} from "react";
 import ContactAddress from "./ContactAddress";
 import { Formik, Field, Form, ErrorMessage, useFormik } from "formik";
 import * as Yup from "yup";
@@ -21,7 +21,15 @@ type FormValueType = {
   content: string | null | undefined,
 };
 
-const Contact = (): JSX.Element => {
+export const UserCount = React.createContext({
+  postCodeH: '',
+  postCodeF: '',
+  prefectures: '',
+  cities: '',
+  addrdetail: '',
+})
+
+const Contact: FC = (): JSX.Element => {
   const content: {
     margin: string;
   } = {
@@ -134,37 +142,37 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
-  const confirmBtn: {
-    display: string,
-    border: string;
-    cursor: string;
-    borderRadius: string;
-    boxSizing: 'border-box';
-    transition: string;
-    boxShadow: string;
-    loat: string;
-    color: string;
-    padding: string;
-    fontSize: string;
-    width: string;
-    background: string;
-    margin: string;
-  } = {
-    display: 'inline-block',
-    border: 'none',
-    cursor: 'pointer',
-    borderRadius: '5px',
-    boxSizing: 'border-box',
-    transition: '.3s',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-    loat: 'right',
-    color: '#fff',
-    padding: '15px 30px',
-    fontSize: '18px',
-    width: '65%',
-    background: 'linear-gradient(to right, #E3E3E3, #90979f)',
-    margin: '25px 0 60px 0'
-  }
+  // const confirmBtn: {
+  //   display: string,
+  //   border: string;
+  //   cursor: string;
+  //   borderRadius: string;
+  //   boxSizing: 'border-box';
+  //   transition: string;
+  //   boxShadow: string;
+  //   loat: string;
+  //   color: string;
+  //   padding: string;
+  //   fontSize: string;
+  //   width: string;
+  //   background: string;
+  //   margin: string;
+  // } = {
+  //   display: 'inline-block',
+  //   border: 'none',
+  //   cursor: 'pointer',
+  //   borderRadius: '5px',
+  //   boxSizing: 'border-box',
+  //   transition: '.3s',
+  //   boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+  //   loat: 'right',
+  //   color: '#fff',
+  //   padding: '15px 30px',
+  //   fontSize: '18px',
+  //   width: '65%',
+  //   background: 'linear-gradient(to right, #E3E3E3, #90979f)',
+  //   margin: '25px 0 60px 0'
+  // }
 
   const errorTitle: {
     color: string;
@@ -176,7 +184,7 @@ const Contact = (): JSX.Element => {
     paddingLeft: '5px'
   }
 
-  const {handleSubmit, getValues} = useForm()
+  // const resourceName = React.useContext(UserCount);
 
   // 入力内容確認画面の表示・非表示
   const [isConfirmationVisible, setIsConfirmationVisible] = useState(false)
@@ -187,8 +195,6 @@ const Contact = (): JSX.Element => {
 
   // 入力値の全てを、連想配列に格納する
   const inputAllFunction = (e: any) => {
-    // const inputAllFunction = () => {
-
     e.preventDefault();
 
     const inputNa = document.getElementById('name');
@@ -272,11 +278,11 @@ const Contact = (): JSX.Element => {
     content: string;
 } = {
     name: '',
-    postCodeH: '000',
-    postCodeF: '0000',
-    prefectures: '何とか',
-    cities: 'かんとか',
-    addrdetail: 'ああだ',
+    postCodeH: '',
+    postCodeF: '',
+    prefectures: '',
+    cities: '',
+    addrdetail: '',    
     company: '',
     email: '',
     subject: '',
@@ -304,6 +310,7 @@ const Contact = (): JSX.Element => {
       .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
   })
 
+  const {handleSubmit} = useForm()
   // submitボタンを押した時、入力内容確認画面を表示させる
   const onSubmit = () => {handleSubmit(onSubmitData)}
   
@@ -314,48 +321,21 @@ const Contact = (): JSX.Element => {
       onSubmit,
     })
 
+  // ContactAddressコンポーネントに渡すためのuseState
+  // 子コンポーネントから親コンポーネントのstateを変更することで、子から親へ値を渡せる
+  const [postCodeHProp, setPostCodeHProp]     = useState("");
+  const [postCodeFProp, setPostCodeFProp]     = useState("");
+  const [prefecturesProp, setPrefecturesProp] = useState("");
+  const [citiesProp, setCitiesProp]           = useState("");
+  const [addrdetailProp, setAddrdetailProp]   = useState("");
+
   return (
     <section style={content}>
       <h2>お問い合わせ</h2>
       <div style={description}><span style={descriptionMsg}>ご入力の上、「確認」ボタンを押してください。</span></div>
       
-      {/* <Formik
-        initialValues = {initialValues}
-        // validationSchema = {Yup.object({
-        //   name: Yup.string()
-        //     .max(15, "15文字以内で入力してください")
-        //     .required("入力してください")
-        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-        //   company: Yup.string()
-        //     .max(20, "20文字以内で入力してください")
-        //     .required("入力してください")
-        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-        //   email: Yup.string()
-        //     .email("Emailの形式で入力してください。")
-        //     .required("入力してください"),
-        //   subject: Yup.string()
-        //     .max(20, "20文字以内で入力してください")
-        //     .required("入力してください")
-        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-        //   content: Yup.string()
-        //     .required("入力してください")
-        //     .matches(/^[^\x20-\x7e]*$/, { message: '文字列が有効ではありません' }),
-        // })}
-        // onSubmit = {(values, { setSubmitting }) => {
-        //   setTimeout(() => {
-        //     alert(JSON.stringify(values, null, 2));
-        //     setSubmitting(false);
-        //   }
-        //   , 400);
-        // }}
-        onSubmit = {onSubmit}
-      > */}
-
-        {/* FormタグにonSubmitの記載は有効です */}
-        {/* <Form onSubmit={handleSubmit(onSubmitData)}> */}
-        <form onSubmit={handleSubmit(onSubmitData)}>
+      <form onSubmit={handleSubmit(onSubmitData)}>
         <table style={contentsBox}>
-
           <tr style={tableRow}>
             <th style={tableHeader}>
               <label><span style={tableHeaderTittle}>ご氏名：</span></label>
@@ -370,7 +350,20 @@ const Contact = (): JSX.Element => {
             <div style={errorTitle}>{formik.errors.name}</div>
           </tr>
 
-          <ContactAddress />
+          <ContactAddress
+            /* @ts-ignore */
+            setPostCodeHProp = {setPostCodeHProp}
+            setPostCodeFProp = {setPostCodeFProp}
+            setPrefecturesProp = {setPrefecturesProp}
+            setCitiesProp = {setCitiesProp}
+            setAddrdetailProp = {setAddrdetailProp}
+          />
+          {/* 仮で値を表示させておく(フォームの値を取得できているかの確認のため) */}
+          {postCodeHProp}
+          {postCodeFProp}
+          {prefecturesProp}
+          {citiesProp}
+          {addrdetailProp}
 
           <tr style={tableRow}>
             <th style={tableHeader}>
@@ -382,7 +375,6 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            {/* <div style={errorTitle}><ErrorMessage name="company" /></div> */}
             <div style={errorTitle}>{formik.errors.company}</div>
           </tr>
 
@@ -396,7 +388,6 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            {/* <div style={errorTitle}><ErrorMessage name="email" /></div> */}
             <div style={errorTitle}>{formik.errors.email}</div>
           </tr>
 
@@ -410,7 +401,6 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            {/* <div style={errorTitle}><ErrorMessage name="subject" /></div> */}
             <div style={errorTitle}>{formik.errors.subject}</div>
           </tr>
 
@@ -424,27 +414,25 @@ const Contact = (): JSX.Element => {
           </tr>
           <tr>
             <th style={tableHeader}></th>
-            {/* <div style={errorTitle}><ErrorMessage name="content" /></div> */}
             <div style={errorTitle}>{formik.errors.content}</div>
           </tr>
-
         </table>
 
-        <input
-          type='submit'
-          value='入力内容を確認'
-        />
-        {/* </Form> */}
-        </form>
-      {/* </Formik> */}
+        <input type='submit' value='入力内容を確認' />
+      </form>
 
       {/* <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button> */}
       {/* <button onClick={switchScreen} style={confirmBtn}>確認</button> */}
 
-      {isConfirmationVisible &&//trueの時だけ入力内容確認画面を表示
-        <Confirmation//入力内容確認画面コンポーネント
-          values={formik.values}//getValues()でフォーム全体のデータを返してくれる！！
-          hideConfirmation={hideConfirmation}//入力内容確認画面表示・非表示のstateをConfirmationに渡す
+      {isConfirmationVisible && //trueの時だけ入力内容確認画面を表示
+        <Confirmation //入力内容確認画面コンポーネント
+          values={formik.values}
+          postCodeHValue={postCodeHProp}
+          postCodeFValue={postCodeFProp}
+          prefecturesValue={prefecturesProp}
+          citiesValue={citiesProp}
+          addrdetailValue={addrdetailProp}
+          hideConfirmation={hideConfirmation} //入力内容確認画面表示・非表示のstateをConfirmationに渡す
         />
       }
 

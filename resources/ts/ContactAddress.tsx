@@ -1,5 +1,6 @@
 import React, { useState, VFC } from "react";
-import { Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
+import { useForm } from 'react-hook-form'
 
 
 const tableRow: {
@@ -182,7 +183,16 @@ const errorTitle: {
   paddingLeft: '5px'
 }
 
-const ContactAddress: VFC = () => {
+// @ts-ignore
+const ContactAddress: VFC = (
+  props: {
+    setPostCodeHProp: any,
+    setPostCodeFProp: any,
+    setPrefecturesProp: any,
+    setCitiesProp: any,
+    setAddrdetailProp: any
+  }
+  ) => {
   type StateType = {
     user: {
       e: {
@@ -298,9 +308,16 @@ const ContactAddress: VFC = () => {
         },
         errorAddress: addressValue
       } 
-    });    
+    });
+
+    formik.setFieldValue(name, value)
   }
   
+  const aaa = () => {
+    formik.setFieldValue("prefectures", element1.value)
+    formik.setFieldValue("cities", element2.value)
+  }
+
   // 郵便番号（頭の）桁数
   const ZipHeaderDigits = (str: any) => {
     const regex = /^[0-9]{3}$/;
@@ -394,6 +411,8 @@ const ContactAddress: VFC = () => {
         errorAddress: addressValue
       }
     })
+
+    formik.setFieldValue(name, value)
   }
 
   const complementAddress = (e: any) => {
@@ -409,7 +428,7 @@ const ContactAddress: VFC = () => {
     const value = e.target.value;
     if (value) {
       setAddressValue('');
-    } 
+    }
   };
 
   const element1 = document.getElementById('prefectures')! as HTMLInputElement;
@@ -434,6 +453,10 @@ const ContactAddress: VFC = () => {
   };
   
   const checkZipcodeOnBlur = (e: any) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    formik.setFieldValue(name, value)
+
     checkForm(e);
     onBlurZipcode;
   }
@@ -446,6 +469,33 @@ const ContactAddress: VFC = () => {
   //   const inputAd = document.getElementById('addrdetail');
 
   // }
+
+  const {handleSubmit} = useForm()
+  // 入力内容確認画面の表示・非表示
+  const [isConfirmationVisible, setIsConfirmationVisible] = useState(false)
+  // submitボタンを押した時、入力内容確認画面を表示させる
+  const onSubmitData = () => setIsConfirmationVisible(true)
+  const onSubmit = () => {handleSubmit(onSubmitData)}
+
+  const initialValues: {
+    postCodeH: string;
+    postCodeF: string;
+    prefectures: string;
+    cities: string;
+    addrdetail: string;
+} = {
+    postCodeH: '',
+    postCodeF: '',
+    prefectures: '',
+    cities: '',
+    addrdetail: '',
+  }
+
+  const formik = 
+    useFormik({
+      initialValues,
+      onSubmit,
+    })
 
   return(
     <>
@@ -463,6 +513,7 @@ const ContactAddress: VFC = () => {
             onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeH}
             id="postCodeH"
+            value={props.setPostCodeHProp(formik.values.postCodeH)}
           />
           <div style={postCodeHyphen}>
           -
@@ -472,10 +523,11 @@ const ContactAddress: VFC = () => {
             size={4}
             maxLength={4}
             onChange={(e) => handleChange(e)}
-            onKeyUp={complementAddress}
+            onKeyUp={(e) => complementAddress(e)}
             onBlur={(e) => checkZipcodeOnBlur(e)}
             style={postCodeF}
             id="postCodeF"
+            value={props.setPostCodeFProp(formik.values.postCodeF)}
           />
         </div>
       </td>
@@ -498,6 +550,7 @@ const ContactAddress: VFC = () => {
             onChange={(e) => handleChange(e)}
             onBlur={(e) => checkForm(e)}
             style={formInputPrefectures}
+            value={props.setPrefecturesProp(formik.values.prefectures)}
           />
           <input
             name="cities"
@@ -505,6 +558,7 @@ const ContactAddress: VFC = () => {
             onChange={(e) => handleChange(e)}
             onBlur={(e) => checkForm(e)}
             style={formInputCities}
+            value={props.setCitiesProp(formik.values.cities)}
           />
         </div>
       </td>
@@ -524,7 +578,9 @@ const ContactAddress: VFC = () => {
           id="addrdetail"
           onChange={(e) => handleChange(e)}
           onBlur={(e) => checkForm(e)}
+          onFocus={aaa}
           style={formInputAddrdetail}
+          value={props.setAddrdetailProp(formik.values.addrdetail)}
         />
       </td>
     </tr>
@@ -532,7 +588,7 @@ const ContactAddress: VFC = () => {
       <th style={tableHeader}></th>
     </tr>
     </>
-  );  
+  );
 };
 
 export default ContactAddress;
