@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
 import Contact from "./Contact";
+import DoneSend from "./DoneSend";
 
 
 const App = (): JSX.Element => {
@@ -70,6 +71,7 @@ const App = (): JSX.Element => {
           <Route path="/reserve" element={<h2>予約ページです</h2>} />
           <Route path="/diary" element={<h2>日記です</h2>} />
           <Route path="/sample" element={<div>サンプル画面です</div>}/>
+          <Route path="/doneSend" element={<DoneSend />}/>
       </Routes>
     </BrowserRouter>
   );

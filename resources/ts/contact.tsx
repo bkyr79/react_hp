@@ -1,9 +1,8 @@
-import React, {useState, FC, Dispatch, SetStateAction, useContext} from "react";
+import React, { useState, FC } from "react";
 import ContactAddress from "./ContactAddress";
-import { Formik, Field, Form, ErrorMessage, useFormik } from "formik";
+import { useFormik } from "formik";
+import {Element, scroller} from 'react-scroll'
 import * as Yup from "yup";
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import {useForm} from 'react-hook-form'
 import Confirmation from './Confirmation'
 
@@ -192,78 +191,79 @@ const Contact: FC = (): JSX.Element => {
   const hideConfirmation = () => setIsConfirmationVisible(false)
   // submitボタンを押した時、入力内容確認画面を表示させる
   const onSubmitData = () => setIsConfirmationVisible(true)
+  const scrollToTarget = () => {
+      scroller.scrollTo('scrollTarget', {
+        duration: 800,
+        delay: 0,
+        smooth: 'easeOutQuint'
+      })
+    }
 
-  // 入力値の全てを、連想配列に格納する
-  const inputAllFunction = (e: any) => {
-    e.preventDefault();
+  // // 入力値の全てを、連想配列に格納する
+  // const inputAllFunction = (e: any) => {
+  //   e.preventDefault();
 
-    const inputNa = document.getElementById('name');
-    const inputPh = document.getElementById('postCodeH')! as HTMLInputElement;
-    const inputPf = document.getElementById('postCodeF')! as HTMLInputElement;
-    const inputPr = document.getElementById('prefectures')! as HTMLInputElement;
-    const inputCi = document.getElementById('cities')! as HTMLInputElement;
-    const inputAd = document.getElementById('addrdetail')! as HTMLInputElement;
-    const inputCm = document.getElementById('company');
-    const inputEm = document.getElementById('email');
-    const inputSu = document.getElementById('subject');
-    const inputCt = document.getElementById('content');
+  //   const inputNa = document.getElementById('name');
+  //   const inputPh = document.getElementById('postCodeH')! as HTMLInputElement;
+  //   const inputPf = document.getElementById('postCodeF')! as HTMLInputElement;
+  //   const inputPr = document.getElementById('prefectures')! as HTMLInputElement;
+  //   const inputCi = document.getElementById('cities')! as HTMLInputElement;
+  //   const inputAd = document.getElementById('addrdetail')! as HTMLInputElement;
+  //   const inputCm = document.getElementById('company');
+  //   const inputEm = document.getElementById('email');
+  //   const inputSu = document.getElementById('subject');
+  //   const inputCt = document.getElementById('content');
     
-    const name        = inputNa?.getAttribute('value');
-    const postCodeH   = inputPh?.value;
-    const postCodeF   = inputPf?.value;
-    const prefectures = inputPr?.value;
-    const cities      = inputCi?.value;
-    const addrdetail  = inputAd?.value;
-    const company     = inputCm?.getAttribute('value');
-    const email       = inputEm?.getAttribute('value');
-    const subject     = inputSu?.getAttribute('value');
-    const content     = inputCt?.textContent;
+  //   const name        = inputNa?.getAttribute('value');
+  //   const postCodeH   = inputPh?.value;
+  //   const postCodeF   = inputPf?.value;
+  //   const prefectures = inputPr?.value;
+  //   const cities      = inputCi?.value;
+  //   const addrdetail  = inputAd?.value;
+  //   const company     = inputCm?.getAttribute('value');
+  //   const email       = inputEm?.getAttribute('value');
+  //   const subject     = inputSu?.getAttribute('value');
+  //   const content     = inputCt?.textContent;
 
-    const inputAll: {
-      name: string | null | undefined,
-      postCodeH: string | null | undefined,
-      postCodeF: string | null | undefined,
-      prefectures: string | null | undefined,
-      cities: string | null | undefined,
-      addrdetail: string | null | undefined,
-      company: string | null | undefined,
-      email: string | null | undefined,
-      subject: string | null | undefined,
-      content: string | null | undefined,      
-    } = {
-      name: name,
-      postCodeH: postCodeH,
-      postCodeF: postCodeF,
-      prefectures: prefectures,
-      cities: cities,
-      addrdetail: addrdetail,
-      company: company,
-      email: email,
-      subject: subject,
-      content: content,
-    };
+  //   const inputAll: {
+  //     name: string | null | undefined,
+  //     postCodeH: string | null | undefined,
+  //     postCodeF: string | null | undefined,
+  //     prefectures: string | null | undefined,
+  //     cities: string | null | undefined,
+  //     addrdetail: string | null | undefined,
+  //     company: string | null | undefined,
+  //     email: string | null | undefined,
+  //     subject: string | null | undefined,
+  //     content: string | null | undefined,      
+  //   } = {
+  //     name: name,
+  //     postCodeH: postCodeH,
+  //     postCodeF: postCodeF,
+  //     prefectures: prefectures,
+  //     cities: cities,
+  //     addrdetail: addrdetail,
+  //     company: company,
+  //     email: email,
+  //     subject: subject,
+  //     content: content,
+  //   };
 
-    return inputAll;
-  }
+  //   return inputAll;
+  // }
 
-  const navigation = useNavigate();
-  // 画面遷移する
-  const switchScreen = () => {
-    navigation('/sample');
-  }
+  // // 入力値がDBに登録される
+  // const ajax = (e: any) => {
+  //   e.preventDefault();
 
-  // 入力値がDBに登録される
-  const ajax = (e: any) => {
-    e.preventDefault();
-
-    axios.post('/store', inputAllFunction(e))
-    .then(function (data) {
-      console.log(data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+  //   axios.post('/store', inputAllFunction(e))
+  //   .then(function (data) {
+  //     console.log(data);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // }
 
   const initialValues: {
     name: string;
@@ -418,12 +418,17 @@ const Contact: FC = (): JSX.Element => {
           </tr>
         </table>
 
-        <input type='submit' value='確認' style={confirmBtn} />
+        <input
+          type='submit'
+          value='確認'
+          onClick={scrollToTarget}
+          style={confirmBtn}
+        />
       </form>
 
-      {/* <button onClick={(e) => ajax(e)} style={confirmBtn}>確認</button> */}
       {/* <button onClick={switchScreen} style={confirmBtn}>確認</button> */}
 
+      <Element name='scrollTarget'/>
       {isConfirmationVisible && //trueの時だけ入力内容確認画面を表示
         <Confirmation //入力内容確認画面コンポーネント
           values={formik.values}
