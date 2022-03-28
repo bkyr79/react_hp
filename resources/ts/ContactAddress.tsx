@@ -461,15 +461,6 @@ const ContactAddress: VFC = (
     onBlurZipcode;
   }
 
-  // const ajaxPreAddressVer = (e: any) => {
-  //   const inputPh = document.getElementById('postCodeH');
-  //   const inputPf = document.getElementById('postCodeF');
-  //   const inputPr = document.getElementById('prefectures');
-  //   const inputCi = document.getElementById('cities');
-  //   const inputAd = document.getElementById('addrdetail');
-
-  // }
-
   const {handleSubmit} = useForm()
   // 入力内容確認画面の表示・非表示
   const [isConfirmationVisible, setIsConfirmationVisible] = useState(false)
