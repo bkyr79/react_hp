@@ -2164,11 +2164,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
     var ajax = function ajax(e) {
       e.preventDefault();
       axios_1["default"].post('/store', inputAllFunction(e)).then(function (data) {
+        navigation('/doneSend');
         console.log(data);
       })["catch"](function (error) {
-        console.log(error); // エラーの場合のビューを考えておく
+        alert('入力内容に誤りがあります。\n' + 'もう一度ご確認ください。');
+        console.log(error);
       });
-      navigation('/doneSend');
     };
 
     return react_1["default"].createElement("section", {
@@ -2378,8 +2379,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       color: 'red',
       textAlign: 'left',
       paddingLeft: '5px'
-    }; // const resourceName = React.useContext(UserCount);
-    // 入力内容確認画面の表示・非表示
+    }; // 入力内容確認画面の表示・非表示
 
     var _ref = (0, react_1.useState)(false),
         _ref2 = _slicedToArray(_ref, 2),
@@ -2402,66 +2402,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
         delay: 0,
         smooth: 'easeOutQuint'
       });
-    }; // // 入力値の全てを、連想配列に格納する
-    // const inputAllFunction = (e: any) => {
-    //   e.preventDefault();
-    //   const inputNa = document.getElementById('name');
-    //   const inputPh = document.getElementById('postCodeH')! as HTMLInputElement;
-    //   const inputPf = document.getElementById('postCodeF')! as HTMLInputElement;
-    //   const inputPr = document.getElementById('prefectures')! as HTMLInputElement;
-    //   const inputCi = document.getElementById('cities')! as HTMLInputElement;
-    //   const inputAd = document.getElementById('addrdetail')! as HTMLInputElement;
-    //   const inputCm = document.getElementById('company');
-    //   const inputEm = document.getElementById('email');
-    //   const inputSu = document.getElementById('subject');
-    //   const inputCt = document.getElementById('content');
-    //   const name        = inputNa?.getAttribute('value');
-    //   const postCodeH   = inputPh?.value;
-    //   const postCodeF   = inputPf?.value;
-    //   const prefectures = inputPr?.value;
-    //   const cities      = inputCi?.value;
-    //   const addrdetail  = inputAd?.value;
-    //   const company     = inputCm?.getAttribute('value');
-    //   const email       = inputEm?.getAttribute('value');
-    //   const subject     = inputSu?.getAttribute('value');
-    //   const content     = inputCt?.textContent;
-    //   const inputAll: {
-    //     name: string | null | undefined,
-    //     postCodeH: string | null | undefined,
-    //     postCodeF: string | null | undefined,
-    //     prefectures: string | null | undefined,
-    //     cities: string | null | undefined,
-    //     addrdetail: string | null | undefined,
-    //     company: string | null | undefined,
-    //     email: string | null | undefined,
-    //     subject: string | null | undefined,
-    //     content: string | null | undefined,      
-    //   } = {
-    //     name: name,
-    //     postCodeH: postCodeH,
-    //     postCodeF: postCodeF,
-    //     prefectures: prefectures,
-    //     cities: cities,
-    //     addrdetail: addrdetail,
-    //     company: company,
-    //     email: email,
-    //     subject: subject,
-    //     content: content,
-    //   };
-    //   return inputAll;
-    // }
-    // // 入力値がDBに登録される
-    // const ajax = (e: any) => {
-    //   e.preventDefault();
-    //   axios.post('/store', inputAllFunction(e))
-    //   .then(function (data) {
-    //     console.log(data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // }
-
+    };
 
     var initialValues = {
       name: '',
@@ -2567,7 +2508,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       setPrefecturesProp: setPrefecturesProp,
       setCitiesProp: setCitiesProp,
       setAddrdetailProp: setAddrdetailProp
-    }), postCodeHProp, postCodeFProp, prefecturesProp, citiesProp, addrdetailProp, react_1["default"].createElement("tr", {
+    }), react_1["default"].createElement("tr", {
       style: tableRow
     }, react_1["default"].createElement("th", {
       style: tableHeader
@@ -3059,14 +3000,7 @@ var __importStar = this && this.__importStar || function (mod) {
       formik.setFieldValue(name, value);
       checkForm(e);
       onBlurZipcode;
-    }; // const ajaxPreAddressVer = (e: any) => {
-    //   const inputPh = document.getElementById('postCodeH');
-    //   const inputPf = document.getElementById('postCodeF');
-    //   const inputPr = document.getElementById('prefectures');
-    //   const inputCi = document.getElementById('cities');
-    //   const inputAd = document.getElementById('addrdetail');
-    // }
-
+    };
 
     var _ref7 = (0, react_hook_form_1.useForm)(),
         handleSubmit = _ref7.handleSubmit; // 入力内容確認画面の表示・非表示

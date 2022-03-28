@@ -149,14 +149,16 @@ const Confirmation: (props: any) => JSX.Element = props => {
 
     axios.post('/store', inputAllFunction(e))
     .then(function (data) {
+      navigation('/doneSend');
       console.log(data);
     })
     .catch(function (error) {
+      alert(
+        '入力内容に誤りがあります。\n' +
+        'もう一度ご確認ください。'
+      )
       console.log(error);
-      // エラーの場合のビューを考えておく
     })
-
-    navigation('/doneSend');
   }
 
   return (
