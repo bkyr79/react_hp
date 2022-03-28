@@ -290,12 +290,6 @@ const Contact: FC = (): JSX.Element => {
             setCitiesProp = {setCitiesProp}
             setAddrdetailProp = {setAddrdetailProp}
           />
-          {/* 仮で値を表示させておく(フォームの値を取得できているかの確認のため) */}
-          {postCodeHProp}
-          {postCodeFProp}
-          {prefecturesProp}
-          {citiesProp}
-          {addrdetailProp}
 
           <tr style={tableRow}>
             <th style={tableHeader}>
