@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { init, send } from '@emailjs/browser';
 
 
 const content: {
@@ -89,6 +90,26 @@ const Confirmation: (props: any) => JSX.Element = props => {
     addrdetailValue,
     hideConfirmation} = props
 
+      // 入力値がDBに登録される
+  const ajax = (e: any) => {
+    e.preventDefault();
+    axios.post('/store', inputAllFunction(e))
+    .then(function (data) {
+      sendMail()
+      navigation('/doneSend');
+      console.log(data);
+    })
+    .catch(function (error) {
+      alert(
+        '入力内容に誤りがあります。\n' +
+        'もう一度ご確認ください。'
+      )
+      console.log(error);
+    })
+  }
+
+  const navigation = useNavigate();
+
   // 入力値の全てを、連想配列に格納する
   const inputAllFunction = (e: any) => {
     e.preventDefault();
@@ -142,23 +163,36 @@ const Confirmation: (props: any) => JSX.Element = props => {
     return inputAll;
   }
 
-  const navigation = useNavigate();
-  // 入力値がDBに登録される
-  const ajax = (e: any) => {
-    e.preventDefault();
-
-    axios.post('/store', inputAllFunction(e))
-    .then(function (data) {
-      navigation('/doneSend');
-      console.log(data);
-    })
-    .catch(function (error) {
-      alert(
-        '入力内容に誤りがあります。\n' +
-        'もう一度ご確認ください。'
-      )
-      console.log(error);
-    })
+  // メール送信のため..
+  const sendMail = () => {
+      // const userID = process.env.REACT_APP_USER_ID;
+      const serviceID = "service_k0sp2yt";
+      const templateID = "template_hn1jgao";
+      
+      if(
+        // userID !== undefined &&
+        // serviceID !== undefined &&
+        // templateID !== undefined
+        true
+      ){
+        console.log('条件はtrue→処理を実行します')
+        init("NQz9aQTuuTL5at2d_");
+    
+        const template_param = {
+          name: values.name,
+          postCode: postCodeHValue + '-' + postCodeFValue,
+          address1: prefecturesValue + ' ' + citiesValue,
+          address2: addrdetailValue,
+          company: values.company,
+          email: values.email,
+          subject: values.subject,
+          content: values.content,
+        };
+  
+        send(serviceID, templateID, template_param).then(() => {
+          //
+        });
+      }
   }
 
   return (
