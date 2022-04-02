@@ -91,9 +91,9 @@ const Confirmation: (props: any) => JSX.Element = props => {
     hideConfirmation} = props
 
   // mailjs（メール送信）に使用される変数
-  const userID = process.env.REACT_APP_USER_ID;
-  const serviceID = process.env.REACT_APP_SERVICE_ID;
-  const templateID = process.env.REACT_APP_TEMPLATE_ID;    
+  const userID = process.env.MIX_USER_ID;
+  const serviceID = process.env.MIX_SERVICE_ID;
+  const templateID = process.env.MIX_TEMPLATE_ID;    
   const template_param = {
     name: values.name,
     postCode: postCodeHValue + '-' + postCodeFValue,
@@ -188,10 +188,8 @@ const Confirmation: (props: any) => JSX.Element = props => {
       serviceID !== undefined &&
       templateID !== undefined
     ){
-      console.log('条件はtrue→処理を実行します')
       init(userID);
     } else {
-      console.log('return falseします')
       return false;
     }
   }

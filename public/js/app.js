@@ -2319,7 +2319,6 @@ module.exports = {
   \***************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2380,10 +2379,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
         prefecturesValue = props.prefecturesValue,
         citiesValue = props.citiesValue,
         addrdetailValue = props.addrdetailValue,
-        hideConfirmation = props.hideConfirmation;
-    var userID = process.env.REACT_APP_USER_ID;
-    var serviceID = process.env.REACT_APP_SERVICE_ID;
-    var templateID = process.env.REACT_APP_TEMPLATE_ID;
+        hideConfirmation = props.hideConfirmation; // mailjs（メール送信）に使用される変数
+
+    var userID = "NQz9aQTuuTL5at2d_";
+    var serviceID = "service_k0sp2yt";
+    var templateID = "template_hn1jgao";
     var template_param = {
       name: values.name,
       postCode: postCodeHValue + '-' + postCodeFValue,
@@ -2395,13 +2395,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       content: values.content
     }; // 入力値がDBに登録される
 
-    var ajax = function ajax(e) {
+    var registdataAndSendmail = function registdataAndSendmail(e) {
       e.preventDefault();
 
-      if (sendMail() !== false) {
+      if (mailjsIDCheck() !== false) {
         axios_1["default"].post('/store', inputAllFunction(e)).then(function (data) {
-          (0, browser_1.send)(serviceID, templateID, template_param).then(function () {//
-          });
+          (0, browser_1.send)(serviceID, templateID, template_param).then(function () {});
           navigation('/doneSend');
           console.log(data);
         })["catch"](function (error) {
@@ -2448,15 +2447,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
         content: content
       };
       return inputAll;
-    }; // メール送信のため..
+    }; // emailjsのIDをチェックする
 
 
-    var sendMail = function sendMail() {
+    var mailjsIDCheck = function mailjsIDCheck() {
       if (userID !== undefined && serviceID !== undefined && templateID !== undefined) {
-        console.log('条件はtrue→処理を実行します');
         (0, browser_1.init)(userID);
       } else {
-        console.log('return falseします');
         return false;
       }
     };
@@ -2503,7 +2500,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       //クリックでstateをクリアし、入力内容確認画面コンポーネントを非表示にする
       value: "\u9589\u3058\u308B"
     }), react_1["default"].createElement("button", {
-      onClick: ajax,
+      onClick: registdataAndSendmail,
       style: confirmBtn
     }, "\u9001\u4FE1"));
   };
