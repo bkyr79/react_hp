@@ -2319,6 +2319,7 @@ module.exports = {
   \***************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -2379,18 +2380,35 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
         prefecturesValue = props.prefecturesValue,
         citiesValue = props.citiesValue,
         addrdetailValue = props.addrdetailValue,
-        hideConfirmation = props.hideConfirmation; // 入力値がDBに登録される
+        hideConfirmation = props.hideConfirmation;
+    var userID = process.env.REACT_APP_USER_ID;
+    var serviceID = process.env.REACT_APP_SERVICE_ID;
+    var templateID = process.env.REACT_APP_TEMPLATE_ID;
+    var template_param = {
+      name: values.name,
+      postCode: postCodeHValue + '-' + postCodeFValue,
+      address1: prefecturesValue + ' ' + citiesValue,
+      address2: addrdetailValue,
+      company: values.company,
+      email: values.email,
+      subject: values.subject,
+      content: values.content
+    }; // 入力値がDBに登録される
 
     var ajax = function ajax(e) {
       e.preventDefault();
-      axios_1["default"].post('/store', inputAllFunction(e)).then(function (data) {
-        sendMail();
-        navigation('/doneSend');
-        console.log(data);
-      })["catch"](function (error) {
-        alert('入力内容に誤りがあります。\n' + 'もう一度ご確認ください。');
-        console.log(error);
-      });
+
+      if (sendMail() !== false) {
+        axios_1["default"].post('/store', inputAllFunction(e)).then(function (data) {
+          (0, browser_1.send)(serviceID, templateID, template_param).then(function () {//
+          });
+          navigation('/doneSend');
+          console.log(data);
+        })["catch"](function (error) {
+          alert('入力内容に誤りがあります。\n' + 'もう一度ご確認ください。');
+          console.log(error);
+        });
+      }
     };
 
     var navigation = (0, react_router_dom_1.useNavigate)(); // 入力値の全てを、連想配列に格納する
@@ -2434,28 +2452,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
 
     var sendMail = function sendMail() {
-      // const userID = process.env.REACT_APP_USER_ID;
-      var serviceID = "service_k0sp2yt";
-      var templateID = "template_hn1jgao";
-
-      if ( // userID !== undefined &&
-      // serviceID !== undefined &&
-      // templateID !== undefined
-      true) {
+      if (userID !== undefined && serviceID !== undefined && templateID !== undefined) {
         console.log('条件はtrue→処理を実行します');
-        (0, browser_1.init)("NQz9aQTuuTL5at2d_");
-        var template_param = {
-          name: values.name,
-          postCode: postCodeHValue + '-' + postCodeFValue,
-          address1: prefecturesValue + ' ' + citiesValue,
-          address2: addrdetailValue,
-          company: values.company,
-          email: values.email,
-          subject: values.subject,
-          content: values.content
-        };
-        (0, browser_1.send)(serviceID, templateID, template_param).then(function () {//
-        });
+        (0, browser_1.init)(userID);
+      } else {
+        console.log('return falseします');
+        return false;
       }
     };
 

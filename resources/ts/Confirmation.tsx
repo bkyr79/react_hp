@@ -90,22 +90,40 @@ const Confirmation: (props: any) => JSX.Element = props => {
     addrdetailValue,
     hideConfirmation} = props
 
-      // 入力値がDBに登録される
-  const ajax = (e: any) => {
+  // mailjs（メール送信）に使用される変数
+  const userID = process.env.REACT_APP_USER_ID;
+  const serviceID = process.env.REACT_APP_SERVICE_ID;
+  const templateID = process.env.REACT_APP_TEMPLATE_ID;    
+  const template_param = {
+    name: values.name,
+    postCode: postCodeHValue + '-' + postCodeFValue,
+    address1: prefecturesValue + ' ' + citiesValue,
+    address2: addrdetailValue,
+    company: values.company,
+    email: values.email,
+    subject: values.subject,
+    content: values.content,
+  };
+
+  // 入力値がDBに登録される
+  const registdataAndSendmail = (e: any) => {
     e.preventDefault();
-    axios.post('/store', inputAllFunction(e))
-    .then(function (data) {
-      sendMail()
-      navigation('/doneSend');
-      console.log(data);
-    })
-    .catch(function (error) {
-      alert(
-        '入力内容に誤りがあります。\n' +
-        'もう一度ご確認ください。'
-      )
-      console.log(error);
-    })
+    if(mailjsIDCheck() !== false){
+      axios.post('/store', inputAllFunction(e))
+      .then(function (data) {
+        send(serviceID!, templateID!, template_param).then(() => {
+        });
+        navigation('/doneSend');
+        console.log(data);
+      })
+      .catch(function (error) {
+        alert(
+          '入力内容に誤りがあります。\n' +
+          'もう一度ご確認ください。'
+        )
+        console.log(error);
+      })
+    }
   }
 
   const navigation = useNavigate();
@@ -163,36 +181,19 @@ const Confirmation: (props: any) => JSX.Element = props => {
     return inputAll;
   }
 
-  // メール送信のため..
-  const sendMail = () => {
-      // const userID = process.env.REACT_APP_USER_ID;
-      const serviceID = "service_k0sp2yt";
-      const templateID = "template_hn1jgao";
-      
-      if(
-        // userID !== undefined &&
-        // serviceID !== undefined &&
-        // templateID !== undefined
-        true
-      ){
-        console.log('条件はtrue→処理を実行します')
-        init("NQz9aQTuuTL5at2d_");
-    
-        const template_param = {
-          name: values.name,
-          postCode: postCodeHValue + '-' + postCodeFValue,
-          address1: prefecturesValue + ' ' + citiesValue,
-          address2: addrdetailValue,
-          company: values.company,
-          email: values.email,
-          subject: values.subject,
-          content: values.content,
-        };
-  
-        send(serviceID, templateID, template_param).then(() => {
-          //
-        });
-      }
+  // emailjsのIDをチェックする
+  const mailjsIDCheck = () => {
+    if(
+      userID !== undefined &&
+      serviceID !== undefined &&
+      templateID !== undefined
+    ){
+      console.log('条件はtrue→処理を実行します')
+      init(userID);
+    } else {
+      console.log('return falseします')
+      return false;
+    }
   }
 
   return (
@@ -214,7 +215,7 @@ const Confirmation: (props: any) => JSX.Element = props => {
         //クリックでstateをクリアし、入力内容確認画面コンポーネントを非表示にする
         value='閉じる'
       />
-      <button onClick={ajax} style={confirmBtn}>送信</button>
+      <button onClick={registdataAndSendmail} style={confirmBtn}>送信</button>
     </section>
   )
 }
