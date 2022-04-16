@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\LineMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,10 @@ Route::get('/{any}', function () {
 })->where('any', '.*');
 
 Route::post('/store', [ContactController::class, 'store']);
+
+Route::post('/line/webhook', [LineMessageController::class, 'webhook'])->name('line.webhook');
+
+Route::post('/sendLineMessage', [LineMessageController::class, 'sendLineMessage']);
 
 Route::post('/sample', [ContactController::class, 'sample']);
 
