@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 const LineMessage: (props: any) => JSX.Element = props => {
 
-  const idAndMessage = {
-    lineId: '@629jhpfn',
-    lineMessageText: 'サンプルのメッセージです'
+  const order = {
+    // 注文内容（後々、予約画面でユーザーが選択したものを取得できるようにする）
+    ordering_details: '・ミラノ風ドリア',
+    ordering_details2: '・辛味チキン'
   } 
 
   const SendLineMessage = (e: any) => {
     e.preventDefault();
-      axios.post('/sendLineMessage', idAndMessage)
+      axios.post('/sendLineMessage', order)
       .then(function (data) {        
         console.log(data);
       })
@@ -23,7 +24,7 @@ const LineMessage: (props: any) => JSX.Element = props => {
 
   return (
     <>
-      <button onClick={SendLineMessage}>LINEでメッセージ送信</button>
+      <button onClick={SendLineMessage}>予約確定ボタン</button>
     </>
   )
 }

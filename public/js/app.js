@@ -22712,25 +22712,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   axios_1 = __importDefault(axios_1);
 
   var LineMessage = function LineMessage(props) {
-    var idAndMessage = {
-      lineId: '@629jhpfn',
-      lineMessageText: 'サンプルのメッセージです'
+    var order = {
+      // 注文内容（後々、予約画面でユーザーが選択したものを取得できるようにする）
+      ordering_details: '・ミラノ風ドリア',
+      ordering_details2: '・辛味チキン'
     };
 
     var SendLineMessage = function SendLineMessage(e) {
       e.preventDefault();
-      axios_1["default"].post('/sendLineMessage', idAndMessage).then(function (data) {
+      axios_1["default"].post('/sendLineMessage', order).then(function (data) {
         console.log(data);
       })["catch"](function (error) {
-        // ここは通っている
-        // エラーの原因を探ろう
         console.log(error);
       });
     };
 
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("button", {
       onClick: SendLineMessage
-    }, "LINE\u3067\u30E1\u30C3\u30BB\u30FC\u30B8\u9001\u4FE1"));
+    }, "\u4E88\u7D04\u78BA\u5B9A\u30DC\u30BF\u30F3"));
   };
 
   exports["default"] = LineMessage;

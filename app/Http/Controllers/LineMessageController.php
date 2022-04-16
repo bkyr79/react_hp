@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-// use Illuminate\Http\LineId;
-// use Illuminate\Http\LineMessageText;
 use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
@@ -41,7 +39,7 @@ class LineMessageController extends Controller
     }
 
     // メッセージ送信用
-    public function sendLineMessage() {    
+    public function sendLineMessage(Request $request) {    
         // LINEBOTSDKの設定
         $http_client = new CurlHTTPClient(config('services.line.channel_token'));
         $bot = new LINEBot($http_client, ['channelSecret' => config('services.line.messenger_secret')]);
@@ -49,8 +47,10 @@ class LineMessageController extends Controller
         // LINEユーザーID指定
         $userId = config('services.line.sample_user_id');
 
+        $ordering_details = $request->ordering_details;
+        $ordering_details2 = $request->ordering_details2;
         // メッセージ設定
-        $message = "テイクアウトのご予約です🤗";
+        $message = "以下のご注文を受け付けました"."\n".$ordering_details."\n".$ordering_details2;
 
         // メッセージ送信
         $textMessageBuilder = new TextMessageBuilder($message);
