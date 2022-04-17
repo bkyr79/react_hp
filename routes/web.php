@@ -21,8 +21,10 @@ Route::get('/{any}', function () {
 
 Route::post('/store', [ContactController::class, 'store']);
 
+// LINEのMessaging APIでオウム返し
 Route::post('/line/webhook', [LineMessageController::class, 'webhook'])->name('line.webhook');
 
+// LINEのMessaging APIで注文受付メッセージを送信
 Route::post('/sendLineMessage', [LineMessageController::class, 'sendLineMessage']);
 
 Route::post('/sample', [ContactController::class, 'sample']);
