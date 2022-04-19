@@ -31,7 +31,7 @@ class LineMessageController extends Controller
 
             // 送信するメッセージの設定            
             $reply_message = 'いただいたメッセージ『'.$message_content
-            .'』に関しまして、システムが整い次第対応いたします。それまでしばくお待ちくださいませ🙇‍♂️';
+            .'』に関しまして、システムが整い次第対応いたします。それまでしばらくお待ちくださいませ🙇‍♂️';
 
             // ユーザーの送信メッセージに応じて、応答メッセージを変えることもできる
             // （仮に、送信メッセージが'リピート'の場合に$orderの中身を返してみる）
@@ -62,8 +62,11 @@ class LineMessageController extends Controller
         // 仮の注文データ
         $ordering_details = $request->ordering_details;
         $ordering_details2 = $request->ordering_details2;
+        $ordering_details88 = $request->ordering_details88;
+        var_export($request);
         // メッセージ設定
-        $message = "以下のご注文を受け付けました"."\n".$ordering_details."\n".$ordering_details2;
+        // $message = "以下のご注文を受け付けました"."\n".$ordering_details."\n".$ordering_details2;
+        $message = "以下のご注文を受け付けました"."\n".$ordering_details88;
 
         // メッセージ送信
         $textMessageBuilder = new TextMessageBuilder($message);

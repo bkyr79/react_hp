@@ -22717,6 +22717,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       ordering_details: '・ミラノ風ドリア',
       ordering_details2: '・辛味チキン'
     };
+    var hamburg_steak = {
+      ordering_details88: '・ハンバーグステーキ'
+    };
+    var pepe = {
+      ordering_details88: '・ペペロンチーノ'
+    };
+    var ice_cream = {
+      ordering_details88: '・ジェラート'
+    };
 
     var SendLineMessage = function SendLineMessage(e) {
       e.preventDefault();
@@ -22727,9 +22736,36 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       });
     };
 
+    var SendLineMessage2 = function SendLineMessage2(order) {
+      axios_1["default"].post('/sendLineMessage', order).then(function (data) {
+        console.log(data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    };
+
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("button", {
-      onClick: SendLineMessage
-    }, "\u4E88\u7D04\u78BA\u5B9A\u30DC\u30BF\u30F3"));
+      style: {
+        marginRight: '2px'
+      },
+      onClick: function onClick() {
+        return SendLineMessage2(hamburg_steak);
+      }
+    }, "\u30CF\u30F3\u30D0\u30FC\u30B0\u30B9\u30C6\u30FC\u30AD"), react_1["default"].createElement("button", {
+      style: {
+        marginRight: '2px'
+      },
+      onClick: function onClick() {
+        return SendLineMessage2(pepe);
+      }
+    }, "\u30DA\u30DA\u30ED\u30F3\u30C1\u30FC\u30CE"), react_1["default"].createElement("button", {
+      style: {
+        marginRight: '2px'
+      },
+      onClick: function onClick() {
+        return SendLineMessage2(ice_cream);
+      }
+    }, "\u30FB\u30B8\u30A7\u30E9\u30FC\u30C8"));
   };
 
   exports["default"] = LineMessage;
