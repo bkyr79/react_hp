@@ -1,10 +1,11 @@
 import React, { useState, FC } from "react";
-import ContactAddress from "./ContactAddress";
+import ContactAddress from "./component/ContactAddress";
+import Confirmation from './component/Confirmation'
+
 import { useFormik } from "formik";
 import {Element, scroller} from 'react-scroll'
 import * as Yup from "yup";
 import {useForm} from 'react-hook-form'
-import Confirmation from './Confirmation'
 
 
 type FormValueType = {

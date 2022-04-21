@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
-import Contact from "./Contact";
-import DoneSend from "./DoneSend";
+import Contact from "./ContactMain";
+import DoneSend from "./component/DoneSend";
 import ReserveMain from "./ReserveMain"
 
 const App = (): JSX.Element => {

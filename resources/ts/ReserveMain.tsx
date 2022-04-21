@@ -1,6 +1,6 @@
 import React from 'react'
-import Calendar from './Calendar'
-import LineMessage from "./LineMessage"
+import Calendar from './component/Calendar'
+import LineMessage from "./component/LineMessage"
 
 
 const ReserveMain = (): JSX.Element => {

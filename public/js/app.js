@@ -21230,10 +21230,543 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/ts/Calendar.tsx":
-/*!***********************************!*\
-  !*** ./resources/ts/Calendar.tsx ***!
-  \***********************************/
+/***/ "./resources/ts/ContactMain.tsx":
+/*!**************************************!*\
+  !*** ./resources/ts/ContactMain.tsx ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./component/ContactAddress */ "./resources/ts/component/ContactAddress.tsx"), __webpack_require__(/*! ./component/Confirmation */ "./resources/ts/component/Confirmation.tsx"), __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js"), __webpack_require__(/*! react-scroll */ "./node_modules/react-scroll/modules/index.js"), __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js"), __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.cjs.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactAddress_1, Confirmation_1, formik_1, react_scroll_1, Yup, react_hook_form_1) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", ({
+    value: true
+  }));
+  exports.UserCount = void 0;
+  react_1 = __importStar(react_1);
+  ContactAddress_1 = __importDefault(ContactAddress_1);
+  Confirmation_1 = __importDefault(Confirmation_1);
+  Yup = __importStar(Yup);
+  exports.UserCount = react_1["default"].createContext({
+    postCodeH: '',
+    postCodeF: '',
+    prefectures: '',
+    cities: '',
+    addrdetail: ''
+  });
+
+  var Contact = function Contact() {
+    var content = {
+      margin: '0 200px'
+    };
+    var description = {
+      marginBottom: '30px'
+    };
+    var descriptionMsg = {
+      fontSize: '15px'
+    };
+    var contentsBox = {
+      width: '65%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      display: 'table',
+      borderCollapse: 'separate',
+      boxSizing: 'border-box',
+      textIndent: 'initial',
+      borderSpacing: '2px',
+      borderColor: 'grey'
+    };
+    var tableRow = {
+      height: '40px',
+      marginBottom: '10px'
+    };
+    var tableHeader = {
+      textAlign: 'left'
+    };
+    var tableHeaderTittle = {
+      fontSize: '16px'
+    };
+    var formInput = {
+      outline: 'none',
+      fontFamily: 'system-ui',
+      display: 'block',
+      border: '3px solid #f6f5f4',
+      borderRadius: '4px',
+      height: '34px',
+      fontSize: '15px',
+      color: '#777',
+      boxSizing: 'border-box',
+      width: '85%',
+      paddingLeft: '5px'
+    };
+    var formTextarea = {
+      outline: 'none',
+      fontFamily: 'system-ui',
+      display: 'block',
+      border: '3px solid #f6f5f4',
+      borderRadius: '4px',
+      height: '200px',
+      fontSize: '15px',
+      color: '#777',
+      boxSizing: 'border-box',
+      width: '85%',
+      paddingLeft: '5px'
+    };
+    var confirmBtn = {
+      display: 'inline-block',
+      border: 'none',
+      cursor: 'pointer',
+      borderRadius: '5px',
+      boxSizing: 'border-box',
+      transition: '.3s',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+      loat: 'right',
+      color: '#fff',
+      padding: '15px 30px',
+      fontSize: '18px',
+      width: '65%',
+      background: 'linear-gradient(to right, #E3E3E3, #90979f)',
+      margin: '25px 0 60px 0'
+    };
+    var errorTitle = {
+      color: 'red',
+      textAlign: 'left',
+      paddingLeft: '5px'
+    }; // 入力内容確認画面の表示・非表示
+
+    var _ref = (0, react_1.useState)(false),
+        _ref2 = _slicedToArray(_ref, 2),
+        isConfirmationVisible = _ref2[0],
+        setIsConfirmationVisible = _ref2[1]; // 閉じるボタンを押した時非表示にする
+
+
+    var hideConfirmation = function hideConfirmation() {
+      return setIsConfirmationVisible(false);
+    }; // submitボタンを押した時、入力内容確認画面を表示させる
+
+
+    var onSubmitData = function onSubmitData() {
+      return setIsConfirmationVisible(true);
+    };
+
+    var scrollToTarget = function scrollToTarget() {
+      react_scroll_1.scroller.scrollTo('scrollTarget', {
+        duration: 800,
+        delay: 0,
+        smooth: 'easeOutQuint'
+      });
+    };
+
+    var initialValues = {
+      name: '',
+      postCodeH: '',
+      postCodeF: '',
+      prefectures: '',
+      cities: '',
+      addrdetail: '',
+      company: '',
+      email: '',
+      subject: '',
+      content: ''
+    };
+    var validationSchema = Yup.object({
+      name: Yup.string().max(15, "15文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      }),
+      company: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      }),
+      email: Yup.string().email("Emailの形式で入力してください。").required("入力してください"),
+      subject: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      }),
+      content: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
+        message: '文字列が有効ではありません'
+      })
+    });
+
+    var _ref3 = (0, react_hook_form_1.useForm)(),
+        handleSubmit = _ref3.handleSubmit; // submitボタンを押した時、入力内容確認画面を表示させる
+
+
+    var onSubmit = function onSubmit() {
+      handleSubmit(onSubmitData);
+    };
+
+    var formik = (0, formik_1.useFormik)({
+      initialValues: initialValues,
+      validationSchema: validationSchema,
+      onSubmit: onSubmit
+    }); // ContactAddressコンポーネントに渡すためのuseState
+    // 子コンポーネントから親コンポーネントのstateを変更することで、子から親へ値を渡せる
+
+    var _ref4 = (0, react_1.useState)(""),
+        _ref5 = _slicedToArray(_ref4, 2),
+        postCodeHProp = _ref5[0],
+        setPostCodeHProp = _ref5[1];
+
+    var _ref6 = (0, react_1.useState)(""),
+        _ref7 = _slicedToArray(_ref6, 2),
+        postCodeFProp = _ref7[0],
+        setPostCodeFProp = _ref7[1];
+
+    var _ref8 = (0, react_1.useState)(""),
+        _ref9 = _slicedToArray(_ref8, 2),
+        prefecturesProp = _ref9[0],
+        setPrefecturesProp = _ref9[1];
+
+    var _ref10 = (0, react_1.useState)(""),
+        _ref11 = _slicedToArray(_ref10, 2),
+        citiesProp = _ref11[0],
+        setCitiesProp = _ref11[1];
+
+    var _ref12 = (0, react_1.useState)(""),
+        _ref13 = _slicedToArray(_ref12, 2),
+        addrdetailProp = _ref13[0],
+        setAddrdetailProp = _ref13[1];
+
+    return react_1["default"].createElement("section", {
+      style: content
+    }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
+      style: description
+    }, react_1["default"].createElement("span", {
+      style: descriptionMsg
+    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", {
+      onSubmit: handleSubmit(onSubmitData)
+    }, react_1["default"].createElement("table", {
+      style: contentsBox
+    }, react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u3054\u6C0F\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      name: "name",
+      type: "text",
+      id: "name",
+      value: formik.values.name,
+      onChange: formik.handleChange,
+      style: formInput
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, formik.errors.name)), react_1["default"].createElement(ContactAddress_1["default"]
+    /* @ts-ignore */
+    , {
+      /* @ts-ignore */
+      setPostCodeHProp: setPostCodeHProp,
+      setPostCodeFProp: setPostCodeFProp,
+      setPrefecturesProp: setPrefecturesProp,
+      setCitiesProp: setCitiesProp,
+      setAddrdetailProp: setAddrdetailProp
+    }), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u4F1A\u793E\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      name: "company",
+      type: "text",
+      id: "company",
+      value: formik.values.company,
+      onChange: formik.handleChange,
+      style: formInput
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, formik.errors.company)), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      name: "email",
+      type: "email",
+      id: "email",
+      value: formik.values.email,
+      onChange: formik.handleChange,
+      style: formInput
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, formik.errors.email)), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u4EF6\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
+      name: "subject",
+      type: "text",
+      id: "subject",
+      value: formik.values.subject,
+      onChange: formik.handleChange,
+      style: formInput
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, formik.errors.subject)), react_1["default"].createElement("tr", {
+      style: tableRow
+    }, react_1["default"].createElement("th", {
+      style: tableHeader
+    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
+      style: tableHeaderTittle
+    }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
+      name: "content",
+      id: "content",
+      value: formik.values.content,
+      onChange: formik.handleChange,
+      style: formTextarea
+    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
+      style: tableHeader
+    }), react_1["default"].createElement("div", {
+      style: errorTitle
+    }, formik.errors.content))), react_1["default"].createElement("input", {
+      type: 'submit',
+      value: "\u78BA\u8A8D",
+      onClick: scrollToTarget,
+      style: confirmBtn
+    })), react_1["default"].createElement(react_scroll_1.Element, {
+      name: 'scrollTarget'
+    }), isConfirmationVisible && //trueの時だけ入力内容確認画面を表示
+    react_1["default"].createElement(Confirmation_1["default"] //入力内容確認画面コンポーネント
+    , {
+      values: formik.values,
+      postCodeHValue: postCodeHProp,
+      postCodeFValue: postCodeFProp,
+      prefecturesValue: prefecturesProp,
+      citiesValue: citiesProp,
+      addrdetailValue: addrdetailProp,
+      hideConfirmation: hideConfirmation
+    }));
+  };
+
+  exports["default"] = Contact;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ "./resources/ts/ReserveMain.tsx":
+/*!**************************************!*\
+  !*** ./resources/ts/ReserveMain.tsx ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./component/Calendar */ "./resources/ts/component/Calendar.tsx"), __webpack_require__(/*! ./component/LineMessage */ "./resources/ts/component/LineMessage.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, Calendar_1, LineMessage_1) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", ({
+    value: true
+  }));
+  react_1 = __importDefault(react_1);
+  Calendar_1 = __importDefault(Calendar_1);
+  LineMessage_1 = __importDefault(LineMessage_1);
+
+  var ReserveMain = function ReserveMain() {
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(LineMessage_1["default"], null), react_1["default"].createElement(Calendar_1["default"], null));
+  };
+
+  exports["default"] = ReserveMain;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ "./resources/ts/app.tsx":
+/*!******************************!*\
+  !*** ./resources/ts/app.tsx ***!
+  \******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js"), __webpack_require__(/*! ./ContactMain */ "./resources/ts/ContactMain.tsx"), __webpack_require__(/*! ./component/DoneSend */ "./resources/ts/component/DoneSend.tsx"), __webpack_require__(/*! ./ReserveMain */ "./resources/ts/ReserveMain.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_router_dom_1, ContactMain_1, DoneSend_1, ReserveMain_1) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", ({
+    value: true
+  }));
+  react_1 = __importDefault(react_1);
+  react_dom_1 = __importDefault(react_dom_1);
+  ContactMain_1 = __importDefault(ContactMain_1);
+  DoneSend_1 = __importDefault(DoneSend_1);
+  ReserveMain_1 = __importDefault(ReserveMain_1);
+
+  var App = function App() {
+    var tabsTop = {
+      margin: '0 200px'
+    };
+    var tabList = {
+      listStyleType: 'none',
+      display: 'inline-block',
+      margin: '40px 20px',
+      cursor: 'pointer'
+    };
+    var tabItemTittle = {
+      fontSize: '16px'
+    };
+    var tabItem = {
+      display: 'block',
+      "float": 'left',
+      margin: '0 20px'
+    };
+    return react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement("div", {
+      style: tabsTop
+    }, react_1["default"].createElement("div", {
+      style: tabList
+    }, react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "TOP")), react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/info"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "INFO")), react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/menu"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "MENU")), react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/calendar"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "CALENDAR")), react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/contact"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "\u554F\u3044\u5408\u308F\u305B")), react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/profile"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "PROFILE")), react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/reserve"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "RESERVE")), react_1["default"].createElement(react_router_dom_1.Link, {
+      style: tabItem,
+      to: "/diary"
+    }, react_1["default"].createElement("span", {
+      style: tabItemTittle
+    }, "DIARY")))), react_1["default"].createElement(react_router_dom_1.Routes, null, react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/",
+      element: react_1["default"].createElement("h2", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8\u3067\u3059")
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/info",
+      element: react_1["default"].createElement("h2", null, "\u30A4\u30F3\u30D5\u30A9\u30E1\u30FC\u30B7\u30E7\u30F3\u3067\u3059")
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/menu",
+      element: react_1["default"].createElement("h2", null, "\u30E1\u30CB\u30E5\u30FC\u3067\u3059")
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/calendar",
+      element: react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/contact",
+      element: react_1["default"].createElement(ContactMain_1["default"], null)
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/profile",
+      element: react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/reserve",
+      element: react_1["default"].createElement(ReserveMain_1["default"], null)
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/diary",
+      element: react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/sample",
+      element: react_1["default"].createElement("div", null, "\u30B5\u30F3\u30D7\u30EB\u753B\u9762\u3067\u3059")
+    }), react_1["default"].createElement(react_router_dom_1.Route, {
+      path: "/doneSend",
+      element: react_1["default"].createElement(DoneSend_1["default"], null)
+    })));
+  };
+
+  react_dom_1["default"].render(react_1["default"].createElement(App, null), document.getElementById("root"));
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ "./resources/ts/component/Calendar.tsx":
+/*!*********************************************!*\
+  !*** ./resources/ts/component/Calendar.tsx ***!
+  \*********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -21553,10 +22086,10 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
 /***/ }),
 
-/***/ "./resources/ts/Confirmation.tsx":
-/*!***************************************!*\
-  !*** ./resources/ts/Confirmation.tsx ***!
-  \***************************************/
+/***/ "./resources/ts/component/Confirmation.tsx":
+/*!*************************************************!*\
+  !*** ./resources/ts/component/Confirmation.tsx ***!
+  \*************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
@@ -21751,386 +22284,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
 /***/ }),
 
-/***/ "./resources/ts/Contact.tsx":
-/*!**********************************!*\
-  !*** ./resources/ts/Contact.tsx ***!
-  \**********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ContactAddress */ "./resources/ts/ContactAddress.tsx"), __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js"), __webpack_require__(/*! react-scroll */ "./node_modules/react-scroll/modules/index.js"), __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js"), __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.cjs.js"), __webpack_require__(/*! ./Confirmation */ "./resources/ts/Confirmation.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ContactAddress_1, formik_1, react_scroll_1, Yup, react_hook_form_1, Confirmation_1) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", ({
-    value: true
-  }));
-  exports.UserCount = void 0;
-  react_1 = __importStar(react_1);
-  ContactAddress_1 = __importDefault(ContactAddress_1);
-  Yup = __importStar(Yup);
-  Confirmation_1 = __importDefault(Confirmation_1);
-  exports.UserCount = react_1["default"].createContext({
-    postCodeH: '',
-    postCodeF: '',
-    prefectures: '',
-    cities: '',
-    addrdetail: ''
-  });
-
-  var Contact = function Contact() {
-    var content = {
-      margin: '0 200px'
-    };
-    var description = {
-      marginBottom: '30px'
-    };
-    var descriptionMsg = {
-      fontSize: '15px'
-    };
-    var contentsBox = {
-      width: '65%',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      display: 'table',
-      borderCollapse: 'separate',
-      boxSizing: 'border-box',
-      textIndent: 'initial',
-      borderSpacing: '2px',
-      borderColor: 'grey'
-    };
-    var tableRow = {
-      height: '40px',
-      marginBottom: '10px'
-    };
-    var tableHeader = {
-      textAlign: 'left'
-    };
-    var tableHeaderTittle = {
-      fontSize: '16px'
-    };
-    var formInput = {
-      outline: 'none',
-      fontFamily: 'system-ui',
-      display: 'block',
-      border: '3px solid #f6f5f4',
-      borderRadius: '4px',
-      height: '34px',
-      fontSize: '15px',
-      color: '#777',
-      boxSizing: 'border-box',
-      width: '85%',
-      paddingLeft: '5px'
-    };
-    var formTextarea = {
-      outline: 'none',
-      fontFamily: 'system-ui',
-      display: 'block',
-      border: '3px solid #f6f5f4',
-      borderRadius: '4px',
-      height: '200px',
-      fontSize: '15px',
-      color: '#777',
-      boxSizing: 'border-box',
-      width: '85%',
-      paddingLeft: '5px'
-    };
-    var confirmBtn = {
-      display: 'inline-block',
-      border: 'none',
-      cursor: 'pointer',
-      borderRadius: '5px',
-      boxSizing: 'border-box',
-      transition: '.3s',
-      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-      loat: 'right',
-      color: '#fff',
-      padding: '15px 30px',
-      fontSize: '18px',
-      width: '65%',
-      background: 'linear-gradient(to right, #E3E3E3, #90979f)',
-      margin: '25px 0 60px 0'
-    };
-    var errorTitle = {
-      color: 'red',
-      textAlign: 'left',
-      paddingLeft: '5px'
-    }; // 入力内容確認画面の表示・非表示
-
-    var _ref = (0, react_1.useState)(false),
-        _ref2 = _slicedToArray(_ref, 2),
-        isConfirmationVisible = _ref2[0],
-        setIsConfirmationVisible = _ref2[1]; // 閉じるボタンを押した時非表示にする
-
-
-    var hideConfirmation = function hideConfirmation() {
-      return setIsConfirmationVisible(false);
-    }; // submitボタンを押した時、入力内容確認画面を表示させる
-
-
-    var onSubmitData = function onSubmitData() {
-      return setIsConfirmationVisible(true);
-    };
-
-    var scrollToTarget = function scrollToTarget() {
-      react_scroll_1.scroller.scrollTo('scrollTarget', {
-        duration: 800,
-        delay: 0,
-        smooth: 'easeOutQuint'
-      });
-    };
-
-    var initialValues = {
-      name: '',
-      postCodeH: '',
-      postCodeF: '',
-      prefectures: '',
-      cities: '',
-      addrdetail: '',
-      company: '',
-      email: '',
-      subject: '',
-      content: ''
-    };
-    var validationSchema = Yup.object({
-      name: Yup.string().max(15, "15文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-        message: '文字列が有効ではありません'
-      }),
-      company: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-        message: '文字列が有効ではありません'
-      }),
-      email: Yup.string().email("Emailの形式で入力してください。").required("入力してください"),
-      subject: Yup.string().max(20, "20文字以内で入力してください").required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-        message: '文字列が有効ではありません'
-      }),
-      content: Yup.string().required("入力してください").matches(/^[^\x20-\x7e]*$/, {
-        message: '文字列が有効ではありません'
-      })
-    });
-
-    var _ref3 = (0, react_hook_form_1.useForm)(),
-        handleSubmit = _ref3.handleSubmit; // submitボタンを押した時、入力内容確認画面を表示させる
-
-
-    var onSubmit = function onSubmit() {
-      handleSubmit(onSubmitData);
-    };
-
-    var formik = (0, formik_1.useFormik)({
-      initialValues: initialValues,
-      validationSchema: validationSchema,
-      onSubmit: onSubmit
-    }); // ContactAddressコンポーネントに渡すためのuseState
-    // 子コンポーネントから親コンポーネントのstateを変更することで、子から親へ値を渡せる
-
-    var _ref4 = (0, react_1.useState)(""),
-        _ref5 = _slicedToArray(_ref4, 2),
-        postCodeHProp = _ref5[0],
-        setPostCodeHProp = _ref5[1];
-
-    var _ref6 = (0, react_1.useState)(""),
-        _ref7 = _slicedToArray(_ref6, 2),
-        postCodeFProp = _ref7[0],
-        setPostCodeFProp = _ref7[1];
-
-    var _ref8 = (0, react_1.useState)(""),
-        _ref9 = _slicedToArray(_ref8, 2),
-        prefecturesProp = _ref9[0],
-        setPrefecturesProp = _ref9[1];
-
-    var _ref10 = (0, react_1.useState)(""),
-        _ref11 = _slicedToArray(_ref10, 2),
-        citiesProp = _ref11[0],
-        setCitiesProp = _ref11[1];
-
-    var _ref12 = (0, react_1.useState)(""),
-        _ref13 = _slicedToArray(_ref12, 2),
-        addrdetailProp = _ref13[0],
-        setAddrdetailProp = _ref13[1];
-
-    return react_1["default"].createElement("section", {
-      style: content
-    }, react_1["default"].createElement("h2", null, "\u304A\u554F\u3044\u5408\u308F\u305B"), react_1["default"].createElement("div", {
-      style: description
-    }, react_1["default"].createElement("span", {
-      style: descriptionMsg
-    }, "\u3054\u5165\u529B\u306E\u4E0A\u3001\u300C\u78BA\u8A8D\u300D\u30DC\u30BF\u30F3\u3092\u62BC\u3057\u3066\u304F\u3060\u3055\u3044\u3002")), react_1["default"].createElement("form", {
-      onSubmit: handleSubmit(onSubmitData)
-    }, react_1["default"].createElement("table", {
-      style: contentsBox
-    }, react_1["default"].createElement("tr", {
-      style: tableRow
-    }, react_1["default"].createElement("th", {
-      style: tableHeader
-    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
-      style: tableHeaderTittle
-    }, "\u3054\u6C0F\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      name: "name",
-      type: "text",
-      id: "name",
-      value: formik.values.name,
-      onChange: formik.handleChange,
-      style: formInput
-    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
-      style: tableHeader
-    }), react_1["default"].createElement("div", {
-      style: errorTitle
-    }, formik.errors.name)), react_1["default"].createElement(ContactAddress_1["default"]
-    /* @ts-ignore */
-    , {
-      /* @ts-ignore */
-      setPostCodeHProp: setPostCodeHProp,
-      setPostCodeFProp: setPostCodeFProp,
-      setPrefecturesProp: setPrefecturesProp,
-      setCitiesProp: setCitiesProp,
-      setAddrdetailProp: setAddrdetailProp
-    }), react_1["default"].createElement("tr", {
-      style: tableRow
-    }, react_1["default"].createElement("th", {
-      style: tableHeader
-    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
-      style: tableHeaderTittle
-    }, "\u4F1A\u793E\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      name: "company",
-      type: "text",
-      id: "company",
-      value: formik.values.company,
-      onChange: formik.handleChange,
-      style: formInput
-    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
-      style: tableHeader
-    }), react_1["default"].createElement("div", {
-      style: errorTitle
-    }, formik.errors.company)), react_1["default"].createElement("tr", {
-      style: tableRow
-    }, react_1["default"].createElement("th", {
-      style: tableHeader
-    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
-      style: tableHeaderTittle
-    }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      name: "email",
-      type: "email",
-      id: "email",
-      value: formik.values.email,
-      onChange: formik.handleChange,
-      style: formInput
-    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
-      style: tableHeader
-    }), react_1["default"].createElement("div", {
-      style: errorTitle
-    }, formik.errors.email)), react_1["default"].createElement("tr", {
-      style: tableRow
-    }, react_1["default"].createElement("th", {
-      style: tableHeader
-    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
-      style: tableHeaderTittle
-    }, "\u4EF6\u540D\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("input", {
-      name: "subject",
-      type: "text",
-      id: "subject",
-      value: formik.values.subject,
-      onChange: formik.handleChange,
-      style: formInput
-    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
-      style: tableHeader
-    }), react_1["default"].createElement("div", {
-      style: errorTitle
-    }, formik.errors.subject)), react_1["default"].createElement("tr", {
-      style: tableRow
-    }, react_1["default"].createElement("th", {
-      style: tableHeader
-    }, react_1["default"].createElement("label", null, react_1["default"].createElement("span", {
-      style: tableHeaderTittle
-    }, "\u304A\u554F\u3044\u5408\u308F\u305B\u5185\u5BB9\uFF1A"))), react_1["default"].createElement("td", null, react_1["default"].createElement("textarea", {
-      name: "content",
-      id: "content",
-      value: formik.values.content,
-      onChange: formik.handleChange,
-      style: formTextarea
-    }))), react_1["default"].createElement("tr", null, react_1["default"].createElement("th", {
-      style: tableHeader
-    }), react_1["default"].createElement("div", {
-      style: errorTitle
-    }, formik.errors.content))), react_1["default"].createElement("input", {
-      type: 'submit',
-      value: "\u78BA\u8A8D",
-      onClick: scrollToTarget,
-      style: confirmBtn
-    })), react_1["default"].createElement(react_scroll_1.Element, {
-      name: 'scrollTarget'
-    }), isConfirmationVisible && //trueの時だけ入力内容確認画面を表示
-    react_1["default"].createElement(Confirmation_1["default"] //入力内容確認画面コンポーネント
-    , {
-      values: formik.values,
-      postCodeHValue: postCodeHProp,
-      postCodeFValue: postCodeFProp,
-      prefecturesValue: prefecturesProp,
-      citiesValue: citiesProp,
-      addrdetailValue: addrdetailProp,
-      hideConfirmation: hideConfirmation
-    }));
-  };
-
-  exports["default"] = Contact;
-}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ }),
-
-/***/ "./resources/ts/ContactAddress.tsx":
-/*!*****************************************!*\
-  !*** ./resources/ts/ContactAddress.tsx ***!
-  \*****************************************/
+/***/ "./resources/ts/component/ContactAddress.tsx":
+/*!***************************************************!*\
+  !*** ./resources/ts/component/ContactAddress.tsx ***!
+  \***************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -22659,10 +22816,10 @@ var __importStar = this && this.__importStar || function (mod) {
 
 /***/ }),
 
-/***/ "./resources/ts/DoneSend.tsx":
-/*!***********************************!*\
-  !*** ./resources/ts/DoneSend.tsx ***!
-  \***********************************/
+/***/ "./resources/ts/component/DoneSend.tsx":
+/*!*********************************************!*\
+  !*** ./resources/ts/component/DoneSend.tsx ***!
+  \*********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
@@ -22689,10 +22846,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
 
 /***/ }),
 
-/***/ "./resources/ts/LineMessage.tsx":
-/*!**************************************!*\
-  !*** ./resources/ts/LineMessage.tsx ***!
-  \**************************************/
+/***/ "./resources/ts/component/LineMessage.tsx":
+/*!************************************************!*\
+  !*** ./resources/ts/component/LineMessage.tsx ***!
+  \************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
@@ -22769,163 +22926,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 
   exports["default"] = LineMessage;
-}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ }),
-
-/***/ "./resources/ts/ReserveMain.tsx":
-/*!**************************************!*\
-  !*** ./resources/ts/ReserveMain.tsx ***!
-  \**************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./Calendar */ "./resources/ts/Calendar.tsx"), __webpack_require__(/*! ./LineMessage */ "./resources/ts/LineMessage.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, Calendar_1, LineMessage_1) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", ({
-    value: true
-  }));
-  react_1 = __importDefault(react_1);
-  Calendar_1 = __importDefault(Calendar_1);
-  LineMessage_1 = __importDefault(LineMessage_1);
-
-  var ReserveMain = function ReserveMain() {
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(LineMessage_1["default"], null), react_1["default"].createElement(Calendar_1["default"], null));
-  };
-
-  exports["default"] = ReserveMain;
-}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ }),
-
-/***/ "./resources/ts/app.tsx":
-/*!******************************!*\
-  !*** ./resources/ts/app.tsx ***!
-  \******************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js"), __webpack_require__(/*! ./Contact */ "./resources/ts/Contact.tsx"), __webpack_require__(/*! ./DoneSend */ "./resources/ts/DoneSend.tsx"), __webpack_require__(/*! ./ReserveMain */ "./resources/ts/ReserveMain.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_router_dom_1, Contact_1, DoneSend_1, ReserveMain_1) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", ({
-    value: true
-  }));
-  react_1 = __importDefault(react_1);
-  react_dom_1 = __importDefault(react_dom_1);
-  Contact_1 = __importDefault(Contact_1);
-  DoneSend_1 = __importDefault(DoneSend_1);
-  ReserveMain_1 = __importDefault(ReserveMain_1);
-
-  var App = function App() {
-    var tabsTop = {
-      margin: '0 200px'
-    };
-    var tabList = {
-      listStyleType: 'none',
-      display: 'inline-block',
-      margin: '40px 20px',
-      cursor: 'pointer'
-    };
-    var tabItemTittle = {
-      fontSize: '16px'
-    };
-    var tabItem = {
-      display: 'block',
-      "float": 'left',
-      margin: '0 20px'
-    };
-    return react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement("div", {
-      style: tabsTop
-    }, react_1["default"].createElement("div", {
-      style: tabList
-    }, react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "TOP")), react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/info"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "INFO")), react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/menu"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "MENU")), react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/calendar"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "CALENDAR")), react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/contact"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "\u554F\u3044\u5408\u308F\u305B")), react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/profile"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "PROFILE")), react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/reserve"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "RESERVE")), react_1["default"].createElement(react_router_dom_1.Link, {
-      style: tabItem,
-      to: "/diary"
-    }, react_1["default"].createElement("span", {
-      style: tabItemTittle
-    }, "DIARY")))), react_1["default"].createElement(react_router_dom_1.Routes, null, react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/",
-      element: react_1["default"].createElement("h2", null, "\u30C8\u30C3\u30D7\u30DA\u30FC\u30B8\u3067\u3059")
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/info",
-      element: react_1["default"].createElement("h2", null, "\u30A4\u30F3\u30D5\u30A9\u30E1\u30FC\u30B7\u30E7\u30F3\u3067\u3059")
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/menu",
-      element: react_1["default"].createElement("h2", null, "\u30E1\u30CB\u30E5\u30FC\u3067\u3059")
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/calendar",
-      element: react_1["default"].createElement("h2", null, "\u30AB\u30EC\u30F3\u30C0\u30FC\u3067\u3059")
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/contact",
-      element: react_1["default"].createElement(Contact_1["default"], null)
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/profile",
-      element: react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/reserve",
-      element: react_1["default"].createElement(ReserveMain_1["default"], null)
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/diary",
-      element: react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/sample",
-      element: react_1["default"].createElement("div", null, "\u30B5\u30F3\u30D7\u30EB\u753B\u9762\u3067\u3059")
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/doneSend",
-      element: react_1["default"].createElement(DoneSend_1["default"], null)
-    })));
-  };
-
-  react_dom_1["default"].render(react_1["default"].createElement(App, null), document.getElementById("root"));
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
