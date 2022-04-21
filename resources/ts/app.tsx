@@ -4,7 +4,7 @@ import { BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
 import Contact from "./Contact";
 import DoneSend from "./DoneSend";
-import SampleCalendar from "./Calendar"
+import ReserveMain from "./ReserveMain"
 
 const App = (): JSX.Element => {
   const tabsTop: {
@@ -68,7 +68,7 @@ const App = (): JSX.Element => {
           <Route path="/calendar" element={<h2>カレンダーです</h2>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<h2>プロフィールです</h2>} />
-          <Route path="/reserve" element={<SampleCalendar />}/>
+          <Route path="/reserve" element={<ReserveMain />}/>
           <Route path="/diary" element={<h2>日記です</h2>} />
           <Route path="/sample" element={<div>サンプル画面です</div>}/>
           <Route path="/doneSend" element={<DoneSend />}/>

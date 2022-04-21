@@ -35,13 +35,13 @@ class LineMessageController extends Controller
 
             // ユーザーの送信メッセージに応じて、応答メッセージを変えることもできる
             // （仮に、送信メッセージが'リピート'の場合に$orderの中身を返してみる）
-            if($message_content === 'リピート'){
-                $order = [
-                    "ordering_details" => "・ミラノ風ドリア",
-                    "ordering_details2" => "・辛味チキン",
-                ];
-                $reply_message = $order['ordering_details']."\n".$order['ordering_details2'];
-            }
+            // if($message_content === 'リピート'){
+            //     $order = [
+            //         "ordering_details" => "・ミラノ風ドリア",
+            //         "ordering_details2" => "・辛味チキン",
+            //     ];
+            //     $reply_message = $order['ordering_details']."\n".$order['ordering_details2'];
+            // }
 
             // ユーザーにメッセージを返す
             $reply=$bot->replyText($reply_token, $reply_message);
@@ -60,10 +60,10 @@ class LineMessageController extends Controller
         $userId = config('services.line.sample_user_id');
 
         // 仮の注文データ
-        $ordering_details = $request->ordering_details;
-        $ordering_details2 = $request->ordering_details2;
+        // $ordering_details = $request->ordering_details;
+        // $ordering_details2 = $request->ordering_details2;
         $ordering_details88 = $request->ordering_details88;
-        var_export($request);
+
         // メッセージ設定
         // $message = "以下のご注文を受け付けました"."\n".$ordering_details."\n".$ordering_details2;
         $message = "以下のご注文を受け付けました"."\n".$ordering_details88;

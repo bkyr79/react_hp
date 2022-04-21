@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 
 const LineMessage: (props: any) => JSX.Element = props => {
@@ -16,6 +15,7 @@ const LineMessage: (props: any) => JSX.Element = props => {
   const pepe = { ordering_details88: '・ペペロンチーノ' }
   const ice_cream = { ordering_details88: '・ジェラート' }
 
+  // この関数はのちに削除数る
   const SendLineMessage = (e: any) => {
     e.preventDefault();
       axios.post('/sendLineMessage', order)

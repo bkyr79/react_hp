@@ -21296,7 +21296,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! @fullcalendar/react */ "./node_modules/@fullcalendar/react/dist/main.js"), __webpack_require__(/*! @fullcalendar/timegrid */ "./node_modules/@fullcalendar/timegrid/main.js"), __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/main.js"), __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/main.js"), __webpack_require__(/*! ./LineMessage */ "./resources/ts/LineMessage.tsx"), __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js"), __webpack_require__(/*! date-fns/locale/ja */ "./node_modules/date-fns/esm/locale/ja/index.js"), __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_2, timegrid_1, daygrid_1, interaction_1, LineMessage_1, react_datepicker_1, ja_1, styles_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! @fullcalendar/react */ "./node_modules/@fullcalendar/react/dist/main.js"), __webpack_require__(/*! @fullcalendar/timegrid */ "./node_modules/@fullcalendar/timegrid/main.js"), __webpack_require__(/*! @fullcalendar/daygrid */ "./node_modules/@fullcalendar/daygrid/main.js"), __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/main.js"), __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js"), __webpack_require__(/*! date-fns/locale/ja */ "./node_modules/date-fns/esm/locale/ja/index.js"), __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_2, timegrid_1, daygrid_1, interaction_1, react_datepicker_1, ja_1, styles_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -21307,7 +21307,6 @@ var __importDefault = this && this.__importDefault || function (mod) {
   timegrid_1 = __importDefault(timegrid_1);
   daygrid_1 = __importDefault(daygrid_1);
   interaction_1 = __importDefault(interaction_1);
-  LineMessage_1 = __importDefault(LineMessage_1);
   react_datepicker_1 = __importStar(react_datepicker_1);
   ja_1 = __importDefault(ja_1); // Style
 
@@ -21351,7 +21350,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
   (0, react_datepicker_1.registerLocale)('ja', ja_1["default"]);
 
-  var SampleCalendar = function SampleCalendar(props) {
+  var Calendar = function Calendar(props) {
     var classes = useStyles();
     /**
      * 予定を追加する際にCalendarオブジェクトのメソッドを使用する必要がある。
@@ -21521,7 +21520,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }, react_1["default"].createElement("form", null, react_1["default"].createElement("div", null, "\u4E88\u5B9A\u3092\u5165\u529B"), titleElement, startTimeElement, endTimeElement, btnElement));
     return react_1["default"].createElement("div", {
       style: sotowaku
-    }, react_1["default"].createElement(LineMessage_1["default"], null), coverElement, formElement, react_1["default"].createElement(react_2["default"], {
+    }, coverElement, formElement, react_1["default"].createElement(react_2["default"], {
       locale: "ja",
       plugins: [timegrid_1["default"], daygrid_1["default"], interaction_1["default"]],
       initialView: "timeGridWeek",
@@ -21548,7 +21547,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
     }));
   };
 
-  exports["default"] = SampleCalendar;
+  exports["default"] = Calendar;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -22712,6 +22711,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   axios_1 = __importDefault(axios_1);
 
   var LineMessage = function LineMessage(props) {
+    // この変数はのちに削除する
     var order = {
       // 注文内容（後々、予約画面でユーザーが選択したものを取得できるようにする）
       ordering_details: '・ミラノ風ドリア',
@@ -22725,7 +22725,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
     };
     var ice_cream = {
       ordering_details88: '・ジェラート'
-    };
+    }; // この関数はのちに削除数る
 
     var SendLineMessage = function SendLineMessage(e) {
       e.preventDefault();
@@ -22765,10 +22765,42 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       onClick: function onClick() {
         return SendLineMessage2(ice_cream);
       }
-    }, "\u30FB\u30B8\u30A7\u30E9\u30FC\u30C8"));
+    }, "\u30B8\u30A7\u30E9\u30FC\u30C8"));
   };
 
   exports["default"] = LineMessage;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ "./resources/ts/ReserveMain.tsx":
+/*!**************************************!*\
+  !*** ./resources/ts/ReserveMain.tsx ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./Calendar */ "./resources/ts/Calendar.tsx"), __webpack_require__(/*! ./LineMessage */ "./resources/ts/LineMessage.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, Calendar_1, LineMessage_1) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", ({
+    value: true
+  }));
+  react_1 = __importDefault(react_1);
+  Calendar_1 = __importDefault(Calendar_1);
+  LineMessage_1 = __importDefault(LineMessage_1);
+
+  var ReserveMain = function ReserveMain() {
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(LineMessage_1["default"], null), react_1["default"].createElement(Calendar_1["default"], null));
+  };
+
+  exports["default"] = ReserveMain;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -22786,7 +22818,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js"), __webpack_require__(/*! ./Contact */ "./resources/ts/Contact.tsx"), __webpack_require__(/*! ./DoneSend */ "./resources/ts/DoneSend.tsx"), __webpack_require__(/*! ./Calendar */ "./resources/ts/Calendar.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_router_dom_1, Contact_1, DoneSend_1, Calendar_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js"), __webpack_require__(/*! ./Contact */ "./resources/ts/Contact.tsx"), __webpack_require__(/*! ./DoneSend */ "./resources/ts/DoneSend.tsx"), __webpack_require__(/*! ./ReserveMain */ "./resources/ts/ReserveMain.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_router_dom_1, Contact_1, DoneSend_1, ReserveMain_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -22796,7 +22828,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   react_dom_1 = __importDefault(react_dom_1);
   Contact_1 = __importDefault(Contact_1);
   DoneSend_1 = __importDefault(DoneSend_1);
-  Calendar_1 = __importDefault(Calendar_1);
+  ReserveMain_1 = __importDefault(ReserveMain_1);
 
   var App = function App() {
     var tabsTop = {
@@ -22880,7 +22912,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
       element: react_1["default"].createElement("h2", null, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3067\u3059")
     }), react_1["default"].createElement(react_router_dom_1.Route, {
       path: "/reserve",
-      element: react_1["default"].createElement(Calendar_1["default"], null)
+      element: react_1["default"].createElement(ReserveMain_1["default"], null)
     }), react_1["default"].createElement(react_router_dom_1.Route, {
       path: "/diary",
       element: react_1["default"].createElement("h2", null, "\u65E5\u8A18\u3067\u3059")

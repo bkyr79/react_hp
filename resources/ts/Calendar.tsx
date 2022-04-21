@@ -5,8 +5,6 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
-import LineMessage from "./LineMessage";
-
 
 /** 
  * 開始時間などを入力する際に、カレンダーから入力できるようにするためのライブラリとしてDatePickerを使用。
@@ -74,7 +72,7 @@ interface myEventsType {
   end: Date
 }
 
-const SampleCalendar: React.FC = props => {
+const Calendar: React.FC = props => {
   const classes = useStyles()
 
   /**
@@ -261,7 +259,6 @@ const SampleCalendar: React.FC = props => {
 
   return (
     <div style={sotowaku}>
-      <LineMessage />
       {coverElement}
       {formElement}
       <FullCalendar
@@ -293,4 +290,4 @@ const SampleCalendar: React.FC = props => {
   )
 }
 
-export default SampleCalendar
+export default Calendar
