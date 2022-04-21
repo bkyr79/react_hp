@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
-import Contact from "./ContactMain";
+import Contact from "./Contact";
 import DoneSend from "./component/DoneSend";
-import ReserveMain from "./ReserveMain"
+import ReserveMain from "./Reserve"
+import MenuDetail from "./component/reserve/MenuDetail"
 
 const App = (): JSX.Element => {
   const tabsTop: {
@@ -72,6 +73,7 @@ const App = (): JSX.Element => {
           <Route path="/diary" element={<h2>日記です</h2>} />
           <Route path="/sample" element={<div>サンプル画面です</div>}/>
           <Route path="/doneSend" element={<DoneSend />}/>
+          <Route path="/detail" element={<MenuDetail />}/>
       </Routes>
     </BrowserRouter>
   );

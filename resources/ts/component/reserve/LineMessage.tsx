@@ -39,6 +39,11 @@ const LineMessage: (props: any) => JSX.Element = props => {
   return (
     <>
       {/* <button onClick={SendLineMessage}>予約確定ボタン</button> */}
+      <div style={{display:'inline'}}>
+        <img src="https://www.saizeriya.co.jp/menu/colorbox/images/photo03.jpg" alt="" />
+        <button style={{marginRight:'2px'}}>ハンバーグステーキ（詳細へ遷移）</button>
+      </div>
+
       <button style={{marginRight:'2px'}} onClick={() => SendLineMessage2(hamburg_steak)}>ハンバーグステーキ</button>
       <button style={{marginRight:'2px'}} onClick={() => SendLineMessage2(pepe)}>ペペロンチーノ</button>
       <button style={{marginRight:'2px'}} onClick={() => SendLineMessage2(ice_cream)}>ジェラート</button>
