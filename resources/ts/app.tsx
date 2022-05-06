@@ -6,6 +6,8 @@ import Contact from "./Contact";
 import DoneSend from "./component/DoneSend";
 import ReserveMain from "./Reserve"
 import MenuDetail from "./component/reserve/MenuDetail"
+import SpecifyReceivingDate from "./component/reserve/SpecifyReceivingDate"
+
 
 const App = (): JSX.Element => {
   const tabsTop: {
@@ -74,6 +76,7 @@ const App = (): JSX.Element => {
           <Route path="/sample" element={<div>サンプル画面です</div>}/>
           <Route path="/doneSend" element={<DoneSend />}/>
           <Route path="/detail" element={<MenuDetail />}/>
+          <Route path="/specifyReceivingDate" element={<SpecifyReceivingDate />}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState, useCallback} from 'react'
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
@@ -21,11 +22,14 @@ const MenuDetail = (): JSX.Element => {
     // 改善する必要あり！
     const SendLineMessageH = () => SendLineMessage(hamburg_steak)
 
+    const navigation = useNavigate();
+    const specifyReceivingDate = () => navigation('/specifyReceivingDate');
   return (
   <>
     <img src="https://www.saizeriya.co.jp/menu/colorbox/images/photo03.jpg" alt="" />
     <p>この商品の詳細です</p>
-    <button style={{marginRight:'2px'}} onClick={SendLineMessageH}>注文する</button>
+    {/* <button style={{marginRight:'2px'}} onClick={SendLineMessageH}>注文する</button> */}
+    <button style={{marginRight:'2px'}} onClick={specifyReceivingDate}>注文する</button>
   </>
   )
 }
