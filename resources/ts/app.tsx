@@ -76,7 +76,6 @@ const App = (): JSX.Element => {
           <Route path="/sample" element={<div>サンプル画面です</div>}/>
           <Route path="/doneSend" element={<DoneSend />}/>
           <Route path="/detail" element={<MenuDetail />}/>
-          <Route path="/specifyReceivingDate" element={<SpecifyReceivingDate />}/>
       </Routes>
     </BrowserRouter>
   );

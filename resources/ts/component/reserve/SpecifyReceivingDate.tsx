@@ -3,6 +3,8 @@ import React, {useState, useCallback} from 'react'
 import ModalWindow from './ModalWindow'
 import Margin from './Margin'
 import Button from './Button'
+import axios from 'axios';
+
 
 const SpecifyReceivingDate = (): JSX.Element => {
   const [isShow, setIsShow] = useState(true);
@@ -17,6 +19,18 @@ const SpecifyReceivingDate = (): JSX.Element => {
     fontSize: "1vmin",
     padding: "2vmin 4vmin"
   };    
+
+  const hamburg_steak = { ordering_details88: '・ハンバーグステーキ' }
+  const SendLineMessage = (order: any) => {
+    axios.post('/sendLineMessage', order)
+    .then(function (data) {        
+      console.log(data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+  const SendLineMessageH = () => SendLineMessage(hamburg_steak)
 
   return (
     <>
@@ -33,7 +47,7 @@ const SpecifyReceivingDate = (): JSX.Element => {
 					</Button>
 				</Margin>
 				<Margin top="4vmin" left="1vmin">
-					<Button onClick={handleClick} theme={buttonTheme} size={buttonSize}>
+					<Button onClick={SendLineMessageH} theme={buttonTheme} size={buttonSize}>
 						はい
 					</Button>
 				</Margin>

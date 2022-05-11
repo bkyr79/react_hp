@@ -3482,7 +3482,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js"), __webpack_require__(/*! ./Contact */ "./resources/ts/Contact.tsx"), __webpack_require__(/*! ./component/DoneSend */ "./resources/ts/component/DoneSend.tsx"), __webpack_require__(/*! ./Reserve */ "./resources/ts/Reserve.tsx"), __webpack_require__(/*! ./component/reserve/MenuDetail */ "./resources/ts/component/reserve/MenuDetail.tsx"), __webpack_require__(/*! ./component/reserve/SpecifyReceivingDate */ "./resources/ts/component/reserve/SpecifyReceivingDate.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_router_dom_1, Contact_1, DoneSend_1, Reserve_1, MenuDetail_1, SpecifyReceivingDate_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js"), __webpack_require__(/*! ./Contact */ "./resources/ts/Contact.tsx"), __webpack_require__(/*! ./component/DoneSend */ "./resources/ts/component/DoneSend.tsx"), __webpack_require__(/*! ./Reserve */ "./resources/ts/Reserve.tsx"), __webpack_require__(/*! ./component/reserve/MenuDetail */ "./resources/ts/component/reserve/MenuDetail.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_dom_1, react_router_dom_1, Contact_1, DoneSend_1, Reserve_1, MenuDetail_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -3494,7 +3494,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   DoneSend_1 = __importDefault(DoneSend_1);
   Reserve_1 = __importDefault(Reserve_1);
   MenuDetail_1 = __importDefault(MenuDetail_1);
-  SpecifyReceivingDate_1 = __importDefault(SpecifyReceivingDate_1);
 
   var App = function App() {
     var tabsTop = {
@@ -3591,9 +3590,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
     }), react_1["default"].createElement(react_router_dom_1.Route, {
       path: "/detail",
       element: react_1["default"].createElement(MenuDetail_1["default"], null)
-    }), react_1["default"].createElement(react_router_dom_1.Route, {
-      path: "/specifyReceivingDate",
-      element: react_1["default"].createElement(SpecifyReceivingDate_1["default"], null)
     })));
   };
 
@@ -4584,32 +4580,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
 
   exports["default"] = MenuDetail;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // // 親コンポーネント
-// export default function Modal_FunctionComponent(){
-// function closeModal(){
-//   setIsModalOpen(false)
-// }
-//   // -----2------
-//   const[isModalOpen,setIsModalOpen]=useState(false)
-//   // ---↑追加----
-//   // -----3------
-//   function openModal(){
-//     setIsModalOpen(true)
-//   }
-//   // ---↑追加----
-//   return (
-//     <div className="modalpage">
-//       <h2>関数コンポーネント</h2>
-//       // -----4------
-//       <button onClick={()=>{openModal()}}>モーダルを開く</button>
-//       // ---↑修正----
-//       // -----5------
-//       {isModalOpen? <Modal onClick={()=>{closeModal()}}/> :""}
-//       // ---↑修正----
-//     </div>
-//   );
-// }
-// }
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
 
@@ -4831,7 +4802,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ModalWindow */ "./resources/ts/component/reserve/ModalWindow.tsx"), __webpack_require__(/*! ./Margin */ "./resources/ts/component/reserve/Margin.tsx"), __webpack_require__(/*! ./Button */ "./resources/ts/component/reserve/Button.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ModalWindow_1, Margin_1, Button_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ModalWindow */ "./resources/ts/component/reserve/ModalWindow.tsx"), __webpack_require__(/*! ./Margin */ "./resources/ts/component/reserve/Margin.tsx"), __webpack_require__(/*! ./Button */ "./resources/ts/component/reserve/Button.tsx"), __webpack_require__(/*! axios */ "./node_modules/axios/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ModalWindow_1, Margin_1, Button_1, axios_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -4841,6 +4812,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
   ModalWindow_1 = __importDefault(ModalWindow_1);
   Margin_1 = __importDefault(Margin_1);
   Button_1 = __importDefault(Button_1);
+  axios_1 = __importDefault(axios_1);
 
   var SpecifyReceivingDate = function SpecifyReceivingDate() {
     var _ref = (0, react_1.useState)(true),
@@ -4859,6 +4831,22 @@ var __importDefault = this && this.__importDefault || function (mod) {
       fontSize: "1vmin",
       padding: "2vmin 4vmin"
     };
+    var hamburg_steak = {
+      ordering_details88: '・ハンバーグステーキ'
+    };
+
+    var SendLineMessage = function SendLineMessage(order) {
+      axios_1["default"].post('/sendLineMessage', order).then(function (data) {
+        console.log(data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    };
+
+    var SendLineMessageH = function SendLineMessageH() {
+      return SendLineMessage(hamburg_steak);
+    };
+
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(ModalWindow_1["default"], {
       title: "\u6CE8\u6587\u78BA\u5B9A",
       text: "\u5546\u54C1\u3092\u8CFC\u5165\u3057\u307E\u3059\u304B\uFF1F",
@@ -4875,7 +4863,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       top: "4vmin",
       left: "1vmin"
     }, react_1["default"].createElement(Button_1["default"], {
-      onClick: handleClick,
+      onClick: SendLineMessageH,
       theme: buttonTheme,
       size: buttonSize
     }, "\u306F\u3044"))));

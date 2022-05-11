@@ -43,7 +43,6 @@ const MenuDetail = (): JSX.Element => {
     {/* <button style={{marginRight:'2px'}} onClick={SendLineMessageH}>注文する</button> */}
     <button style={{marginRight:'2px'}} onClick={openModal}>注文する</button>
     
-    {/* <SpecifyReceivingDate /> */}
     {/* @ts-ignore */}
     {isModalOpen? <SpecifyReceivingDate onClick = {()=>{closeModal()}}/> :""}
 
@@ -52,35 +51,3 @@ const MenuDetail = (): JSX.Element => {
 }
 
 export default MenuDetail
-
-// // 親コンポーネント
-// export default function Modal_FunctionComponent(){
-
-  // function closeModal(){
-  //   setIsModalOpen(false)
-  // }
-
-//   // -----2------
-//   const[isModalOpen,setIsModalOpen]=useState(false)
-//   // ---↑追加----
-
-//   // -----3------
-//   function openModal(){
-//     setIsModalOpen(true)
-//   }
-//   // ---↑追加----
-
-//   return (
-//     <div className="modalpage">
-//       <h2>関数コンポーネント</h2>
-//       // -----4------
-//       <button onClick={()=>{openModal()}}>モーダルを開く</button>
-//       // ---↑修正----
-
-//       // -----5------
-//       {isModalOpen? <Modal onClick={()=>{closeModal()}}/> :""}
-//       // ---↑修正----
-//     </div>
-//   );
-// }
-// }
