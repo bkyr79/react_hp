@@ -3,6 +3,7 @@ import React, {useState, useCallback} from 'react'
 import ModalWindow from './ModalWindow'
 import Margin from './Margin'
 import Button from './Button'
+import ChangeNumber from './ChangeNumber'
 import axios from 'axios';
 
 
@@ -41,6 +42,7 @@ const SpecifyReceivingDate = (): JSX.Element => {
 				onClick={handleClick}
 				isShowCloseButton={false}
 			>
+        <ChangeNumber />
 				<Margin top="2vmin" right="1vmin">
 					<Button onClick={handleClick} size={buttonSize}>
 						いいえ
