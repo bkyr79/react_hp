@@ -43936,23 +43936,23 @@ var __importStar = this && this.__importStar || function (mod) {
       return navigation('/detail');
     };
 
-    var _ref = (0, react_1.useContext)(SpecifyReceivingDate_1.UserCount),
-        count = _ref.count,
-        setCount = _ref.setCount;
+    var _ref = (0, react_1.useContext)(SpecifyReceivingDate_1.NumberOrders),
+        number = _ref.number,
+        setNumber = _ref.setNumber;
 
     var countUp = function countUp() {
-      setCount(count + 1);
+      setNumber(number + 1);
     };
 
     var countDown = function countDown() {
-      setCount(count - 1);
+      setNumber(number - 1);
     };
 
     var countReset = function countReset() {
-      setCount(0);
+      setNumber(0);
     };
 
-    return react_1["default"].createElement("div", null, react_1["default"].createElement("h1", null, count), react_1["default"].createElement(core_1.Button, {
+    return react_1["default"].createElement("div", null, react_1["default"].createElement("h1", null, number), react_1["default"].createElement(core_1.Button, {
       size: "small",
       variant: "contained",
       color: "secondary",
@@ -44387,14 +44387,16 @@ var __importDefault = this && this.__importDefault || function (mod) {
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
-  exports.UserCount = void 0;
+  exports.NumberOrders = void 0;
   react_1 = __importStar(react_1);
   ModalWindow_1 = __importDefault(ModalWindow_1);
   Margin_1 = __importDefault(Margin_1);
   Button_1 = __importDefault(Button_1);
   ChangeNumber_1 = __importDefault(ChangeNumber_1);
-  axios_1 = __importDefault(axios_1);
-  exports.UserCount = react_1["default"].createContext();
+  axios_1 = __importDefault(axios_1); // ChangeNumberコンポーネントで使う変数
+  // 注文数
+
+  exports.NumberOrders = react_1["default"].createContext();
 
   var SpecifyReceivingDate = function SpecifyReceivingDate() {
     var _ref = (0, react_1.useState)(true),
@@ -44412,21 +44414,20 @@ var __importDefault = this && this.__importDefault || function (mod) {
     var buttonSize = {
       fontSize: "1vmin",
       padding: "2vmin 4vmin"
-    }; // こんな感じで親のほうでuseState使うはず
+    };
 
     var _ref3 = (0, react_1.useState)(0),
         _ref4 = _slicedToArray(_ref3, 2),
-        count = _ref4[0],
-        setCount = _ref4[1];
+        number = _ref4[0],
+        setNumber = _ref4[1];
 
     var value = {
-      count: count,
-      setCount: setCount
-    }; // 値をベタ書きにしない
-
+      number: number,
+      setNumber: setNumber
+    };
     var hamburg_steak = {
       ordering_details88: '・ハンバーグステーキ',
-      count: '・' + value.count + '個'
+      count: '・' + value.number + '個'
     };
 
     var SendLineMessage = function SendLineMessage(order) {
@@ -44435,7 +44436,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       })["catch"](function (error) {
         console.log(error);
       });
-    }; // はいクリックで、数量の値も送信したい
+    }; // LINEメッセージで注文名と注文数を送る
 
 
     var SendLineMessageH = function SendLineMessageH() {
@@ -44448,7 +44449,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
       isShow: isShow,
       onClick: handleClick,
       isShowCloseButton: false
-    }, react_1["default"].createElement(exports.UserCount.Provider, {
+    }, react_1["default"].createElement(exports.NumberOrders.Provider, {
       value: value
     }, react_1["default"].createElement(ChangeNumber_1["default"], null)), react_1["default"].createElement(Margin_1["default"], {
       top: "2vmin",

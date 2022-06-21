@@ -38,7 +38,7 @@ const SpecifyReceivingDate = (): JSX.Element => {
   
   const hamburg_steak = {
     ordering_details88: '・ハンバーグステーキ',
-    number:             '・' + value.number + '個'
+    count:             '・' + value.number + '個'
   }
 
   const SendLineMessage = (order: any) => {
