@@ -7,6 +7,15 @@ import ChangeNumber from './ChangeNumber'
 import axios from 'axios';
 
 
+type Number = {
+  number: number,
+  setNumber: (number) => void 
+};
+
+// ChangeNumberコンポーネントで使う変数
+// 注文数
+export const NumberOrders = React.createContext<Number>();
+
 const SpecifyReceivingDate = (): JSX.Element => {
   const [isShow, setIsShow] = useState(true);
   const handleClick = useCallback(() => setIsShow(false), []);
@@ -21,7 +30,17 @@ const SpecifyReceivingDate = (): JSX.Element => {
     padding: "2vmin 4vmin"
   };    
 
-  const hamburg_steak = { ordering_details88: '・ハンバーグステーキ' }
+  const [number, setNumber] = useState(0);
+  const value = {
+    number,
+    setNumber
+  }
+  
+  const hamburg_steak = {
+    ordering_details88: '・ハンバーグステーキ',
+    number:             '・' + value.number + '個'
+  }
+
   const SendLineMessage = (order: any) => {
     axios.post('/sendLineMessage', order)
     .then(function (data) {        
@@ -31,6 +50,8 @@ const SpecifyReceivingDate = (): JSX.Element => {
       console.log(error);
     })
   }
+
+  // LINEメッセージで注文名と注文数を送る
   const SendLineMessageH = () => SendLineMessage(hamburg_steak)
 
   return (
@@ -42,7 +63,10 @@ const SpecifyReceivingDate = (): JSX.Element => {
 				onClick={handleClick}
 				isShowCloseButton={false}
 			>
-        <ChangeNumber />
+        <NumberOrders.Provider value={value}>
+          <ChangeNumber />
+        </NumberOrders.Provider>
+
 				<Margin top="2vmin" right="1vmin">
 					<Button onClick={handleClick} size={buttonSize}>
 						いいえ

@@ -63,10 +63,14 @@ class LineMessageController extends Controller
         // $ordering_details = $request->ordering_details;
         // $ordering_details2 = $request->ordering_details2;
         $ordering_details88 = $request->ordering_details88;
+        $count              = $request->count;
 
         // メッセージ設定
         // $message = "以下のご注文を受け付けました"."\n".$ordering_details."\n".$ordering_details2;
-        $message = "以下のご注文を受け付けました"."\n".$ordering_details88;
+        $message = 
+                "以下のご注文を受け付けました".
+                "\n".$ordering_details88.
+                "\n".$count;
 
         // メッセージ送信
         $textMessageBuilder = new TextMessageBuilder($message);

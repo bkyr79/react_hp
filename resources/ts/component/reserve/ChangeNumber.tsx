@@ -1,30 +1,31 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { Button } from "@material-ui/core";
+import { NumberOrders } from "./SpecifyReceivingDate";
 
+// @ts-ignore
 const ChangeNumber = (): JSX.Element => {
 
   const navigation = useNavigate();
   const showDetail = () => navigation('/detail');
 
-  const [count, setCount] = useState(0);
+  const { number, setNumber } = useContext(NumberOrders);
 
   const countUp = () => {
-    setCount(count + 1);
+    setNumber(number + 1);
   };
 
   const countDown = () => {
-    setCount(count - 1);
+    setNumber(number - 1);
   };
 
   const countReset = () => {
-    setCount(0);
+    setNumber(0);
   };
 
   return (
     <div>
-      <h1>{count}</h1>
+      <h1>{number}</h1>
       <Button
         size="small"
         variant="contained"
