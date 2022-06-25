@@ -1,8 +1,16 @@
-import React, {useState, useCallback} from 'react'
+// @ts-nocheck
+import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import SpecifyReceivingDate from "./SpecifyReceivingDate";
 
+
+type Modal = {
+  isModalOpen: boolean,
+  setIsModalOpen: () => void 
+};
+
+export const ModalOpen = React.createContext<Modal>();
 
 const MenuDetail = (): JSX.Element => {
     
@@ -29,22 +37,28 @@ const MenuDetail = (): JSX.Element => {
   const closeModal = () => {
     setIsModalOpen(false)
   }
-
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
   const openModal = () => {
     setIsModalOpen(true)
+  }
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const value = {
+    isModalOpen,
+    setIsModalOpen
   }
 
   return (
   <>
     <img src="https://www.saizeriya.co.jp/menu/colorbox/images/photo03.jpg" alt="" />
     <p>この商品の詳細です</p>
-    {/* <button style={{marginRight:'2px'}} onClick={SendLineMessageH}>注文する</button> */}
     <button style={{marginRight:'2px'}} onClick={openModal}>注文する</button>
     
     {/* @ts-ignore */}
-    {isModalOpen? <SpecifyReceivingDate onClick = {()=>{closeModal()}}/> :""}
+    {isModalOpen?
+      <ModalOpen.Provider value={value}>
+        <SpecifyReceivingDate onClick = {()=>{closeModal()}}/>
+      </ModalOpen.Provider>
+    :""}
 
   </>
   )

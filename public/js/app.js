@@ -44095,9 +44095,11 @@ var __importDefault = this && this.__importDefault || function (mod) {
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
+  exports.ModalOpen = void 0;
   react_1 = __importStar(react_1);
   axios_1 = __importDefault(axios_1);
   SpecifyReceivingDate_1 = __importDefault(SpecifyReceivingDate_1);
+  exports.ModalOpen = react_1["default"].createContext();
 
   var MenuDetail = function MenuDetail() {
     var hamburg_steak = {
@@ -44133,15 +44135,19 @@ var __importDefault = this && this.__importDefault || function (mod) {
       setIsModalOpen(false);
     };
 
+    var openModal = function openModal() {
+      setIsModalOpen(true);
+    };
+
     var _ref = (0, react_1.useState)(false),
         _ref2 = _slicedToArray(_ref, 2),
         isModalOpen = _ref2[0],
         setIsModalOpen = _ref2[1];
 
-    var openModal = function openModal() {
-      setIsModalOpen(true);
+    var value = {
+      isModalOpen: isModalOpen,
+      setIsModalOpen: setIsModalOpen
     };
-
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("img", {
       src: "https://www.saizeriya.co.jp/menu/colorbox/images/photo03.jpg",
       alt: ""
@@ -44150,11 +44156,13 @@ var __importDefault = this && this.__importDefault || function (mod) {
         marginRight: '2px'
       },
       onClick: openModal
-    }, "\u6CE8\u6587\u3059\u308B"), isModalOpen ? react_1["default"].createElement(SpecifyReceivingDate_1["default"], {
+    }, "\u6CE8\u6587\u3059\u308B"), isModalOpen ? react_1["default"].createElement(exports.ModalOpen.Provider, {
+      value: value
+    }, react_1["default"].createElement(SpecifyReceivingDate_1["default"], {
       onClick: function onClick() {
         closeModal();
       }
-    }) : "");
+    })) : "");
   };
 
   exports["default"] = MenuDetail;
@@ -44381,7 +44389,7 @@ var __importDefault = this && this.__importDefault || function (mod) {
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ModalWindow */ "./resources/ts/component/reserve/ModalWindow.tsx"), __webpack_require__(/*! ./Margin */ "./resources/ts/component/reserve/Margin.tsx"), __webpack_require__(/*! ./Button */ "./resources/ts/component/reserve/Button.tsx"), __webpack_require__(/*! ./ChangeNumber */ "./resources/ts/component/reserve/ChangeNumber.tsx"), __webpack_require__(/*! axios */ "./node_modules/axios/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ModalWindow_1, Margin_1, Button_1, ChangeNumber_1, axios_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./ModalWindow */ "./resources/ts/component/reserve/ModalWindow.tsx"), __webpack_require__(/*! ./Margin */ "./resources/ts/component/reserve/Margin.tsx"), __webpack_require__(/*! ./Button */ "./resources/ts/component/reserve/Button.tsx"), __webpack_require__(/*! ./ChangeNumber */ "./resources/ts/component/reserve/ChangeNumber.tsx"), __webpack_require__(/*! axios */ "./node_modules/axios/index.js"), __webpack_require__(/*! ./MenuDetail */ "./resources/ts/component/reserve/MenuDetail.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, ModalWindow_1, Margin_1, Button_1, ChangeNumber_1, axios_1, MenuDetail_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
@@ -44404,9 +44412,17 @@ var __importDefault = this && this.__importDefault || function (mod) {
         isShow = _ref2[0],
         setIsShow = _ref2[1];
 
-    var handleClick = (0, react_1.useCallback)(function () {
-      return setIsShow(false);
-    }, []);
+    var _ref3 = (0, react_1.useContext)(MenuDetail_1.ModalOpen),
+        setIsModalOpen = _ref3.setIsModalOpen; // モーダルを閉じ、開く前の状態に戻す
+    // (=初期状態を保つのにリロードを不要にする)
+
+
+    var restoreDefault = function restoreDefault() {
+      setIsShow(false);
+      setIsModalOpen(false);
+    };
+
+    var handleClick = (0, react_1.useCallback)(restoreDefault, []);
     var buttonTheme = {
       background: "orange",
       color: "#ffffff"
@@ -44416,10 +44432,10 @@ var __importDefault = this && this.__importDefault || function (mod) {
       padding: "2vmin 4vmin"
     };
 
-    var _ref3 = (0, react_1.useState)(0),
-        _ref4 = _slicedToArray(_ref3, 2),
-        number = _ref4[0],
-        setNumber = _ref4[1];
+    var _ref4 = (0, react_1.useState)(0),
+        _ref5 = _slicedToArray(_ref4, 2),
+        number = _ref5[0],
+        setNumber = _ref5[1];
 
     var value = {
       number: number,

@@ -1,10 +1,11 @@
 // @ts-nocheck
-import React, {useState, useCallback} from 'react'
+import React, {useState, useCallback, useContext} from 'react'
 import ModalWindow from './ModalWindow'
 import Margin from './Margin'
 import Button from './Button'
 import ChangeNumber from './ChangeNumber'
 import axios from 'axios';
+import { ModalOpen } from "./MenuDetail";
 
 
 type Number = {
@@ -17,8 +18,17 @@ type Number = {
 export const NumberOrders = React.createContext<Number>();
 
 const SpecifyReceivingDate = (): JSX.Element => {
+
   const [isShow, setIsShow] = useState(true);
-  const handleClick = useCallback(() => setIsShow(false), []);
+  const { setIsModalOpen } = useContext(ModalOpen)
+
+  // モーダルを閉じ、開く前の状態に戻す
+  // (=初期状態を保つのにリロードを不要にする)
+  const restoreDefault = () => {
+    setIsShow(false);
+    setIsModalOpen(false);
+  }
+  const handleClick = useCallback(restoreDefault, []);
 
   const buttonTheme = {
     background: "orange",
