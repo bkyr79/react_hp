@@ -43946,6 +43946,10 @@ var __importStar = this && this.__importStar || function (mod) {
 
     var countDown = function countDown() {
       setNumber(number - 1);
+
+      if (number <= 0) {
+        setNumber(0);
+      }
     };
 
     var countReset = function countReset() {

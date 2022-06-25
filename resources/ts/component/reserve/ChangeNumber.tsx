@@ -17,6 +17,10 @@ const ChangeNumber = (): JSX.Element => {
 
   const countDown = () => {
     setNumber(number - 1);
+    // マイナス個数が表示されないようにする
+    if(number <= 0){
+      setNumber(0)
+    }
   };
 
   const countReset = () => {
