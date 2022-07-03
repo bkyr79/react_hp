@@ -43945,7 +43945,7 @@ var __importStar = this && this.__importStar || function (mod) {
     };
 
     var countDown = function countDown() {
-      setNumber(number - 1);
+      setNumber(number - 1); // マイナス個数が表示されないようにする
 
       if (number <= 0) {
         setNumber(0);
@@ -44030,6 +44030,50 @@ var __importDefault = this && this.__importDefault || function (mod) {
     return left ? left : "0";
   });
   exports["default"] = Margin;
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ "./resources/ts/component/reserve/Menu.tsx":
+/*!*************************************************!*\
+  !*** ./resources/ts/component/reserve/Menu.tsx ***!
+  \*************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_router_dom_1) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", ({
+    value: true
+  }));
+  react_1 = __importDefault(react_1);
+
+  var Menu = function Menu() {
+    var navigation = (0, react_router_dom_1.useNavigate)();
+
+    var showDetail = function showDetail() {
+      return navigation('/detail');
+    };
+
+    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("img", {
+      src: "https://www.saizeriya.co.jp/menu/colorbox/images/photo03.jpg",
+      alt: ""
+    }), react_1["default"].createElement("p", null), react_1["default"].createElement("button", {
+      style: {
+        marginRight: '2px'
+      },
+      onClick: showDetail
+    }, "\u30CF\u30F3\u30D0\u30FC\u30B0\u30B9\u30C6\u30FC\u30AD"));
+  };
+
+  exports["default"] = Menu;
 }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -44303,30 +44347,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __importDefa
   };
 };
 
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, react_router_dom_1) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(/*! react */ "./node_modules/react/index.js"), __webpack_require__(/*! ./Menu */ "./resources/ts/component/reserve/Menu.tsx")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (require, exports, react_1, Menu_1) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", ({
     value: true
   }));
   react_1 = __importDefault(react_1);
+  Menu_1 = __importDefault(Menu_1);
 
   var ReserveTop = function ReserveTop() {
-    var navigation = (0, react_router_dom_1.useNavigate)();
-
-    var showDetail = function showDetail() {
-      return navigation('/detail');
-    };
-
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("img", {
-      src: "https://www.saizeriya.co.jp/menu/colorbox/images/photo03.jpg",
-      alt: ""
-    }), react_1["default"].createElement("p", null), react_1["default"].createElement("button", {
-      style: {
-        marginRight: '2px'
-      },
-      onClick: showDetail
-    }, "\u30CF\u30F3\u30D0\u30FC\u30B0\u30B9\u30C6\u30FC\u30AD"));
+    // const navigation = useNavigate();
+    // const showDetail = () => navigation('/detail');
+    return react_1["default"].createElement(Menu_1["default"], null);
   };
 
   exports["default"] = ReserveTop;
